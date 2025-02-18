@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface Servicios {
 
-    String ImprimirPosicion(int posicion);
+    String imprimirPosicion(int posicion);
     Integer cantidadActual();
-    List<String> ImprimirListado();
+    List<String> imprimirListado();
 
 }
