@@ -1,9 +1,15 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 public class InscripcionesPersonas {
     private ArrayList<Persona> listado;
+
+    public InscripcionesPersonas(){
+        listado = new ArrayList<>();
+    }
 
     public InscripcionesPersonas(ArrayList<Persona> listado) {
         this.listado = listado;
@@ -25,19 +31,29 @@ public class InscripcionesPersonas {
         listado.remove(persona);
         System.out.println("Persona {"+ persona.getNombres()+", "+ persona.getApellidos() +"} eliminada correctamente");
     }
-    public void actualizar(Persona persona){
 
-        double id = persona.getID();
-        for(Persona personaEnLaLista: listado){
-            if(personaEnLaLista.getID()==persona.getID()){
-                personaEnLaLista.setNombres(persona.getNombres());
-                personaEnLaLista.setApellidos(persona.getApellidos());
-                personaEnLaLista.setEmail(persona.getEmail());
-                System.out.println("Persona actualizada correctamente");
-                return;
+    public Optional<Integer> obtenerPosicionPorId(double IdPersona){
+        Optional<Integer> indice = Optional.empty();
+        for(Persona persona : listado){
+            if(persona.getID()==IdPersona){
+                 indice = Optional.of(listado.indexOf(persona));
             }
         }
-        System.out.println("Persona no encontrada en la lista");
+        return indice;
+    }
+
+    public void actualizar(Persona persona){
+
+        Optional<Integer> indicePersona = obtenerPosicionPorId(persona.getID());
+        if(indicePersona.isEmpty()){
+            System.out.println("Persona no encontrada ");
+        }else{
+            Persona personaEnLaLista = listado.get(indicePersona.get());
+            personaEnLaLista.setNombres(persona.getNombres());
+            personaEnLaLista.setNombres(persona.getApellidos());
+            personaEnLaLista.setEmail(persona.getEmail());
+            System.out.println("Persona actualizada correctamente ");
+        }
 
     }
     public void guardarInformacion(){

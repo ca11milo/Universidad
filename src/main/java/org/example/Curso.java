@@ -3,13 +3,23 @@ package org.example;
 public class Curso {
 
     private int ID;
+    private String nombre;
     private Programa programa;
     private boolean activo;
 
-    public Curso(int ID, Programa programa, boolean activo) {
+    public Curso(int ID, String nombre, Programa programa, boolean activo) {
         this.ID = ID;
+        this.nombre = nombre;
         this.programa = programa;
         this.activo = activo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public boolean isActivo() {

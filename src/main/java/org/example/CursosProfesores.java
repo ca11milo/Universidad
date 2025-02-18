@@ -6,6 +6,10 @@ import java.util.List;
 public class CursosProfesores implements Servicios{
     private ArrayList<CursoProfesor> listado;
 
+    public CursosProfesores(){
+        listado = new ArrayList<>();
+    }
+
     public CursosProfesores(ArrayList<CursoProfesor> listado) {
         this.listado = listado;
     }
