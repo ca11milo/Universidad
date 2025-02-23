@@ -1,6 +1,10 @@
 package org.example;
 
-public class CursoProfesor {
+import java.io.Serializable;
+
+public class CursoProfesor implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Profesor profesor;
     private int año;
     private int semestre;

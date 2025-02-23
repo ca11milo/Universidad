@@ -1,8 +1,10 @@
 package org.example;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Programa {
+public class Programa implements Serializable {
+    private static final long serialVersionUID = 1L;
     private double ID;
     private String nombre;
     private double duracion;

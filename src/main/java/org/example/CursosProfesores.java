@@ -1,10 +1,14 @@
 package org.example;
 
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CursosProfesores implements Servicios{
     private ArrayList<CursoProfesor> listado;
+    private static final String ARCHIVO = Paths.get("data", "CursosProfesores.dat").toString();
+
 
     public CursosProfesores(){
         listado = new ArrayList<>();
@@ -27,10 +31,6 @@ public class CursosProfesores implements Servicios{
         System.out.println("Curso añadido correctamente");
     }
 
-    public void guardarInformacion(CursoProfesor cursoProfesor){
-
-    }
-
     @Override
     public List<String> ToString(){
 
@@ -43,7 +43,6 @@ public class CursosProfesores implements Servicios{
 
     @Override
     public String imprimirPosicion(int posicion){
-
         return listado.get(posicion).toString();
     }
 
@@ -63,7 +62,36 @@ public class CursosProfesores implements Servicios{
         return cursosParaImprimir;
     }
 
+    public void guardarInformacion(CursoProfesor cursoProfesor) {
+        cargarDatos();
+        listado.add(cursoProfesor);
+
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
+            for (CursoProfesor curso : listado) {
+                out.writeObject(curso);
+            }
+            System.out.println("Datos guardados correctamente en " + ARCHIVO);
+        } catch (IOException exception) {
+            System.out.println("Ocurrió un error al guardar los datos:");
+            exception.printStackTrace();
+        }
+    }
 
     @Override
-    public void cargarDatos(){}
+    public void cargarDatos() {
+        listado.clear();
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
+            while (true) {
+                try {
+                    CursoProfesor cursoProfesor = (CursoProfesor) in.readObject();
+                    listado.add(cursoProfesor);
+                } catch (EOFException e) {
+                    break; // Se llegó al final del archivo
+                }
+            }
+        } catch (IOException | ClassNotFoundException exception) {
+            System.out.println("No se pudo cargar el archivo o el archivo no existe.");
+        }
+    }
 }

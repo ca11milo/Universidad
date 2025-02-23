@@ -1,10 +1,14 @@
 package org.example;
 
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CursosInscritos implements Servicios{
     private List<Inscripcion> listado;
+    private static final String ARCHIVO = Paths.get("data", "CursosInscritos.dat").toString();
+
 
     public CursosInscritos(){
         listado = new ArrayList<>();
@@ -93,13 +97,35 @@ public class CursosInscritos implements Servicios{
         return cursosParaImprimir;
     }
 
-    @Override
-    public void cargarDatos(){
+    public void guardarInformacion(Inscripcion inscripcion) {
+        cargarDatos();
+        listado.add(inscripcion);
 
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ARCHIVO))) {
+            for (Inscripcion insc : listado) {
+                out.writeObject(insc);
+            }
+            System.out.println("Datos guardados correctamente en " + ARCHIVO);
+        } catch (IOException exception) {
+            System.out.println("Ocurrió un error al guardar los datos:");
+            exception.printStackTrace();
+        }
     }
 
-    public void guardarInformacion(){
+    public void cargarDatos() {
+        listado.clear();
 
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARCHIVO))) {
+            while (true) {
+                try {
+                    Inscripcion inscripcion = (Inscripcion) in.readObject();
+                    listado.add(inscripcion);
+                } catch (EOFException e) {
+                    break; // Se llegó al final del archivo
+                }
+            }
+        } catch (IOException | ClassNotFoundException exception) {
+            System.out.println("No se pudo cargar el archivo o el archivo no existe.");
+        }
     }
-
 }

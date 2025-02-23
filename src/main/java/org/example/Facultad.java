@@ -1,6 +1,9 @@
 package org.example;
 
-public class Facultad {
+import java.io.Serializable;
+
+public class Facultad implements Serializable {
+    private static final long serialVersionUID = 1L;
     private double ID;
     private String nombre;
     private Persona decano;
