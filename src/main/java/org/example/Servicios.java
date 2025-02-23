@@ -7,5 +7,6 @@ public interface Servicios {
     String imprimirPosicion(int posicion);
     Integer cantidadActual();
     List<String> imprimirListado();
+    void cargarDatos();
 
 }

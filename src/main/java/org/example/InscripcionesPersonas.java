@@ -1,8 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 public class InscripcionesPersonas {
     private ArrayList<Persona> listado;
@@ -25,37 +23,39 @@ public class InscripcionesPersonas {
 
     public void inscribir(Persona persona){
         listado.add(persona);
-        System.out.println("Persona {"+ persona.getNombres()+", "+ persona.getApellidos() +"} agregada correctamente");
-    }
-    public void eliminar(Persona persona){
-        listado.remove(persona);
-        System.out.println("Persona {"+ persona.getNombres()+", "+ persona.getApellidos() +"} eliminada correctamente");
+        System.out.println("Persona {"+ persona.getNombres()+", "+ persona.getApellidos() +"} agregada correctamente\n");
     }
 
-    public Optional<Integer> obtenerPosicionPorId(double IdPersona){
-        Optional<Integer> indice = Optional.empty();
-        for(Persona persona : listado){
-            if(persona.getID()==IdPersona){
-                 indice = Optional.of(listado.indexOf(persona));
+    public void eliminar(Persona persona){
+        listado.remove(persona);
+        System.out.println("Persona {"+ persona.getNombres()+", "+ persona.getApellidos() +"} eliminada correctamente\n");
+    }
+
+    public int obtenerPosicionPorId(double IdPersona){
+        for(int i=0; i < listado.size(); i++){
+            if(Double.compare(listado.get(i).getID(), IdPersona) == 0){
+                return i;
             }
         }
-        return indice;
+        return -1; // -1 es no encontrado
     }
 
     public void actualizar(Persona persona){
 
-        Optional<Integer> indicePersona = obtenerPosicionPorId(persona.getID());
-        if(indicePersona.isEmpty()){
-            System.out.println("Persona no encontrada ");
-        }else{
-            Persona personaEnLaLista = listado.get(indicePersona.get());
-            personaEnLaLista.setNombres(persona.getNombres());
-            personaEnLaLista.setNombres(persona.getApellidos());
-            personaEnLaLista.setEmail(persona.getEmail());
-            System.out.println("Persona actualizada correctamente ");
+        int indice = obtenerPosicionPorId(persona.getID());
+
+        if(indice == -1){
+            System.out.println("la Persona con ID " + persona.getID() + " no se encuentra inscrita");
+            return;
         }
 
+        Persona personaEnLaLista = listado.get(indice);
+        personaEnLaLista.setNombres(persona.getNombres());
+        personaEnLaLista.setApellidos(persona.getApellidos());
+        personaEnLaLista.setEmail(persona.getEmail());
+        System.out.println("Persona actualizada correctamente");
     }
+
     public void guardarInformacion(){
 
     }

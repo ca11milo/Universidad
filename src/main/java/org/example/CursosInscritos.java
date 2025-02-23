@@ -2,9 +2,8 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class CursosInscritos {
+public class CursosInscritos implements Servicios{
     private List<Inscripcion> listado;
 
     public CursosInscritos(){
@@ -42,5 +41,40 @@ public class CursosInscritos {
             }
         }
 
+    }
+
+    public void guardarInformacion(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "CursosInscritos{" +
+                "listado=" + listado +
+                '}';
+    }
+
+    @Override
+    public void cargarDatos(){
+
+    }
+
+    @Override
+    public String imprimirPosicion(int posicion){
+        return "";
+    }
+
+    @Override
+    public Integer cantidadActual(){
+        return listado.size();
+    }
+
+    @Override
+    public List<String> imprimirListado(){
+        List<String> cursosParaImprimir = new ArrayList<>(); 
+        for(Inscripcion curso : listado){
+            cursosParaImprimir.add(curso.toString());
+        }
+        return cursosParaImprimir;
     }
 }

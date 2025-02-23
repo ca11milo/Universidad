@@ -31,7 +31,8 @@ public class CursosProfesores implements Servicios{
 
     }
 
-    public void cargarInformacion(){}
+    @Override
+    public void cargarDatos(){}
 
     @Override
     public String toString() {
@@ -40,17 +41,19 @@ public class CursosProfesores implements Servicios{
                 '}';
     }
 
-
+    @Override
     public String imprimirPosicion(int posicion){
         return "";
     }
 
+    @Override
     public Integer cantidadActual(){
         return listado.size();
     }
 
+    @Override
     public List<String> imprimirListado(){
-        List<String> cursosParaImprimir = new ArrayList<String>();
+        List<String> cursosParaImprimir = new ArrayList<>();
         for(CursoProfesor curso : listado){
             cursosParaImprimir.add(curso.toString());
         }
