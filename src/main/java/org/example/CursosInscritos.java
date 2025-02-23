@@ -22,8 +22,27 @@ public class CursosInscritos implements Servicios{
         this.listado = listado;
     }
 
+    public int encontrarCursoInscrito(Integer IdCurso,  Double codigoEstudiante){
+        for(Inscripcion inscripcionEnLaLista : listado){
+            if( IdCurso.equals(inscripcionEnLaLista.getCurso().getID()) &&
+                    codigoEstudiante.equals(inscripcionEnLaLista.getEstudiante().getCodigo())){
+                return listado.indexOf(inscripcionEnLaLista);
+            }
+        }
+        return -1;
+    }
+
     public void inscribirCurso(Inscripcion inscripcion){
+
+        Integer idCurso = inscripcion.getCurso().getID();
+        Double codigoEstudiante = inscripcion.getEstudiante().getCodigo();
+        if(encontrarCursoInscrito(idCurso,codigoEstudiante) != -1){
+            System.out.println("El curso ya fue inscrito por el estudiante, no se puede inscribir más de una vez");
+            return;
+        }
         listado.add(inscripcion);
+        System.out.println("Curso agregado correctamente");
+
     }
 
     public void eliminar(Inscripcion inscripcion){
@@ -32,40 +51,30 @@ public class CursosInscritos implements Servicios{
 
     public void actualizar(Inscripcion inscripcion ){
 
-        Integer IdCurso = inscripcion.getCurso().getID();
+        Integer idCurso = inscripcion.getCurso().getID();
         Double codigoEstudiante = inscripcion.getEstudiante().getCodigo();
-        for(Inscripcion inscripcionEnLaLista : listado){
-            if(inscripcionEnLaLista.getCurso().getID() == IdCurso &&
-                    inscripcionEnLaLista.getEstudiante().getCodigo() == codigoEstudiante){
-                    //TODO
-            }
+        int indiceInscripcion= encontrarCursoInscrito(idCurso,codigoEstudiante);
+        if( indiceInscripcion==-1){
+            System.out.println("El curso no ha sido inscrito por el estudiante");
+        }else{
+            listado.get(indiceInscripcion).setAño(inscripcion.getAño());
+            listado.get(indiceInscripcion).setSemestre(inscripcion.getSemestre());
+            System.out.println("Inscripción actualizada con exito");
         }
-
-    }
-
-    public void guardarInformacion(){
-
     }
 
     @Override
     public List<String> ToString() {
-        List<String> lista = new ArrayList<>();
+        List<String> cursosParaImprimir = new ArrayList<>();
         for(Inscripcion inscripcion : listado) {
-            lista.add(inscripcion.toString());
+            cursosParaImprimir.add(inscripcion.toString());
         }
-        return lista;
-    }
-
-
-
-    @Override
-    public void cargarDatos(){
-
+        return cursosParaImprimir;
     }
 
     @Override
     public String imprimirPosicion(int posicion){
-        return "";
+        return listado.get(posicion).toString();
     }
 
     @Override
@@ -75,10 +84,22 @@ public class CursosInscritos implements Servicios{
 
     @Override
     public List<String> imprimirListado(){
-        List<String> cursosParaImprimir = new ArrayList<>(); 
+        List<String> cursosParaImprimir = new ArrayList<>();
+        System.out.println("Listado de Cursos Inscritos de Estudiantes: ");
         for(Inscripcion curso : listado){
             cursosParaImprimir.add(curso.toString());
+            System.out.println(curso.toString());
         }
         return cursosParaImprimir;
     }
+
+    @Override
+    public void cargarDatos(){
+
+    }
+
+    public void guardarInformacion(){
+
+    }
+
 }

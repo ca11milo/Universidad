@@ -32,21 +32,19 @@ public class CursosProfesores implements Servicios{
     }
 
     @Override
-    public void cargarDatos(){}
-
-    @Override
     public List<String> ToString(){
 
-        List<String> lista = new ArrayList<>();
+        List<String> cursosParaImprimir = new ArrayList<>();
         for(CursoProfesor cursoProfesor : listado) {
-            lista.add(cursoProfesor.toString());
+            cursosParaImprimir.add(cursoProfesor.toString());
         }
-        return lista;
+        return cursosParaImprimir;
     }
 
     @Override
     public String imprimirPosicion(int posicion){
-        return "";
+
+        return listado.get(posicion).toString();
     }
 
     @Override
@@ -57,9 +55,15 @@ public class CursosProfesores implements Servicios{
     @Override
     public List<String> imprimirListado(){
         List<String> cursosParaImprimir = new ArrayList<>();
-        for(CursoProfesor curso : listado){
-            cursosParaImprimir.add(curso.toString());
+        System.out.println("Listado de cursos de Profesores: ");
+        for(CursoProfesor cursoProfesor : listado){
+            cursosParaImprimir.add(cursoProfesor.toString());
+            System.out.println(cursoProfesor.toString());
         }
         return cursosParaImprimir;
     }
+
+
+    @Override
+    public void cargarDatos(){}
 }
