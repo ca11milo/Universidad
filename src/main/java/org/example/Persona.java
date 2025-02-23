@@ -6,9 +6,6 @@ public class Persona {
     private String apellidos;
     private String email;
 
-    public Persona() {
-    }
-
     public Persona(String nombres, String email, String apellidos, double ID) {
         this.nombres = nombres;
         this.email = email;

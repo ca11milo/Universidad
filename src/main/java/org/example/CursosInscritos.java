@@ -48,11 +48,15 @@ public class CursosInscritos implements Servicios{
     }
 
     @Override
-    public String toString() {
-        return "CursosInscritos{" +
-                "listado=" + listado +
-                '}';
+    public List<String> ToString() {
+        List<String> lista = new ArrayList<>();
+        for(Inscripcion inscripcion : listado) {
+            lista.add(inscripcion.toString());
+        }
+        return lista;
     }
+
+
 
     @Override
     public void cargarDatos(){

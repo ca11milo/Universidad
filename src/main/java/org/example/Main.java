@@ -9,7 +9,7 @@ public class Main {
         InscripcionesPersonas inscripciones = new InscripcionesPersonas();
 
         // Agregar personas a la lista
-        Persona persona1 = new Persona("Juan", "juan@example.com", "Burgos", 1);
+        Persona persona1 = new Persona("Juan", "juan@example.com", "Burgos", 1.0);
         Persona persona2 = new Persona("camilo", "camilo@example.com", "Londoño", 2);
 
         inscripciones.inscribir(persona1);

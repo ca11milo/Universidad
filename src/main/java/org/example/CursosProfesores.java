@@ -35,10 +35,13 @@ public class CursosProfesores implements Servicios{
     public void cargarDatos(){}
 
     @Override
-    public String toString() {
-        return "CursosProfesores{" +
-                "listado=" + listado +
-                '}';
+    public List<String> ToString(){
+
+        List<String> lista = new ArrayList<>();
+        for(CursoProfesor cursoProfesor : listado) {
+            lista.add(cursoProfesor.toString());
+        }
+        return lista;
     }
 
     @Override

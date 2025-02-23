@@ -1,13 +1,15 @@
 package org.example;
 
+import java.util.Date;
+
 public class Programa {
     private double ID;
     private String nombre;
     private double duracion;
-    private String registro;
+    private Date registro;
     private Facultad facultad;
 
-    public Programa(double ID, String nombre, String registro, double duracion, Facultad facultad) {
+    public Programa(double ID, String nombre, Date registro, double duracion, Facultad facultad) {
         this.ID = ID;
         this.nombre = nombre;
         this.registro = registro;
@@ -31,11 +33,11 @@ public class Programa {
         this.facultad = facultad;
     }
 
-    public String getRegistro() {
+    public Date getRegistro() {
         return registro;
     }
 
-    public void setRegistro(String registro) {
+    public void setRegistro(Date registro) {
         this.registro = registro;
     }
 
