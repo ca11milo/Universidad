@@ -3,6 +3,7 @@ package org.example;
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class InscripcionesPersonas {
@@ -60,8 +61,10 @@ public class InscripcionesPersonas {
         personaEnLaLista.setEmail(persona.getEmail());
         System.out.println("Persona actualizada correctamente");
     }
-
     public void guardarInformacion(Persona persona) {
+
+        ArrayList<Persona> copiaListado = new ArrayList<>(listado);
+
         cargarDatos();
         listado.add(persona);
 
@@ -74,7 +77,9 @@ public class InscripcionesPersonas {
             System.out.println("Ocurrió un error al guardar los datos:");
             exception.printStackTrace();
         }
+        listado = copiaListado;
     }
+
 
     public void cargarDatos() {
         listado.clear();

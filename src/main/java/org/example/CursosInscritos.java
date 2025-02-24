@@ -98,6 +98,9 @@ public class CursosInscritos implements Servicios{
     }
 
     public void guardarInformacion(Inscripcion inscripcion) {
+
+        ArrayList<Inscripcion> copiaListado = new ArrayList<>(listado);
+
         cargarDatos();
         listado.add(inscripcion);
 
@@ -110,6 +113,8 @@ public class CursosInscritos implements Servicios{
             System.out.println("Ocurrió un error al guardar los datos:");
             exception.printStackTrace();
         }
+
+        listado = copiaListado;
     }
 
     public void cargarDatos() {
