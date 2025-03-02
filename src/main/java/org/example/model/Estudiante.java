@@ -1,6 +1,4 @@
-package org.example;
-
-import java.io.Serializable;
+package org.example.model;
 
 public class Estudiante extends Persona{
     private static final long serialVersionUID = 1L;

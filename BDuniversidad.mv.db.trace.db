@@ -1,0 +1,70 @@
+2025-03-01 18:40:20.090291-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROGRAMA" no encontrada
+Table "PROGRAMA" not found; SQL statement:
+-- 📌 Crear la tabla PERSONA
+CREATE TABLE PERSONA (
+    id_persona DOUBLE PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    email VARCHAR(128) NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
+    codigo DOUBLE NULL,
+    id_programa DOUBLE NULL,
+    activo BOOLEAN NULL,
+    promedio DOUBLE NULL,
+    tipo_contrato VARCHAR(50) NULL,
+    FOREIGN KEY (id_programa) REFER [42102-232]
+2025-03-01 18:40:20.098882-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PERSONA" no encontrada
+Table "PERSONA" not found; SQL statement:
+-- 📌 Crear la tabla FACULTAD
+CREATE TABLE FACULTAD (
+    id_facultad DOUBLE PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    id_decano DOUBLE NOT NULL,
+    FOREIGN KEY (id_decano) RE [42102-232]
+2025-03-01 18:40:20.103816-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "FACULTAD" no encontrada
+Table "FACULTAD" not found; SQL statement:
+-- 📌 Crear la tabla PROGRAMA
+CREATE TABLE PROGRAMA (
+    id_programa DOUBLE PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    duracion DOUBLE NOT NULL,
+    registro DATE NOT NULL,
+    id_facultad DOUBLE NOT NULL,
+    FOREIGN KEY (id_facultad) REFE [42102-232]
+2025-03-01 18:40:20.108272-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PROGRAMA" no encontrada
+Table "PROGRAMA" not found; SQL statement:
+-- 📌 Crear la tabla CURSO
+CREATE TABLE CURSO (
+    id_curso INT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    activo BOOLEAN NULL,
+    id_programa DOUBLE NOT NULL,
+    FOREIGN KEY (id_programa) REFEREN [42102-232]
+2025-03-01 18:40:20.113361-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PERSONA" no encontrada
+Table "PERSONA" not found; SQL statement:
+-- 📌 Crear la tabla CURSO_PROFESOR
+CREATE TABLE CURSO_PROFESOR (
+    id_curso_profesor DOUBLE PRIMARY KEY,
+    id_profesor DOUBLE NOT NULL,
+    anio INT NOT NULL,
+    semestre INT NOT NULL,
+    id_curso INT NOT NULL,
+    FOREIGN KEY (id_profesor) REFERENCES PERSONA(id_persona),
+    FOREIGN KEY (id [42102-232]
+2025-03-01 18:40:20.119063-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "CURSO" no encontrada
+Table "CURSO" not found; SQL statement:
+-- 📌 Crear la tabla INSCRIPCION
+CREATE TABLE INSCRIPCION (
+    id_inscripcion DOUBLE PRIMARY KEY,
+    id_curso DOUBLE NOT NULL,
+    anio INT NOT NULL,
+    semestre INT NOT NULL,
+    id_estudiante DOUBLE NOT NULL,
+    FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso),
+    FOREIGN KEY (id_estudiante) [42102-232]

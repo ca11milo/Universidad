@@ -1,10 +1,16 @@
 package org.example;
 
-import java.util.Calendar;
+import org.example.DAO.*;
+import org.example.config.DatabaseConnection;
+import org.example.model.*;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
+        /**
 
         InscripcionesPersonas inscripcionesPersonas = new InscripcionesPersonas();
         CursosProfesores cursosProfesores = new CursosProfesores();
@@ -62,6 +68,56 @@ public class Main {
 
     cursosInscritos1.cargarDatos();
     cursosInscritos1.imprimirListado();
+         **/
+
+    //CONEXION A LA BASE DE DATOS
+
+        try(Connection conexion = DatabaseConnection.getConnection()) {
+            PersonaDAO personaDAO = new PersonaDAO(conexion);
+            FacultadDAO facultadDAO = new FacultadDAO(conexion);
+            ProgramaDAO programaDAO = new ProgramaDAO(conexion);
+            InscripcionDAO inscripcionDAO = new InscripcionDAO(conexion);
+            CursoDAO cursoDAO = new CursoDAO(conexion);
+            CursoProfesorDAO cursoProfesorDAO = new CursoProfesorDAO(conexion);
+
+
+            Persona persona1 = new Persona("Juan", "juan@example.com", "Burgos", 1.0);
+            Persona decano = new Persona("Elvis", "elvis@gmail.com", "Perez", 123);
+
+            Facultad fcbi = new Facultad(16000, "Ciencias Basicas e Ingenieria", decano);
+
+            Programa sistemas = new Programa(1112, "ingenieria de sistemas", new Date(125, 1,23), 10, fcbi);
+
+            Estudiante persona2 = new Estudiante("camilo", "camilo@example.com", "Londoño", 2,123, sistemas, 3.9, true );
+
+            Curso tecnologiasAvanzadas = new Curso(1, "matematicas", sistemas, true);
+
+            Inscripcion inscripcion1 = new Inscripcion(tecnologiasAvanzadas, 2025, 2, persona2);
+
+            Profesor roger = new Profesor("Roger", "roger@gmail.com", "Calderon", 8765, "Planta");
+            CursoProfesor cursoProfesor1 = new CursoProfesor(roger, 1, 2025, tecnologiasAvanzadas);
+
+           personaDAO.guardarPersona(persona1);
+           personaDAO.guardarPersona(decano);
+
+            facultadDAO.guardarFacultad(fcbi);
+
+            programaDAO.guardarPrograma(sistemas);
+
+            personaDAO.guardarPersona(persona2);
+
+            cursoDAO.guardarCurso(tecnologiasAvanzadas);
+
+            inscripcionDAO.guardarInscripcion(inscripcion1);
+
+            personaDAO.guardarPersona(roger);
+
+            cursoProfesorDAO.guardarCursoProfesor(cursoProfesor1);
+
+        }catch (SQLException exception){
+            System.out.println("Error al conectar con la base de datos: "+ exception.getMessage());
+        }
+
 
     }
 }
