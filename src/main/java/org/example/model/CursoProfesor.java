@@ -18,6 +18,13 @@ public class CursoProfesor implements Serializable {
         semestre = 0;
         curso = null;
     }
+    public CursoProfesor(int id) {
+        this.id = id;
+        profesor = null;
+        año = 0;
+        semestre = 0;
+        curso = null;
+    }
 
     public CursoProfesor(Profesor profesor, int semestre, int año, Curso curso) {
         this.profesor = profesor;

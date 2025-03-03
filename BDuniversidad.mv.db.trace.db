@@ -68,3 +68,182 @@ CREATE TABLE INSCRIPCION (
     id_estudiante DOUBLE NOT NULL,
     FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso),
     FOREIGN KEY (id_estudiante) [42102-232]
+2025-03-01 18:43:28.237210-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE INSCRIPCION \000d\000aADD CONSTRAINT fk_inscripcion_curso FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)[*],\000d\000aADD CONSTRAINT fk_inscripcion_estudiante FOREIGN KEY (id_estudiante) REFERENCES PERSONA(id_persona)"
+Syntax error in SQL statement "ALTER TABLE INSCRIPCION \000d\000aADD CONSTRAINT fk_inscripcion_curso FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)[*],\000d\000aADD CONSTRAINT fk_inscripcion_estudiante FOREIGN KEY (id_estudiante) REFERENCES PERSONA(id_persona)"; SQL statement:
+ALTER TABLE INSCRIPCION 
+ADD CONSTRAINT fk_inscripcion_curso FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso),
+ADD CONSTRAINT fk_inscripcion_estudiante FOREIGN KEY (id_estudiante) REFERENCES PERSONA(id_persona) [42000-232]
+2025-03-01 18:43:28.240215-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE CURSO_PROFESOR \000d\000aADD CONSTRAINT fk_curso_profesor_profesor FOREIGN KEY (id_profesor) REFERENCES PERSONA(id_persona)[*],\000d\000aADD CONSTRAINT fk_curso_profesor_curso FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)"
+Syntax error in SQL statement "ALTER TABLE CURSO_PROFESOR \000d\000aADD CONSTRAINT fk_curso_profesor_profesor FOREIGN KEY (id_profesor) REFERENCES PERSONA(id_persona)[*],\000d\000aADD CONSTRAINT fk_curso_profesor_curso FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso)"; SQL statement:
+ALTER TABLE CURSO_PROFESOR 
+ADD CONSTRAINT fk_curso_profesor_profesor FOREIGN KEY (id_profesor) REFERENCES PERSONA(id_persona),
+ADD CONSTRAINT fk_curso_profesor_curso FOREIGN KEY (id_curso) REFERENCES CURSO(id_curso) [42000-232]
+2025-03-01 18:45:10.105163-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_PERSONA_PROGRAMA" ya existe
+Constraint "FK_PERSONA_PROGRAMA" already exists; SQL statement:
+-- 📌 Relaciones de la tabla PERSONA
+ALTER TABLE PERSONA 
+ADD CONSTRAINT fk_persona_programa FOREIGN KEY (id_prog [90045-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:111)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:304)
+	at org.h2.command.Command.executeUpdate(Command.java:248)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1108)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1095)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-03-01 18:45:10.107363-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_FACULTAD_DECANO" ya existe
+Constraint "FK_FACULTAD_DECANO" already exists; SQL statement:
+-- 📌 Relaciones de la tabla FACULTAD
+ALTER TABLE FACULTAD 
+ADD CONSTRAINT fk_facultad_decano FOREIGN KEY (id [90045-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:111)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:304)
+	at org.h2.command.Command.executeUpdate(Command.java:248)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1108)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1095)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-03-01 18:45:10.108378-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_PROGRAMA_FACULTAD" ya existe
+Constraint "FK_PROGRAMA_FACULTAD" already exists; SQL statement:
+-- 📌 Relaciones de la tabla PROGRAMA
+ALTER TABLE PROGRAMA 
+ADD CONSTRAINT fk_programa_facultad FOREIGN KEY (id_fac [90045-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:111)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:304)
+	at org.h2.command.Command.executeUpdate(Command.java:248)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1108)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1095)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-03-01 18:45:10.110363-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "FK_CURSO_PROGRAMA" ya existe
+Constraint "FK_CURSO_PROGRAMA" already exists; SQL statement:
+-- 📌 Relaciones de la tabla CURSO
+ALTER TABLE CURSO 
+ADD CONSTRAINT fk_curso_programa FOREIGN KEY (id_progra [90045-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:111)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:304)
+	at org.h2.command.Command.executeUpdate(Command.java:248)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1108)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1095)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-03-01 18:48:06.760181-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "show [*]persona"
+Syntax error in SQL statement "show [*]persona"; SQL statement:
+show persona [42000-232]
+2025-03-01 18:48:13.568665-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "show [*]table persona"
+Syntax error in SQL statement "show [*]table persona"; SQL statement:
+show table persona [42000-232]
+2025-03-01 21:26:43.592269-05:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_NUEVO" no encontrada
+Column "ID_NUEVO" not found; SQL statement:
+-- 4️⃣ Renombrar la nueva columna para que tenga el mismo nombre que antes
+ALTER TABLE PERSONA ALTER COLUMN id_nuevo RENAME TO id_inscripcion [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:802)
+	at org.h2.command.Parser.columnIfTableExists(Parser.java:8465)
+	at org.h2.command.Parser.parseAlterTableAlter(Parser.java:8052)
+	at org.h2.command.Parser.parseAlterTable(Parser.java:8038)
+	at org.h2.command.Parser.parseAlter(Parser.java:7078)
+	at org.h2.command.Parser.parsePrepared(Parser.java:629)
+	at org.h2.command.Parser.parse(Parser.java:581)
+	at org.h2.command.Parser.parse(Parser.java:556)
+	at org.h2.command.Parser.prepareCommand(Parser.java:484)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1108)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1095)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-03-01 21:26:43.595273-05:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_INSCRIPCION" no encontrada
+Column "ID_INSCRIPCION" not found; SQL statement:
+-- 5️⃣ Volver a definir la clave primaria en la nuev [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:786)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:184)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:121)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:304)
+	at org.h2.command.Command.executeUpdate(Command.java:248)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1108)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1095)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-03-01 21:30:18.235936-05:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "ALTER TABLE INSCRIPCION ALTER COLUMN id_curso SET DATA TYPE DOUBLE [*]NOT NULL"
+Syntax error in SQL statement "ALTER TABLE INSCRIPCION ALTER COLUMN id_curso SET DATA TYPE DOUBLE [*]NOT NULL"; SQL statement:
+ALTER TABLE INSCRIPCION ALTER COLUMN id_curso SET DATA TYPE DOUBLE NOT NULL [42000-232]

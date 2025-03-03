@@ -19,6 +19,14 @@ public class Programa implements Serializable {
         facultad = null;
     }
 
+    public Programa(int ID){
+        this.ID = ID;
+        nombre = "";
+        duracion = 0;
+        registro = null;
+        facultad = null;
+    }
+
     public Programa(String nombre, Date registro, double duracion, Facultad facultad) {
         this.ID = 0;
         this.nombre = nombre;

@@ -15,6 +15,14 @@ public class Estudiante extends Persona{
         promedio = 0;
     }
 
+    public Estudiante(int id){
+        super(id);
+        codigo = 0;
+        programa = null;
+        activo = false;
+        promedio = 0;
+    }
+
     public Estudiante(String nombres, String apellidos, String email, double codigo, Programa programa, Boolean activo, double promedio) {
         super(nombres, apellidos, email);
         this.codigo = codigo;

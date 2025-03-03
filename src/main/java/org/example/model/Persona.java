@@ -19,6 +19,12 @@ public class Persona implements Serializable{
         apellidos = "";
         email = "";
     }
+    public Persona(int ID) {
+        this.ID = ID;
+        nombres = "";
+        apellidos = "";
+        email = "";
+    }
 
     public Persona(String nombres, String apellidos, String email) {
         this.nombres = nombres;
@@ -32,7 +38,6 @@ public class Persona implements Serializable{
         this.nombres = nombres;
         this.email = email;
         this.apellidos = apellidos;
-        this.ID = 0;
     }
 
     public int getID() {

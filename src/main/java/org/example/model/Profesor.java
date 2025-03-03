@@ -9,8 +9,13 @@ public class Profesor extends Persona{
         tipoContrato = "";
     }
 
+    public Profesor(int ID) {
+        super(ID);
+        tipoContrato = "";
+    }
+
     public Profesor(String nombres, String apellidos, String email, String tipoContrato) {
-        super(nombres, email, apellidos);
+        super(nombres, apellidos, email);
         this.tipoContrato = tipoContrato;
     }
 

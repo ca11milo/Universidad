@@ -251,7 +251,7 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email) VALUES (?, ?, ?, ?) [
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:38)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:38)
 	at org.example.Main.main(Main.java:100)
 2025-03-01 22:29:11.571139-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#4" no está fijado
@@ -267,7 +267,7 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email) VALUES (?, ?, ?, ?) [
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:38)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:38)
 	at org.example.Main.main(Main.java:101)
 2025-03-01 22:29:11.604217-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -283,7 +283,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:29:11.608780-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -306,7 +306,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:29:11.621278-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -329,7 +329,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:30:48.072255-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#4" no está fijado
@@ -345,7 +345,7 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email) VALUES (?, ?, ?, ?) [
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:38)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:38)
 	at org.example.Main.main(Main.java:100)
 2025-03-01 22:30:48.084825-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#4" no está fijado
@@ -361,7 +361,7 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email) VALUES (?, ?, ?, ?) [
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:38)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:38)
 	at org.example.Main.main(Main.java:101)
 2025-03-01 22:30:48.092300-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ha sido cerrada
@@ -388,8 +388,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo_contrato) VALUES
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarProfesor(PersonaDAO.java:72)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:26)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:72)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:26)
 	at org.example.Main.main(Main.java:103)
 2025-03-01 22:30:48.096800-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -401,7 +401,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.FacultadDAO.guardarFacultad(FacultadDAO.java:20)
+	at org.example.dao.FacultadDAO.guardarFacultad(FacultadDAO.java:20)
 	at org.example.Main.main(Main.java:104)
 2025-03-01 22:30:48.101821-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -413,7 +413,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:19)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:19)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:30:48.104808-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -425,7 +425,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:30:48.106807-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -437,7 +437,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
+	at org.example.dao.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
 	at org.example.Main.main(Main.java:107)
 2025-03-01 22:30:48.110942-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -449,7 +449,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:33:41.019674-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -461,7 +461,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:19)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:19)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:33:41.030865-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -473,7 +473,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:33:41.033888-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -485,7 +485,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
+	at org.example.dao.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
 	at org.example.Main.main(Main.java:107)
 2025-03-01 22:33:41.037890-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -497,7 +497,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:34:02.083382-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -513,7 +513,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:34:02.096489-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -525,7 +525,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:34:02.098499-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -537,7 +537,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
+	at org.example.dao.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
 	at org.example.Main.main(Main.java:107)
 2025-03-01 22:34:02.102556-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -549,7 +549,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:36:02.494700-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
@@ -568,8 +568,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo, codigo, id_prog
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarEstudiante(PersonaDAO.java:51)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:23)
+	at org.example.dao.PersonaDAO.guardarEstudiante(PersonaDAO.java:51)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:23)
 	at org.example.Main.main(Main.java:102)
 2025-03-01 22:38:24.842658-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
@@ -588,8 +588,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo,  tipo_contrato)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:26)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:26)
 	at org.example.Main.main(Main.java:103)
 2025-03-01 22:38:24.862332-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -605,7 +605,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:38:24.866787-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -628,7 +628,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:38:24.876378-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -651,7 +651,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:38:32.452997-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
@@ -670,8 +670,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo,  tipo_contrato)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:26)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:26)
 	at org.example.Main.main(Main.java:103)
 2025-03-01 22:38:32.464025-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -687,7 +687,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:38:32.466024-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -710,7 +710,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:38:32.472554-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -733,7 +733,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:38:46.193544-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
@@ -752,8 +752,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo,  tipo_contrato)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:26)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:26)
 	at org.example.Main.main(Main.java:103)
 2025-03-01 22:38:46.213773-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -769,7 +769,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:38:46.217772-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -781,7 +781,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:38:46.221771-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -793,7 +793,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
+	at org.example.dao.InscripcionDAO.guardarInscripcion(InscripcionDAO.java:19)
 	at org.example.Main.main(Main.java:107)
 2025-03-01 22:38:46.224283-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
@@ -805,7 +805,7 @@ Database is already closed (to disable automatic closing at VM shutdown, add ";D
 	at org.h2.message.DbException.get(DbException.java:188)
 	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:38:58.960313-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
@@ -824,8 +824,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo,  tipo_contrato)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:26)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:26)
 	at org.example.Main.main(Main.java:103)
 2025-03-01 22:38:58.976818-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -841,7 +841,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:38:58.977832-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -864,7 +864,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:38:58.983854-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -887,7 +887,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:39:47.213701-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
@@ -906,8 +906,8 @@ INSERT INTO PERSONA (id_persona, nombre, apellidos, email, tipo,  tipo_contrato)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
-	at org.example.DAO.PersonaDAO.guardarPersona(PersonaDAO.java:26)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:74)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:26)
 	at org.example.Main.main(Main.java:103)
 2025-03-01 22:40:07.895374-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -923,7 +923,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:40:07.899803-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -946,7 +946,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:40:07.909625-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -969,7 +969,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:40:52.948773-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Parametro "#5" no está fijado
@@ -985,7 +985,7 @@ INSERT INTO PROGRAMA (id_programa, nombre, duracion, registro, id_facultad) VALU
 	at org.h2.command.Command.executeUpdate(Command.java:256)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdateInternal(JdbcPreparedStatement.java:216)
 	at org.h2.jdbc.JdbcPreparedStatement.executeUpdate(JdbcPreparedStatement.java:174)
-	at org.example.DAO.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
+	at org.example.dao.ProgramaDAO.guardarPrograma(ProgramaDAO.java:29)
 	at org.example.Main.main(Main.java:105)
 2025-03-01 22:41:36.432237-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -1008,7 +1008,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:41:36.441104-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -1031,7 +1031,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:41:53.695600-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -1054,7 +1054,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:41:53.707652-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -1077,7 +1077,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:42:00.557335-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -1100,7 +1100,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:42:00.569404-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -1123,7 +1123,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:42:13.956683-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "PROGRAMA" no encontrada
@@ -1146,7 +1146,7 @@ INSERT INTO CURSO (id_curso, nombre, activo, programa) VALUES (?, ?, ?, ?) [4212
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
 	at org.example.Main.main(Main.java:106)
 2025-03-01 22:42:45.815449-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -1169,7 +1169,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:56:53.646629-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -1192,7 +1192,7 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:108)
 2025-03-01 22:59:08.250984-05:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID_PROFESOR" no encontrada
@@ -1215,5 +1215,619 @@ INSERT INTO FACULTAD (id_profesor, anio, semestre, id_curso) VALUES (?, ?, ?, ?)
 	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
 	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
 	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
-	at org.example.DAO.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:20)
 	at org.example.Main.main(Main.java:115)
+2025-03-01 23:36:22.398881-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-01 23:36:42.625317-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-02 00:01:23.160306-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "codigo" no encontrada
+Column "codigo" not found [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getDouble(JdbcResultSet.java:843)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:105)
+	at org.example.Main.main(Main.java:119)
+2025-03-02 00:01:59.372882-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "codigo" no encontrada
+Column "codigo" not found [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getDouble(JdbcResultSet.java:843)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:105)
+	at org.example.Main.main(Main.java:119)
+2025-03-02 00:02:46.752425-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "codigo" no encontrada
+Column "codigo" not found [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at org.h2.jdbc.JdbcResultSet.getDouble(JdbcResultSet.java:843)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:105)
+	at org.example.Main.main(Main.java:119)
+2025-03-02 23:33:22.976339-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-02 23:33:33.138674-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-02 23:35:28.946358-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO CURSO (nombre, activo, id_programa) VALUES (?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at org.example.dao.CursoDAO.guardarCurso(CursoDAO.java:19)
+	at org.example.Main.main(Main.java:110)
+2025-03-02 23:35:28.964390-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PERSONA (nombre, apellidos, email, tipo, tipo_contrato) VALUES (?, ?, ?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:87)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:28)
+	at org.example.Main.main(Main.java:114)
+2025-03-02 23:35:29.002039-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.NullPointerException: Cannot invoke ""org.h2.engine.User.checkTableRight(org.h2.table.Table, int)"" because the return value of ""org.h2.engine.SessionLocal.getUser()"" is null"
+General error: "java.lang.NullPointerException: Cannot invoke ""org.h2.engine.User.checkTableRight(org.h2.table.Table, int)"" because the return value of ""org.h2.engine.SessionLocal.getUser()"" is null" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.message.DbException.toSQLException(DbException.java:379)
+	at org.h2.message.TraceObject.logAndConvert(TraceObject.java:365)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:117)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:113)
+	at org.example.Main.main(Main.java:118)
+Caused by: java.lang.NullPointerException: Cannot invoke "org.h2.engine.User.checkTableRight(org.h2.table.Table, int)" because the return value of "org.h2.engine.SessionLocal.getUser()" is null
+	at org.h2.table.TableFilter.<init>(TableFilter.java:161)
+	at org.h2.command.Parser.buildTableFilter(Parser.java:1864)
+	at org.h2.command.Parser.readTablePrimary(Parser.java:1804)
+	at org.h2.command.Parser.readTableReference(Parser.java:2268)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2718)
+	at org.h2.command.Parser.parseSelect(Parser.java:2824)
+	at org.h2.command.Parser.parseQueryPrimary(Parser.java:2708)
+	at org.h2.command.Parser.parseQueryTerm(Parser.java:2564)
+	at org.h2.command.Parser.parseQueryExpressionBody(Parser.java:2543)
+	at org.h2.command.Parser.parseQueryExpressionBodyAndEndOfQuery(Parser.java:2536)
+	at org.h2.command.Parser.parseQueryExpression(Parser.java:2529)
+	at org.h2.command.Parser.parseQuery(Parser.java:2498)
+	at org.h2.command.Parser.parsePrepared(Parser.java:627)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	... 2 more
+2025-03-02 23:55:17.059421-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-02 23:58:35.974661-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PERSONA (nombre, apellidos, email, tipo, tipo_contrato) VALUES (?, ?, ?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:87)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:28)
+	at org.example.Main.main(Main.java:114)
+2025-03-02 23:58:35.992007-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:314)
+	at org.example.dao.CursoProfesorDAO.guardarCursoProfesor(CursoProfesorDAO.java:21)
+	at org.example.Main.main(Main.java:116)
+2025-03-02 23:58:35.997007-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
+	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:234)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:112)
+	at org.example.Main.main(Main.java:118)
+2025-03-03 00:00:04.895834-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PERSONA (nombre, apellidos, email, tipo, tipo_contrato) VALUES (?, ?, ?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:87)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:28)
+	at org.example.Main.main(Main.java:114)
+2025-03-03 00:00:04.928479-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
+	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:234)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:112)
+	at org.example.Main.main(Main.java:118)
+2025-03-03 00:12:22.017213-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PERSONA (nombre, apellidos, email, tipo, tipo_contrato) VALUES (?, ?, ?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:87)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:28)
+	at org.example.Main.main(Main.java:114)
+2025-03-03 00:15:16.320611-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PERSONA (nombre, apellidos, email, tipo, tipo_contrato) VALUES (?, ?, ?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:316)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:89)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:27)
+	at org.example.Main.main(Main.java:114)
+2025-03-03 00:15:16.343677-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1425)
+	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:234)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:114)
+	at org.example.Main.main(Main.java:118)
+2025-03-03 00:18:31.428056-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PERSONA (nombre, apellidos, email, tipo, tipo_contrato) VALUES (?, ?, ?, ?, ?, ?) [21002-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:93)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:1094)
+	at org.example.dao.PersonaDAO.guardarProfesor(PersonaDAO.java:89)
+	at org.example.dao.PersonaDAO.guardarPersona(PersonaDAO.java:27)
+	at org.example.Main.main(Main.java:114)
+2025-03-03 00:18:58.540428-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ha sido cerrada
+The database has been closed; SQL statement:
+SELECT * FROM PERSONA [90098-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.SessionLocal.getDatabase(SessionLocal.java:666)
+	at org.h2.command.Command.getDatabase(Command.java:389)
+	at org.h2.command.Command.<init>(Command.java:58)
+	at org.h2.command.CommandContainer.<init>(CommandContainer.java:113)
+	at org.h2.command.Parser.prepareCommand(Parser.java:498)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:115)
+	at org.example.Main.main(Main.java:118)
+2025-03-03 00:27:15.515471-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-03 00:30:05.711824-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.NullPointerException: Cannot invoke ""org.h2.engine.User.checkTableRight(org.h2.table.Table, int)"" because the return value of ""org.h2.engine.SessionLocal.getUser()"" is null"
+General error: "java.lang.NullPointerException: Cannot invoke ""org.h2.engine.User.checkTableRight(org.h2.table.Table, int)"" because the return value of ""org.h2.engine.SessionLocal.getUser()"" is null" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.message.DbException.toSQLException(DbException.java:379)
+	at org.h2.message.TraceObject.logAndConvert(TraceObject.java:365)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:117)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:115)
+	at org.example.Main.main(Main.java:119)
+Caused by: java.lang.NullPointerException: Cannot invoke "org.h2.engine.User.checkTableRight(org.h2.table.Table, int)" because the return value of "org.h2.engine.SessionLocal.getUser()" is null
+	at org.h2.table.TableFilter.<init>(TableFilter.java:161)
+	at org.h2.command.Parser.buildTableFilter(Parser.java:1864)
+	at org.h2.command.Parser.readTablePrimary(Parser.java:1804)
+	at org.h2.command.Parser.readTableReference(Parser.java:2268)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2718)
+	at org.h2.command.Parser.parseSelect(Parser.java:2824)
+	at org.h2.command.Parser.parseQueryPrimary(Parser.java:2708)
+	at org.h2.command.Parser.parseQueryTerm(Parser.java:2564)
+	at org.h2.command.Parser.parseQueryExpressionBody(Parser.java:2543)
+	at org.h2.command.Parser.parseQueryExpressionBodyAndEndOfQuery(Parser.java:2536)
+	at org.h2.command.Parser.parseQueryExpression(Parser.java:2529)
+	at org.h2.command.Parser.parseQuery(Parser.java:2498)
+	at org.h2.command.Parser.parsePrepared(Parser.java:627)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	... 2 more
+2025-03-03 00:30:39.044422-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Error General : "java.lang.NullPointerException: Cannot invoke ""org.h2.engine.User.checkTableRight(org.h2.table.Table, int)"" because the return value of ""org.h2.engine.SessionLocal.getUser()"" is null"
+General error: "java.lang.NullPointerException: Cannot invoke ""org.h2.engine.User.checkTableRight(org.h2.table.Table, int)"" because the return value of ""org.h2.engine.SessionLocal.getUser()"" is null" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.message.DbException.toSQLException(DbException.java:379)
+	at org.h2.message.TraceObject.logAndConvert(TraceObject.java:365)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:117)
+	at org.example.dao.PersonaDAO.obtenerPersonas(PersonaDAO.java:115)
+	at org.example.Main.main(Main.java:119)
+Caused by: java.lang.NullPointerException: Cannot invoke "org.h2.engine.User.checkTableRight(org.h2.table.Table, int)" because the return value of "org.h2.engine.SessionLocal.getUser()" is null
+	at org.h2.table.TableFilter.<init>(TableFilter.java:161)
+	at org.h2.command.Parser.buildTableFilter(Parser.java:1864)
+	at org.h2.command.Parser.readTablePrimary(Parser.java:1804)
+	at org.h2.command.Parser.readTableReference(Parser.java:2268)
+	at org.h2.command.Parser.parseSelectFromPart(Parser.java:2718)
+	at org.h2.command.Parser.parseSelect(Parser.java:2824)
+	at org.h2.command.Parser.parseQueryPrimary(Parser.java:2708)
+	at org.h2.command.Parser.parseQueryTerm(Parser.java:2564)
+	at org.h2.command.Parser.parseQueryExpressionBody(Parser.java:2543)
+	at org.h2.command.Parser.parseQueryExpressionBodyAndEndOfQuery(Parser.java:2536)
+	at org.h2.command.Parser.parseQueryExpression(Parser.java:2529)
+	at org.h2.command.Parser.parseQuery(Parser.java:2498)
+	at org.h2.command.Parser.parsePrepared(Parser.java:627)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:94)
+	... 2 more
+2025-03-03 00:31:04.322641-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more
+2025-03-03 00:35:14.490237-05:00 database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at org.example.config.DatabaseConnection.getConnection(DatabaseConnection.java:16)
+	at org.example.Main.main(Main.java:77)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]" [50000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 19 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/camil/Documents/PROG/JAVA/Universidad/BDuniversidad.mv.db [2.2.224/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 13 more

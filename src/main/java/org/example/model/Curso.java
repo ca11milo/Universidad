@@ -1,10 +1,17 @@
 package org.example.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Curso implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
     private String nombre;
     private Programa programa;
@@ -12,6 +19,13 @@ public class Curso implements Serializable {
 
     public Curso() {
         ID=0;
+        nombre="";
+        programa=null;
+        activo=false;
+    }
+
+    public Curso(int ID) {
+        this.ID=ID;
         nombre="";
         programa=null;
         activo=false;

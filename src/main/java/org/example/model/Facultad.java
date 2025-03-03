@@ -14,6 +14,12 @@ public class Facultad implements Serializable {
         decano = null;
     }
 
+    public Facultad(int ID) {
+        this.ID = ID;
+        nombre = "";
+        decano = null;
+    }
+
     public Facultad(int ID, String nombre, Persona decano) {
         this.ID = ID;
         this.nombre = nombre;
