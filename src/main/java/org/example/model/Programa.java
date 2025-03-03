@@ -5,13 +5,29 @@ import java.util.Date;
 
 public class Programa implements Serializable {
     private static final long serialVersionUID = 1L;
-    private double ID;
+    private int ID;
     private String nombre;
     private double duracion;
     private Date registro;
     private Facultad facultad;
 
-    public Programa(double ID, String nombre, Date registro, double duracion, Facultad facultad) {
+    public Programa(){
+        ID = 0;
+        nombre = "";
+        duracion = 0;
+        registro = null;
+        facultad = null;
+    }
+
+    public Programa(String nombre, Date registro, double duracion, Facultad facultad) {
+        this.ID = 0;
+        this.nombre = nombre;
+        this.registro = registro;
+        this.duracion = duracion;
+        this.facultad = facultad;
+    }
+
+    public Programa(int ID, String nombre, Date registro, double duracion, Facultad facultad) {
         this.ID = ID;
         this.nombre = nombre;
         this.registro = registro;
@@ -19,11 +35,11 @@ public class Programa implements Serializable {
         this.facultad = facultad;
     }
 
-    public double getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(double ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 

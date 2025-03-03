@@ -4,8 +4,18 @@ public class Profesor extends Persona{
 
     private String tipoContrato;
 
-    public Profesor(String nombres, String email, String apellidos, double ID, String tipoContrato) {
-        super(nombres, email, apellidos, ID);
+    public Profesor() {
+        super();
+        tipoContrato = "";
+    }
+
+    public Profesor(String nombres, String apellidos, String email, String tipoContrato) {
+        super(nombres, email, apellidos);
+        this.tipoContrato = tipoContrato;
+    }
+
+    public Profesor(int ID, String nombres, String apellidos, String email, String tipoContrato) {
+        super(ID, nombres, email, apellidos);
         this.tipoContrato = tipoContrato;
     }
 

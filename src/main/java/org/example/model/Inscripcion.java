@@ -10,6 +10,13 @@ public class Inscripcion implements Serializable {
     private int semestre;
     private Estudiante estudiante;
 
+    public Inscripcion(){
+        curso = null;
+        año = 0;
+        semestre = 0;
+        estudiante = null;
+    }
+
     public Inscripcion(Curso curso, int año, int semestre, Estudiante estudiante) {
         this.curso = curso;
         this.año = año;

@@ -7,8 +7,23 @@ public class Estudiante extends Persona{
     private Boolean activo;
     private double promedio;
 
-    public Estudiante(String nombres, String email, String apellidos, double ID, double codigo, Programa programa, double promedio, Boolean activo) {
-        super(nombres, email, apellidos, ID);
+    public Estudiante(){
+        super();
+        codigo = 0;
+        programa = null;
+        activo = false;
+        promedio = 0;
+    }
+
+    public Estudiante(String nombres, String apellidos, String email, double codigo, Programa programa, Boolean activo, double promedio) {
+        super(nombres, apellidos, email);
+        this.codigo = codigo;
+        this.programa = programa;
+        this.promedio = promedio;
+        this.activo = activo;
+    }
+    public Estudiante(int ID, String nombres, String apellidos, String email, double codigo, Programa programa, Boolean activo, double promedio) {
+        super(ID, nombres, apellidos, email);
         this.codigo = codigo;
         this.programa = programa;
         this.promedio = promedio;

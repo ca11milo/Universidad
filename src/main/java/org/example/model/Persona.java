@@ -1,27 +1,45 @@
 package org.example.model;
 
+import org.example.config.DatabaseConnection;
+
 import java.io.Serializable;
+import java.sql.*;
 
 public class Persona implements Serializable{
     private static final long serialVersionUID = 1L;
 
-    private double ID;
+    private int ID;
     private String nombres;
     private String apellidos;
     private String email;
 
-    public Persona(String nombres, String email, String apellidos, double ID) {
+    public Persona() {
+        ID = 0;
+        nombres = "";
+        apellidos = "";
+        email = "";
+    }
+
+    public Persona(String nombres, String apellidos, String email) {
         this.nombres = nombres;
         this.email = email;
         this.apellidos = apellidos;
-        this.ID = ID;
+        this.ID = 0;
     }
 
-    public double getID() {
+    public Persona(int ID, String nombres, String apellidos, String email) {
+        this.ID = ID;
+        this.nombres = nombres;
+        this.email = email;
+        this.apellidos = apellidos;
+        this.ID = 0;
+    }
+
+    public int getID() {
         return ID;
     }
 
-    public void setID(double ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 

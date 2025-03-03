@@ -4,12 +4,24 @@ import java.io.Serializable;
 
 public class Facultad implements Serializable {
     private static final long serialVersionUID = 1L;
-    private double ID;
+    private int ID;
     private String nombre;
     private Persona decano;
 
-    public Facultad(double ID, String nombre, Persona decano) {
+    public Facultad() {
+        ID = 0;
+        nombre = "";
+        decano = null;
+    }
+
+    public Facultad(int ID, String nombre, Persona decano) {
         this.ID = ID;
+        this.nombre = nombre;
+        this.decano = decano;
+    }
+
+    public Facultad(String nombre, Persona decano) {
+        this.ID = 0;
         this.nombre = nombre;
         this.decano = decano;
     }
@@ -22,11 +34,11 @@ public class Facultad implements Serializable {
         this.decano = decano;
     }
 
-    public double getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(double ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 
