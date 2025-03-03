@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class CursoProfesor implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private int id;
     private Profesor profesor;
     private int año;
     private int semestre;
     private Curso curso;
 
     public CursoProfesor() {
+        id = 0;
         profesor = null;
         año = 0;
         semestre = 0;
@@ -23,6 +25,17 @@ public class CursoProfesor implements Serializable {
         this.año = año;
         this.curso = curso;
     }
+    public CursoProfesor(int id, Profesor profesor, int semestre, int año, Curso curso) {
+        this.id=id;
+        this.profesor = profesor;
+        this.semestre = semestre;
+        this.año = año;
+        this.curso = curso;
+    }
+
+    public int getId() {return id;}
+
+    public void setId(int id) {this.id = id;}
 
     public Profesor getProfesor() {
         return profesor;

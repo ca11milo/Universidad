@@ -5,12 +5,14 @@ import java.io.Serializable;
 public class Inscripcion implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private int id;
     private Curso curso;
     private int año;
     private int semestre;
     private Estudiante estudiante;
 
     public Inscripcion(){
+        id = 0;
         curso = null;
         año = 0;
         semestre = 0;
@@ -23,6 +25,17 @@ public class Inscripcion implements Serializable {
         this.semestre = semestre;
         this.estudiante = estudiante;
     }
+    public Inscripcion(int id, Curso curso, int año, int semestre, Estudiante estudiante) {
+        this.id = id;
+        this.curso = curso;
+        this.año = año;
+        this.semestre = semestre;
+        this.estudiante = estudiante;
+    }
+
+    public int getId() {return id;}
+
+    public void setId(int id) {this.id = id;}
 
     public Curso getCurso() {
         return curso;
