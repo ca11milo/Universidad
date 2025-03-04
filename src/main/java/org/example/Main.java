@@ -5,19 +5,23 @@ import org.example.dao.*;
 import org.example.config.DatabaseConnection;
 import org.example.model.*;
 import org.example.service.*;
-import org.example.view.VentanaPrincipal;
+import org.example.view.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        try {
+            Connection conexion = DatabaseConnection.getConnection(); // Crear conexión SIN cerrarla
 
-        try(Connection conexion = DatabaseConnection.getConnection()) {
-
+            // Crear DAOs con la conexión
             CursoDAO cursoDAO = new CursoDAO(conexion);
             CursoProfesorDAO cursoProfesorDAO = new CursoProfesorDAO(conexion);
             EstudianteDAO estudianteDAO = new EstudianteDAO(conexion);
@@ -27,75 +31,65 @@ public class Main {
             ProfesorDAO profesorDAO = new ProfesorDAO(conexion);
             ProgramaDAO programaDAO = new ProgramaDAO(conexion);
 
-            PersonaService personaService = new PersonaService(personaDAO);
-            ProfesorService profesorService = new ProfesorService(profesorDAO);
-            FacultadService facultadService = new FacultadService(facultadDAO, personaService);
-            ProgramaService programaService = new ProgramaService(programaDAO, facultadService);
-            CursoService cursoService = new CursoService(cursoDAO, programaService);
-            CursoProfesorService cursoProfesorService = new CursoProfesorService(cursoProfesorDAO);
-            EstudianteService estudianteService = new EstudianteService(estudianteDAO, programaService);
-            InscripcionService inscripcionService = new InscripcionService(inscripcionDAO, cursoService, estudianteService);
-
-            PersonaController personaController = new PersonaController(personaService);
-            ProfesorController profesorController = new ProfesorController(profesorService);
-            FacultadController facultadController = new FacultadController(facultadService);
-            CursoController cursoController = new CursoController(cursoService);
-            CursoProfesorController cursoProfesorController = new CursoProfesorController(cursoProfesorService);
-            InscripcionController inscripcionController = new InscripcionController(inscripcionService);
-            EstudianteController estudianteController = new EstudianteController(estudianteService);
-            ProgramaController programaController = new ProgramaController(programaService);
-
-
-            Persona persona1 = new Persona("Juan", "Burgos", "juan@example.com" );
-            Persona decano = new Persona("Elvis", "Perez", "elvis@gmail.com");
-
-            Facultad fcbi = new Facultad("Ciencias Basicas e Ingenieria", decano);
-
-            Programa sistemas = new Programa("ingenieria de sistemas", new Date(125, 1,23), 10, fcbi);
-
-            Estudiante persona2 = new Estudiante("camilo",  "Londoño","camilo@example.com",123, sistemas, true,3.9);
-
-            Curso tecnologiasAvanzadas = new Curso( "matematicas", sistemas, true);
-
-            Inscripcion inscripcion1 = new Inscripcion(tecnologiasAvanzadas, 2025, 2, persona2);
-
-            Profesor roger = new Profesor("Roger", "Calderon","roger@gmail.com","Planta");
-            CursoProfesor cursoProfesor1 = new CursoProfesor(roger, 1, 2025, tecnologiasAvanzadas);
-
-           personaController.guardarPersona(persona1);
-           personaController.guardarPersona(decano);
-
-            facultadController.guardarFacultad(fcbi);
-
-            programaController.guardarPrograma(sistemas);
-
-            estudianteController.guardarEstudiante(persona2);
-
-            cursoController.guardarCurso(tecnologiasAvanzadas);
-
-            inscripcionController.guardarInscripcion(inscripcion1);
-
-            profesorController.guardarProfesor(roger);
-
-            cursoProfesorController.guardarCursoProfesor(cursoProfesor1);
-
-            System.out.println(cursoProfesorController.eliminarCursoProfesor(cursoProfesor1.getId()));
-            
-            profesorController.actualizarProfesor(roger);
-
-            List<Persona> listadoPersonas = personaController.obtenerListaPersonas();
-
-            for(Persona persona : listadoPersonas) {
-                System.out.println(persona);
-            }
-
             SwingUtilities.invokeLater(() -> {
-                VentanaPrincipal ventana = new VentanaPrincipal();
-                ventana.setVisible(true);
+                // Crear servicios
+                PersonaService personaService = new PersonaService(personaDAO);
+                ProfesorService profesorService = new ProfesorService(profesorDAO);
+                FacultadService facultadService = new FacultadService(facultadDAO, personaService);
+                ProgramaService programaService = new ProgramaService(programaDAO, facultadService);
+                CursoService cursoService = new CursoService(cursoDAO, programaService);
+                CursoProfesorService cursoProfesorService = new CursoProfesorService(cursoProfesorDAO);
+                EstudianteService estudianteService = new EstudianteService(estudianteDAO, programaService);
+                InscripcionService inscripcionService = new InscripcionService(inscripcionDAO, cursoService, estudianteService);
+
+                // Crear controladores
+                PersonaController personaController = new PersonaController(personaService);
+                ProfesorController profesorController = new ProfesorController(profesorService);
+                FacultadController facultadController = new FacultadController(facultadService);
+                CursoController cursoController = new CursoController(cursoService);
+                CursoProfesorController cursoProfesorController = new CursoProfesorController(cursoProfesorService);
+                InscripcionController inscripcionController = new InscripcionController(inscripcionService);
+                EstudianteController estudianteController = new EstudianteController(estudianteService);
+                ProgramaController programaController = new ProgramaController(programaService);
+
+                // Mapa de controladores
+                Map<String, Object> controladores = new HashMap<>();
+                controladores.put("persona", personaController);
+                controladores.put("profesor", profesorController);
+                controladores.put("facultad", facultadController);
+                controladores.put("curso", cursoController);
+                controladores.put("cursoProfesor", cursoProfesorController);
+                controladores.put("inscripcion", inscripcionController);
+                controladores.put("estudiante", estudianteController);
+                controladores.put("programa", programaController);
+
+                // Crear ventana principal
+                JFrame ventanaPrincipal = new JFrame("Sistema de Gestión");
+                ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                ventanaPrincipal.setSize(800, 600);
+                ventanaPrincipal.setLocationRelativeTo(null);
+
+                JTabbedPane tabbedPane = new JTabbedPane();
+
+                JPanel panelBotones = new JPanel(new GridLayout(2, 4, 10, 10));
+                panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+
+                String[] nombres = {"Persona", "Profesor", "Facultad", "Curso", "Curso-Profesor", "Inscripción", "Estudiante", "Programa"};
+
+                for (String nombre : nombres) {
+                    JButton boton = new JButton("Abrir " + nombre);
+                    boton.addActionListener(new BotonListener(nombre, tabbedPane, controladores));
+                    panelBotones.add(boton);
+                }
+
+                ventanaPrincipal.add(panelBotones, BorderLayout.NORTH);
+                ventanaPrincipal.add(tabbedPane, BorderLayout.CENTER);
+
+                ventanaPrincipal.setVisible(true);
             });
 
-        }catch (SQLException exception){
-            System.out.println("Error al conectar con la base de datos: "+ exception.getMessage());
+        } catch (SQLException exception) {
+            System.out.println("Error al conectar con la base de datos: " + exception.getMessage());
         }
     }
 }

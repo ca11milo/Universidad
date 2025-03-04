@@ -1,6 +1,8 @@
 package org.example.model;
 
-public class Estudiante extends Persona{
+import java.io.Serializable;
+
+public class Estudiante extends Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     private double codigo;
     private Programa programa;

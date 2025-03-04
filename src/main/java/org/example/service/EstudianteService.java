@@ -10,6 +10,7 @@ import java.util.Optional;
 public class EstudianteService {
     private final EstudianteDAO estudianteDAO;
     private final ProgramaService programaService;
+    private List<Estudiante> estudiantes;
 
     public EstudianteService(EstudianteDAO estudianteDAO, ProgramaService programaService) {
         this.estudianteDAO = estudianteDAO;
@@ -44,4 +45,6 @@ public class EstudianteService {
     public boolean actualizarEstudiante(Estudiante estudiante) {
         return estudianteDAO.actualizarEstudiante(estudiante);
     }
+
+
 }

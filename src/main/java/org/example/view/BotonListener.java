@@ -1,16 +1,23 @@
 package org.example.view;
+
+import org.example.controller.*;
+import org.example.view.ventanas.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 public class BotonListener implements ActionListener {
     private String nombre;
     private JTabbedPane tabbedPane;
+    private Map<String, Object> controladores; // Mapa de controladores
 
-    public BotonListener(String nombre, JTabbedPane tabbedPane) {
+    public BotonListener(String nombre, JTabbedPane tabbedPane, Map<String, Object> controladores) {
         this.nombre = nombre;
         this.tabbedPane = tabbedPane;
+        this.controladores = controladores;
     }
 
     @Override
@@ -25,10 +32,24 @@ public class BotonListener implements ActionListener {
 
     private JPanel crearVentana(String nombre) {
         switch (nombre) {
-            case "Persona": return new VentanaPersona();
-            case "Curso": return new VentanaCurso();
-            case "Profesor": return new VentanaProfesor();
-            default: return new VentanaContenido(nombre);
+            case "Persona":
+                return new VentanaPersona((PersonaController) controladores.get("persona"),tabbedPane);
+            case "Curso":
+                return new VentanaCurso((CursoController) controladores.get("curso"));
+            case "Curso-Profesor":
+                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"));
+            case "Profesor":
+                return new VentanaProfesor((ProfesorController) controladores.get("profesor"), tabbedPane);
+            case "Estudiante":
+                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"));
+            case "Facultad":
+                return new VentanaFacultad((FacultadController) controladores.get("facultad"));
+            case "Programa":
+                return new VentanaPrograma((ProgramaController) controladores.get("programa"));
+            case "Inscripción":
+                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"));
+            default:
+                return new VentanaContenido(nombre);
         }
     }
 

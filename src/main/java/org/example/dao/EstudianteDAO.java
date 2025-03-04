@@ -2,7 +2,7 @@ package org.example.dao;
 
 import org.example.model.Estudiante;
 import org.example.model.Programa;
-
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +10,16 @@ import java.util.Optional;
 
 public class EstudianteDAO {
     private Connection conexion;
+    private static final String FILE_NAME = "data/Estudiantes.dat";
 
     public EstudianteDAO(Connection conexion) {
         this.conexion = conexion;
     }
 
+
     public void guardarEstudiante(Estudiante estudiante) {
+
+
         String query = "INSERT INTO PERSONA (nombre, apellidos, email, tipo, codigo, id_programa, activo, promedio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, estudiante.getNombres());
@@ -120,6 +124,33 @@ public class EstudianteDAO {
         } catch (SQLException e) {
             System.err.println("Error al eliminar estudiante: " + e.getMessage());
             return false;
+        }
+    }
+
+    public void guardarEstudianteBinario(Estudiante estudiante){
+        List<Estudiante> estudiantes = cargarEstudiantes(); // Cargar estudiantes previos
+        estudiantes.add(estudiante); // Agregar el nuevo estudiante
+
+        // Guardar la lista actualizada
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            oos.writeObject(estudiantes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public List<Estudiante> cargarEstudiantes() {
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            return new ArrayList<>(); // Si no hay archivo, devolver lista vacía
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
+            return (List<Estudiante>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
     }
 

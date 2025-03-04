@@ -1,4 +1,5 @@
 package org.example.view;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -27,11 +28,11 @@ public class VentanaPrincipal extends JFrame {
         panel.add(titulo, BorderLayout.NORTH);
 
         JPanel botonesPanel = new JPanel(new GridLayout(3, 3, 10, 10));
-        String[] nombresBotones = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Inscripción", "Curso Profesor"};
+        String[] nombresBotones = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Inscripción", "Curso-Profesor"};
 
         for (String nombre : nombresBotones) {
             JButton boton = new JButton(nombre);
-            boton.addActionListener(new BotonListener(nombre, tabbedPane));
+            boton.addActionListener(new BotonListener(nombre, tabbedPane, null));
             botonesPanel.add(boton);
         }
 
