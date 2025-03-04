@@ -12,15 +12,31 @@ public class CursoController {
         this.cursoService = cursoService;
     }
 
-    public void crearCurso(Curso curso) {
-        cursoService.agregarCurso(curso);
+    public void guardarCurso(Curso curso) {
+        cursoService.guardarCurso(curso);
     }
 
-    public Curso obtenerCurso(int id) {
-        return cursoService.obtenerCurso(id);
+    public Curso obtenerCursoPorId(int id) {
+        return cursoService.obtenerCursoPorId(id);
     }
 
-    public List<Curso> listarCursos() {
-        return cursoService.obtenerTodosLosCursos();
+    public List<Curso> obtenerListaCursos() {
+        return cursoService.obtenerListaCursos();
+    }
+
+    public String eliminarCurso(int id) {
+        if(cursoService.eliminarCurso(id)){
+            return ("Curso "+id+" Eliminado");
+        }else{
+            return "No se encontró el curso";
+        }
+    }
+
+    public String actualizarCurso(Curso curso) {
+        if(cursoService.actualizarCurso(curso)){
+            return ("Curso "+curso.getID()+" Eliminado");
+        }else{
+            return "No se encontró el curso";
+        }
     }
 }

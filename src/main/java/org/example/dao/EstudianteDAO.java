@@ -4,6 +4,9 @@ import org.example.model.Estudiante;
 import org.example.model.Programa;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class EstudianteDAO {
     private Connection conexion;
@@ -12,9 +15,9 @@ public class EstudianteDAO {
         this.conexion = conexion;
     }
 
-    public int guardarEstudiante(Estudiante estudiante) throws SQLException {
-        String sql = "INSERT INTO PERSONA (nombre, apellidos, email, tipo, codigo, id_programa, activo, promedio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+    public void guardarEstudiante(Estudiante estudiante) {
+        String query = "INSERT INTO PERSONA (nombre, apellidos, email, tipo, codigo, id_programa, activo, promedio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, estudiante.getNombres());
             statement.setString(2, estudiante.getApellidos());
             statement.setString(3, estudiante.getEmail());
@@ -25,24 +28,29 @@ public class EstudianteDAO {
             statement.setDouble(8, estudiante.getPromedio());
             statement.executeUpdate();
 
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                if (keys.next()) {
-                    return keys.getInt(1);
+            int filasAfectadas = statement.executeUpdate();
+            if (filasAfectadas > 0) {
+                try (ResultSet keys = statement.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        estudiante.setID(keys.getInt(1));
+                    }
                 }
             }
+        }catch (SQLException e){
+            System.out.println("Error al guardar estudiante: " + e.getMessage());
         }
-        return -1;
+
     }
 
-    public Estudiante buscarPorId(int id) {
-        String sql = "SELECT * FROM PERSONA WHERE id_persona = ? AND tipo = 'ESTUDIANTE'";
+    public Optional<Estudiante> obtenerEstudiantePorId(int id) {
+        String query = "SELECT * FROM PERSONA WHERE id_persona = ? AND tipo = 'ESTUDIANTE'";
 
-        try (PreparedStatement statement = conexion.prepareStatement(sql)) {
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                return new Estudiante(
+                return Optional.of(new Estudiante(
                         resultSet.getInt("id_persona"),
                         resultSet.getString("nombre"),
                         resultSet.getString("apellidos"),
@@ -51,11 +59,68 @@ public class EstudianteDAO {
                         new Programa(resultSet.getInt("id_programa")),
                         resultSet.getBoolean("activo"),
                         resultSet.getDouble("promedio")
-                );
+                ));
             }
         } catch (SQLException e) {
             System.err.println("Error al buscar estudiante: " + e.getMessage());
         }
-        return null;
+        return Optional.empty();
     }
+
+    public List<Estudiante> obtenerListaEstudiantes(){
+        List<Estudiante> estudiantes = new ArrayList<>();
+        String query = "SELECT * FROM PERSONA WHERE tipo = 'ESTUDIANTE'";
+        try (Statement statement = conexion.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                estudiantes.add(new Estudiante(
+                        resultSet.getInt("id_persona"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("apellidos"),
+                        resultSet.getString("email"),
+                        resultSet.getDouble("codigo"),
+                        new Programa(resultSet.getInt("id_programa")),
+                        resultSet.getBoolean("activo"),
+                        resultSet.getDouble("promedio")
+                ));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener cursos: " + e.getMessage());
+        }
+        return estudiantes;
+    }
+
+    public boolean actualizarEstudiante(Estudiante estudiante) {
+        String query = "UPDATE PERSONA SET nombre = ?, apellidos = ?, email = ?, codigo = ?, id_programa = ?, activo = ?, promedio = ? WHERE id_persona = ? AND tipo = 'ESTUDIANTE'";
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setString(1, estudiante.getNombres());
+            statement.setString(2, estudiante.getApellidos());
+            statement.setString(3, estudiante.getEmail());
+            statement.setDouble(4, estudiante.getCodigo());
+            statement.setInt(5, estudiante.getPrograma().getID());
+            statement.setBoolean(6, estudiante.getActivo());
+            statement.setDouble(7, estudiante.getPromedio());
+            statement.setInt(8, estudiante.getID());
+
+            int filasAfectadas = statement.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar estudiante: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean eliminarEstudiante(int id) {
+        String query = "DELETE FROM PERSONA WHERE id_persona = ? AND tipo = 'ESTUDIANTE'";
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setInt(1, id);
+            int filasAfectadas = statement.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar estudiante: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

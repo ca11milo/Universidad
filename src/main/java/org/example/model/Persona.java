@@ -1,9 +1,6 @@
 package org.example.model;
 
-import org.example.config.DatabaseConnection;
-
 import java.io.Serializable;
-import java.sql.*;
 
 public class Persona implements Serializable{
     private static final long serialVersionUID = 1L;

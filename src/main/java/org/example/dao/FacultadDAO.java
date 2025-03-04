@@ -7,6 +7,7 @@ import org.example.service.PersonaService;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FacultadDAO {
     private Connection conexion;
@@ -35,7 +36,24 @@ public class FacultadDAO {
         }
     }
 
-    public List<Facultad> obtenerFacultades() {
+    public Optional<Facultad> obtenerFacultadPorId(int id) {
+        String query = "SELECT * FROM FACULTAD WHERE id_facultad = ?";
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int idDecano = resultSet.getInt("id_decano");
+                Persona decano = personaService.obtenerPersonaPorId(idDecano);
+                return Optional.of(new Facultad(resultSet.getInt("id_facultad"), resultSet.getString("nombre"), decano));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener facultad: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+
+    public List<Facultad> obtenerListaFacultades() {
         List<Facultad> facultades = new ArrayList<>();
         String query = "SELECT * FROM FACULTAD";
         try (Statement statement = conexion.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
@@ -52,5 +70,32 @@ public class FacultadDAO {
             System.err.println("Error al obtener facultades: " + e.getMessage());
         }
         return facultades;
+    }
+
+    public boolean actualizarFacultad(Facultad facultad) {
+        String query = "UPDATE FACULTAD SET nombre = ?, id_decano = ? WHERE id_facultad = ?";
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setString(1, facultad.getNombre());
+            statement.setInt(2, facultad.getDecano().getID());
+            statement.setInt(3, facultad.getID());
+
+            int filasAfectadas = statement.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar facultad: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean eliminarFacultad(int id) {
+        String query = "DELETE FROM FACULTAD WHERE id_facultad = ?";
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setInt(1, id);
+            int filasAfectadas = statement.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar facultad: " + e.getMessage());
+            return false;
+        }
     }
 }

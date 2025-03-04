@@ -2,20 +2,46 @@ package org.example.service;
 
 import org.example.dao.EstudianteDAO;
 import org.example.model.Estudiante;
-import java.sql.SQLException;
+import org.example.model.Programa;
+
+import java.util.List;
+import java.util.Optional;
 
 public class EstudianteService {
-    private EstudianteDAO estudianteDAO;
+    private final EstudianteDAO estudianteDAO;
+    private final ProgramaService programaService;
 
-    public EstudianteService(EstudianteDAO estudianteDAO) {
+    public EstudianteService(EstudianteDAO estudianteDAO, ProgramaService programaService) {
         this.estudianteDAO = estudianteDAO;
+        this.programaService = programaService;
     }
 
-    public void registrarEstudiante(Estudiante estudiante) throws SQLException {
-        if (estudiante.getPromedio() < 0 || estudiante.getPromedio() > 5) {
-            throw new IllegalArgumentException("El promedio debe estar entre 0 y 5");
+    public void guardarEstudiante(Estudiante estudiante){
+       estudianteDAO.guardarEstudiante(estudiante);
+    }
+
+    public Estudiante obtenerEstudiantePorId(int id) {
+        Optional<Estudiante> optionalEstudiante = estudianteDAO.obtenerEstudiantePorId(id);
+        if (optionalEstudiante.isPresent()) {
+            Estudiante estudiante = optionalEstudiante.get();
+            Programa programa = programaService.obtenerProgramaPorId(estudiante.getPrograma().getID());
+            estudiante.setPrograma(programa);
+            return estudiante;
+        }else{
+            System.out.println("Estudiante "+ id +" no encontrado");
+            return null;
         }
-        int id = estudianteDAO.guardarEstudiante(estudiante);
-        estudiante.setID(id);
+    }
+
+    public List<Estudiante> obtenerListaEstudiantes() {
+        return estudianteDAO.obtenerListaEstudiantes();
+    }
+
+    public boolean eliminarEstudiante(int id) {
+        return estudianteDAO.eliminarEstudiante(id);
+    }
+
+    public boolean actualizarEstudiante(Estudiante estudiante) {
+        return estudianteDAO.actualizarEstudiante(estudiante);
     }
 }

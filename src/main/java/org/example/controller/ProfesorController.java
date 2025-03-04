@@ -1,22 +1,45 @@
 package org.example.controller;
 
-import org.example.model.Estudiante;
+import org.example.model.Curso;
 import org.example.model.Profesor;
-import org.example.service.EstudianteService;
 import org.example.service.ProfesorService;
 
-import java.sql.SQLException;
+import java.util.List;
 
 public class ProfesorController {
-    private ProfesorService profesorService;
+    private final ProfesorService profesorService;
 
     public ProfesorController(ProfesorService profesorService) {
         this.profesorService = profesorService;
     }
 
-    public void crearProfesor(Profesor profesor) throws SQLException {
-        profesorService.registrarProfesor(profesor);
-        System.out.println("Profesor creada con éxito.");
+    public void guardarProfesor(Profesor profesor){
+        profesorService.guardarProfesor(profesor);
+        System.out.println("Profesor creado con éxito.");
+    }
+
+    public Profesor obtenerProfesorPorId(int id){
+        return profesorService.obtenerProfesorPorId(id);
+    }
+
+    public List<Profesor> obtenerListaProfesores(){
+        return profesorService.obtenerListaProfesores();
+    }
+
+    public String eliminarProfesor(int id) {
+        if(profesorService.eliminarProfesor(id)){
+            return ("Profesor "+id+" Eliminado");
+        }else{
+            return "No se encontró el Profesor";
+        }
+    }
+
+    public String actualizarProfesor(Profesor profesor) {
+        if(profesorService.actualizarProfesor(profesor)){
+            return ("Profesor "+profesor.getID()+" Eliminado");
+        }else{
+            return "No se encontró el Profesor";
+        }
     }
 
 }

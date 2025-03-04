@@ -1,7 +1,10 @@
 package org.example.controller;
 
+import org.example.model.Curso;
 import org.example.model.Inscripcion;
 import org.example.service.InscripcionService;
+
+import java.util.List;
 
 public class InscripcionController {
     private InscripcionService inscripcionService;
@@ -10,8 +13,32 @@ public class InscripcionController {
         this.inscripcionService = inscripcionService;
     }
 
-    public void crearInscripcion(Inscripcion inscripcion) {
-        inscripcionService.registrarInscripcion(inscripcion);
+    public void guardarInscripcion(Inscripcion inscripcion) {
+        inscripcionService.guardarInscripcion(inscripcion);
         System.out.println("Inscripción creada con éxito.");
+    }
+
+    public Inscripcion obtenerInscripcionPorId(int id) {
+        return inscripcionService.obtenerInscripcionPorId(id);
+    }
+
+    public List<Inscripcion> obtenerListaInscripciones() {
+        return inscripcionService.obtenerListaInscripciones();
+    }
+
+    public String eliminarInscripcion(int id) {
+        if(inscripcionService.eliminarInscripcion(id)){
+            return ("Inscripcion "+id+" Eliminada");
+        }else{
+            return "No se encontró la Inscripcion";
+        }
+    }
+
+    public String actualizarInscripcion(Inscripcion inscripcion) {
+        if(inscripcionService.actualizarInscripcion(inscripcion)){
+            return ("Inscripcion " + inscripcion.getId()+" Eliminada");
+        }else{
+            return "No se encontró la Inscripcion";
+        }
     }
 }

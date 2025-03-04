@@ -2,8 +2,8 @@ package org.example.service;
 
 import org.example.dao.PersonaDAO;
 import org.example.model.Persona;
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class PersonaService {
     private PersonaDAO personaDAO;
@@ -12,19 +12,29 @@ public class PersonaService {
         this.personaDAO = personaDAO;
     }
 
-    public void registrarPersona(Persona persona) throws SQLException {
-        if (persona.getNombres() == null || persona.getNombres().isEmpty()) {
-            throw new IllegalArgumentException("El nombre no puede estar vacío");
+    public void guardarPersona(Persona persona){
+        personaDAO.guardarPersona(persona);
+    }
+
+    public Persona obtenerPersonaPorId(int id) {
+        Optional<Persona> persona = personaDAO.obtenerPersonaPorId(id);
+        if (persona.isPresent()) {
+            return persona.get();
+        }else{
+            System.out.println("Persona "+ id +" no encontrado");
+            return null;
         }
-        int id = personaDAO.guardarPersona(persona);
-        persona.setID(id);
     }
 
-    public List<Persona> obtenerPersonas() throws SQLException {
-        return personaDAO.obtenerPersonas();
+    public List<Persona> obtenerListaPersonas(){
+        return personaDAO.obtenerListaPersonas();
     }
 
-    public Persona obtenerPersonaPorId(int id) throws SQLException {
-        return personaDAO.buscarPorId(id);
+    public boolean eliminarPersona(int id) {
+        return personaDAO.eliminarPersona(id);
+    }
+
+    public boolean actualizarPersona(Persona persona) {
+        return personaDAO.actualizarPersona(persona);
     }
 }

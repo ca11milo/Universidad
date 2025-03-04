@@ -1,11 +1,9 @@
 package org.example.service;
 
-import org.example.dao.EstudianteDAO;
 import org.example.dao.ProfesorDAO;
-import org.example.model.Estudiante;
 import org.example.model.Profesor;
-
-import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
 public class ProfesorService {
     private ProfesorDAO profesorDAO;
@@ -14,9 +12,24 @@ public class ProfesorService {
         this.profesorDAO = profesorDAO;
     }
 
-    public void registrarProfesor(Profesor profesor) throws SQLException {
+    public void guardarProfesor(Profesor profesor){
+        profesorDAO.guardarProfesor(profesor);
+    }
 
-        int id = profesorDAO.guardarProfesor(profesor);
-        profesor.setID(id);
+    public Profesor obtenerProfesorPorId(int id){
+        Optional<Profesor> profesor = profesorDAO.obtenerProfesorPorId(id);
+        return profesor.orElse(null);
+    }
+
+    public List<Profesor> obtenerListaProfesores(){
+        return profesorDAO.obtenerListaProfesores();
+    }
+
+    public boolean eliminarProfesor(int id) {
+        return profesorDAO.eliminarProfesor(id);
+    }
+
+    public boolean actualizarProfesor(Profesor profesor) {
+        return profesorDAO.actualizarProfesor(profesor);
     }
 }
