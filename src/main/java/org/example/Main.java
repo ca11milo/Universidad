@@ -80,10 +80,7 @@ public class Main {
             cursoProfesorController.guardarCursoProfesor(cursoProfesor1);
 
             System.out.println(cursoProfesorController.eliminarCursoProfesor(cursoProfesor1.getId()));
-
-            roger.setTipoContrato("veneco");
-            roger.setApellidos("suat");
-            roger.setNombres("Roger Hpta");
+            
             profesorController.actualizarProfesor(roger);
 
             List<Persona> listadoPersonas = personaController.obtenerListaPersonas();
