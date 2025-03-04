@@ -1,55 +1,45 @@
 package org.example.view;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class VentanaPrincipal extends JFrame {
     private JTabbedPane tabbedPane;
 
     public VentanaPrincipal() {
-        setTitle("Universidad");
+        setTitle("Universidad - Gestión de Elementos");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         tabbedPane = new JTabbedPane();
-        add(tabbedPane);
+        JPanel inicioPanel = crearPanelInicio();
+        tabbedPane.addTab("Inicio", inicioPanel);
 
-        agregarPestañaPrincipal();
+        add(tabbedPane);
     }
 
-    private void agregarPestañaPrincipal() {
-        JPanel panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(new GridLayout(3, 3, 10, 10));
+    private JPanel crearPanelInicio() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
 
-        String[] botones = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Inscripción", "Curso Profesor"};
+        JLabel titulo = new JLabel("UNIVERSIDAD", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 20));
+        panel.add(titulo, BorderLayout.NORTH);
 
-        for (String nombre : botones) {
+        JPanel botonesPanel = new JPanel(new GridLayout(3, 3, 10, 10));
+        String[] nombresBotones = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Inscripción", "Curso Profesor"};
+
+        for (String nombre : nombresBotones) {
             JButton boton = new JButton(nombre);
-            boton.setBackground(Color.CYAN);
-            boton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    agregarNuevaPestaña(nombre);
-                }
-            });
-            panelPrincipal.add(boton);
+            boton.addActionListener(new BotonListener(nombre, tabbedPane));
+            botonesPanel.add(boton);
         }
 
-        tabbedPane.addTab("Inicio", panelPrincipal);
-    }
-
-    private void agregarNuevaPestaña(String titulo) {
-        JPanel nuevaPestaña = new JPanel();
-        nuevaPestaña.add(new JLabel("Ventana de " + titulo));
-        tabbedPane.addTab(titulo, nuevaPestaña);
-        tabbedPane.setSelectedComponent(nuevaPestaña);
+        panel.add(botonesPanel, BorderLayout.CENTER);
+        return panel;
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new VentanaPrincipal().setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new VentanaPrincipal().setVisible(true));
     }
 }
