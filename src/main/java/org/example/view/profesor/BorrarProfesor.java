@@ -1,10 +1,9 @@
 package org.example.view.profesor;
 
 import org.example.controller.ProfesorController;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class BorrarProfesor extends JPanel {
@@ -13,44 +12,67 @@ public class BorrarProfesor extends JPanel {
 
     public BorrarProfesor(ProfesorController profesorController) {
         this.profesorController = profesorController;
+
         setLayout(new BorderLayout());
 
-        JLabel tituloLabel = new JLabel("Eliminar Profesor", SwingConstants.CENTER);
+        JPanel headerPanel = new JPanel();
+        headerPanel.setBackground(new Color(30, 144, 255));
+        JLabel tituloLabel = new JLabel("PROFESOR");
+        tituloLabel.setForeground(Color.WHITE);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        add(tituloLabel, BorderLayout.NORTH);
+        headerPanel.add(tituloLabel);
+        add(headerPanel, BorderLayout.NORTH);
 
-        JPanel formularioPanel = new JPanel(new GridLayout(2, 2, 10, 10));
-        formularioPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo claro
 
-        formularioPanel.add(new JLabel("ID del Profesor:"));
+        JLabel eliminarLabel = new JLabel("Eliminar Profesor");
+        eliminarLabel.setForeground(Color.BLUE);
+        mainPanel.add(eliminarLabel, BorderLayout.NORTH);
+
+        JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10));
+        JLabel mensajeLabel = new JLabel("Ingresa el ID del profesor que deseas eliminar", SwingConstants.CENTER);
+        mensajeLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        centerPanel.add(mensajeLabel);
+
         idField = new JTextField();
-        formularioPanel.add(idField);
+        idField.setHorizontalAlignment(JTextField.CENTER);
+        centerPanel.add(idField);
 
-        JPanel botonPanel = new JPanel();
-        JButton borrarButton = new JButton("Eliminar");
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
+
+        JPanel buttonPanel = new JPanel();
+        JButton eliminarButton = new JButton("Eliminar");
         JButton cancelarButton = new JButton("Cancelar");
 
-        borrarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    eliminarProfesor();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Error al eliminar profesor");
-                }
+        eliminarButton.addActionListener(e -> {
+            try {
+                eliminarProfesor();
+                JOptionPane.showMessageDialog(this, "Profesor eliminado exitosamente.");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error al eliminar profesor.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
-        botonPanel.add(borrarButton);
-        botonPanel.add(cancelarButton);
+        cancelarButton.addActionListener(e -> idField.setText(""));
 
-        add(formularioPanel, BorderLayout.CENTER);
-        add(botonPanel, BorderLayout.SOUTH);
+        buttonPanel.add(eliminarButton);
+        buttonPanel.add(cancelarButton);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        add(mainPanel, BorderLayout.CENTER);
     }
 
     private void eliminarProfesor() throws SQLException {
-        int id = Integer.parseInt(idField.getText());
-        profesorController.eliminarProfesor(id);
-        JOptionPane.showMessageDialog(this, "Profesor eliminado exitosamente.");
+        try {
+            int id = Integer.parseInt(idField.getText());
+            String mensajeEliminada = profesorController.eliminarProfesor(id);
+            System.out.println(mensajeEliminada);
+            idField.setText("");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

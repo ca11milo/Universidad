@@ -33,24 +33,32 @@ public class BotonListener implements ActionListener {
     private JPanel crearVentana(String nombre) {
         switch (nombre) {
             case "Persona":
-                return new VentanaPersona((PersonaController) controladores.get("persona"),tabbedPane);
+                return new VentanaPersona((PersonaController) controladores.get("persona"), tabbedPane);
             case "Curso":
-                return new VentanaCurso((CursoController) controladores.get("curso"));
+                return new VentanaCurso((CursoController) controladores.get("curso"), tabbedPane);
             case "Curso-Profesor":
-                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"));
+                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"), tabbedPane);
             case "Profesor":
                 return new VentanaProfesor((ProfesorController) controladores.get("profesor"), tabbedPane);
             case "Estudiante":
-                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"));
+                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), tabbedPane);
             case "Facultad":
-                return new VentanaFacultad((FacultadController) controladores.get("facultad"));
+                return new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
             case "Programa":
-                return new VentanaPrograma((ProgramaController) controladores.get("programa"));
+                return new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
             case "Inscripción":
-                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"));
+                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
             default:
-                return new VentanaContenido(nombre);
+                return crearPanelError(nombre);
         }
+    }
+
+    private JPanel crearPanelError(String nombre) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JLabel label = new JLabel("Error: No se pudo abrir la ventana '" + nombre + "'.", SwingConstants.CENTER);
+        label.setForeground(Color.RED);
+        panel.add(label, BorderLayout.CENTER);
+        return panel;
     }
 
     private JPanel crearTituloConCerrar(String titulo, JPanel panel) {

@@ -19,9 +19,8 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         try {
-            Connection conexion = DatabaseConnection.getConnection(); // Crear conexión SIN cerrarla
+            Connection conexion = DatabaseConnection.getConnection();
 
-            // Crear DAOs con la conexión
             CursoDAO cursoDAO = new CursoDAO(conexion);
             CursoProfesorDAO cursoProfesorDAO = new CursoProfesorDAO(conexion);
             EstudianteDAO estudianteDAO = new EstudianteDAO(conexion);
@@ -32,7 +31,6 @@ public class Main {
             ProgramaDAO programaDAO = new ProgramaDAO(conexion);
 
             SwingUtilities.invokeLater(() -> {
-                // Crear servicios
                 PersonaService personaService = new PersonaService(personaDAO);
                 ProfesorService profesorService = new ProfesorService(profesorDAO);
                 FacultadService facultadService = new FacultadService(facultadDAO, personaService);
@@ -42,7 +40,6 @@ public class Main {
                 EstudianteService estudianteService = new EstudianteService(estudianteDAO, programaService);
                 InscripcionService inscripcionService = new InscripcionService(inscripcionDAO, cursoService, estudianteService);
 
-                // Crear controladores
                 PersonaController personaController = new PersonaController(personaService);
                 ProfesorController profesorController = new ProfesorController(profesorService);
                 FacultadController facultadController = new FacultadController(facultadService);
@@ -52,7 +49,6 @@ public class Main {
                 EstudianteController estudianteController = new EstudianteController(estudianteService);
                 ProgramaController programaController = new ProgramaController(programaService);
 
-                // Mapa de controladores
                 Map<String, Object> controladores = new HashMap<>();
                 controladores.put("persona", personaController);
                 controladores.put("profesor", profesorController);
@@ -63,7 +59,6 @@ public class Main {
                 controladores.put("estudiante", estudianteController);
                 controladores.put("programa", programaController);
 
-                // Crear ventana principal
                 JFrame ventanaPrincipal = new JFrame("Sistema de Gestión");
                 ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ventanaPrincipal.setSize(800, 600);

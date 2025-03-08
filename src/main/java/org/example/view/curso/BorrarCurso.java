@@ -1,42 +1,38 @@
-package org.example.view.persona;
+package org.example.view.curso;
 
-import org.example.controller.PersonaController;
+import org.example.controller.CursoController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 
-public class BorrarPersona extends JPanel {
-    private PersonaController personaController;
+public class BorrarCurso extends JPanel {
+    private CursoController cursoController;
     private JTextField idField;
 
-    public BorrarPersona(PersonaController personaController) {
-        this.personaController = personaController;
+    public BorrarCurso(CursoController cursoController) {
+        this.cursoController = cursoController;
 
         setLayout(new BorderLayout());
 
-
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(30, 144, 255));
-        JLabel tituloLabel = new JLabel("PERSONA");
+        JLabel tituloLabel = new JLabel("BORRAR CURSO");
         tituloLabel.setForeground(Color.WHITE);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
         headerPanel.add(tituloLabel);
         add(headerPanel, BorderLayout.NORTH);
 
-
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
-        mainPanel.setBackground(new Color(245, 245, 220)); // Fondo claro
+        mainPanel.setBackground(new Color(245, 245, 220));
 
-
-        JLabel eliminarLabel = new JLabel("Eliminar Persona");
+        JLabel eliminarLabel = new JLabel("Eliminar Curso");
         eliminarLabel.setForeground(Color.BLUE);
         mainPanel.add(eliminarLabel, BorderLayout.NORTH);
 
-
         JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10));
-        JLabel mensajeLabel = new JLabel("Ingresa el ID de la persona que deseas eliminar", SwingConstants.CENTER);
+        JLabel mensajeLabel = new JLabel("Ingresa el ID del curso que deseas eliminar", SwingConstants.CENTER);
         mensajeLabel.setFont(new Font("Arial", Font.BOLD, 14));
         centerPanel.add(mensajeLabel);
 
@@ -52,10 +48,10 @@ public class BorrarPersona extends JPanel {
 
         eliminarButton.addActionListener(e -> {
             try {
-                eliminarPersona();
-                JOptionPane.showMessageDialog(this, "Persona eliminada exitosamente.");
+                eliminarCurso();
+                JOptionPane.showMessageDialog(this, "Curso eliminado exitosamente.");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error al eliminar persona.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error al eliminar curso.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -68,11 +64,11 @@ public class BorrarPersona extends JPanel {
         add(mainPanel, BorderLayout.CENTER);
     }
 
-    private void eliminarPersona() throws SQLException {
+    private void eliminarCurso() throws SQLException {
         try {
             int id = Integer.parseInt(idField.getText());
-            String mensajeEliminada = personaController.eliminarPersona(id);
-            System.out.println(mensajeEliminada);
+            String mensajeEliminado = cursoController.eliminarCurso(id);
+            System.out.println(mensajeEliminado);
             idField.setText("");
 
         } catch (NumberFormatException e) {

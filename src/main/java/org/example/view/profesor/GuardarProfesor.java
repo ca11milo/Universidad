@@ -9,18 +9,15 @@ import java.sql.SQLException;
 
 public class GuardarProfesor extends JPanel {
     private ProfesorController profesorController;
-    private JTextField nombreField, apellidoField, emailField, tipoField;
+    private JTextField nombreField, apellidoField, emailField, tipoContratoField;
 
     public GuardarProfesor(ProfesorController profesorController) {
         this.profesorController = profesorController;
 
         setLayout(new BorderLayout());
 
-        JLabel tituloLabel = new JLabel("Registrar Profesor", SwingConstants.CENTER);
+        JLabel tituloLabel = new JLabel("Crear Profesor", SwingConstants.CENTER);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        tituloLabel.setOpaque(true);
-        tituloLabel.setBackground(Color.BLUE);
-        tituloLabel.setForeground(Color.WHITE);
         add(tituloLabel, BorderLayout.NORTH);
 
         JPanel formularioPanel = new JPanel(new GridLayout(4, 2, 10, 10));
@@ -30,7 +27,7 @@ public class GuardarProfesor extends JPanel {
         nombreField = new JTextField();
         formularioPanel.add(nombreField);
 
-        formularioPanel.add(new JLabel("Apellidos:"));
+        formularioPanel.add(new JLabel("Apellido:"));
         apellidoField = new JTextField();
         formularioPanel.add(apellidoField);
 
@@ -39,23 +36,20 @@ public class GuardarProfesor extends JPanel {
         formularioPanel.add(emailField);
 
         formularioPanel.add(new JLabel("Tipo de Contrato:"));
-        tipoField = new JTextField();
-        formularioPanel.add(tipoField);
+        tipoContratoField = new JTextField();
+        formularioPanel.add(tipoContratoField);
 
-        JPanel botonPanel = new JPanel();
         JButton guardarButton = new JButton("Guardar");
-        JButton cancelarButton = new JButton("Cancelar");
-
         guardarButton.addActionListener(e -> {
             try {
                 guardarProfesor();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error al guardar profesor.");
+                System.out.println("Error al guardar profesor");
             }
         });
 
+        JPanel botonPanel = new JPanel();
         botonPanel.add(guardarButton);
-        botonPanel.add(cancelarButton);
 
         add(formularioPanel, BorderLayout.CENTER);
         add(botonPanel, BorderLayout.SOUTH);
@@ -65,7 +59,7 @@ public class GuardarProfesor extends JPanel {
         String nombre = nombreField.getText();
         String apellido = apellidoField.getText();
         String email = emailField.getText();
-        String tipoContrato = tipoField.getText();
+        String tipoContrato = tipoContratoField.getText();
 
         profesorController.guardarProfesor(new Profesor(0, nombre, apellido, email, tipoContrato));
         JOptionPane.showMessageDialog(this, "Profesor guardado exitosamente.");
