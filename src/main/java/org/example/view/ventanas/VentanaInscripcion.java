@@ -1,17 +1,17 @@
-package org.example.view.ventanas;
+/*package org.example.view.ventanas;
 
-import org.example.controller.ProfesorController;
-import org.example.view.profesor.*;
+import org.example.controller.InscripcionController;
+import org.example.view.persona.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaProfesor extends VentanaContenido {
-    private ProfesorController profesorController;
+public class VentanaInscripcion extends VentanaContenido{
+    private InscipcionController inscripcionController;
 
-    public VentanaProfesor(ProfesorController profesorController, JTabbedPane tabbedPane) {
-        super("Gestión de Profesores", tabbedPane);
-        this.profesorController = profesorController;
+    public VentanaInscipcion(InscipcionController inscripcionController, JTabbedPane tabbedPane) {
+        super("Gestión de Inscipciones", tabbedPane);
+        this.inscripcionController = inscripcionController;
 
         JPanel botonesPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         botonesPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
@@ -29,16 +29,16 @@ public class VentanaProfesor extends VentanaContenido {
         JPanel nuevaPestaña;
         switch (accion) {
             case "Crear":
-                nuevaPestaña = new GuardarProfesor(profesorController);
+                nuevaPestaña = new GuardarInscripcion(inscripcionController);
                 break;
             case "Leer":
-                nuevaPestaña = new LeerProfesor(profesorController);
+                nuevaPestaña = new LeerInscripcion(inscripcionController);
                 break;
             case "Actualizar":
-                nuevaPestaña = new ActualizarProfesor(profesorController);
+                nuevaPestaña = new ActualizarInscripcion(inscripcionController);
                 break;
             case "Borrar":
-                nuevaPestaña = new BorrarProfesor(profesorController);
+                nuevaPestaña = new BorrarInscripcion(inscripcionController);
                 break;
             default:
                 return;
@@ -49,4 +49,4 @@ public class VentanaProfesor extends VentanaContenido {
         tabbedPane.setTabComponentAt(index, crearTituloConCerrar(accion, nuevaPestaña));
         tabbedPane.setSelectedComponent(nuevaPestaña);
     }
-}
+}*/

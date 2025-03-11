@@ -1,64 +1,70 @@
 package org.example.view.ventanasCRUD;
 
-
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 public abstract class VentanaActualizar<T> extends JPanel {
     protected JTextField idField;
+    protected JTextField[] campos;
     protected JPanel formularioPanel;
-    protected JButton guardarButton, cancelarButton, cargarButton;
 
-    public VentanaActualizar(String titulo) {
+    public VentanaActualizar(String titulo, String[] etiquetas) {
         setLayout(new BorderLayout());
 
-        JLabel tituloLabel = new JLabel(titulo.toUpperCase(), SwingConstants.CENTER);
+        JLabel tituloLabel = new JLabel(titulo, SwingConstants.CENTER);
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        tituloLabel.setOpaque(true);
-        tituloLabel.setBackground(Color.BLUE);
-        tituloLabel.setForeground(Color.WHITE);
         add(tituloLabel, BorderLayout.NORTH);
 
-        formularioPanel = new JPanel(new GridLayout(0, 2, 10, 10)); // Grid adaptable
+        formularioPanel = new JPanel(new GridBagLayout());
         formularioPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-        // Campo ID
-        formularioPanel.add(new JLabel("ID de la entidad:"));
-        idField = new JTextField();
-        formularioPanel.add(idField);
+        // Campo de ID
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        formularioPanel.add(new JLabel("ID:"), gbc);
 
-        agregarCampos(); // Método abstracto para que cada subclase agregue sus propios campos
+        gbc.gridx = 1;
+        idField = new JTextField(15);
+        formularioPanel.add(idField, gbc);
 
-        JPanel botonPanel = new JPanel();
-        guardarButton = new JButton("Guardar");
-        cancelarButton = new JButton("Cancelar");
-        cargarButton = new JButton("Cargar");
+        JButton cargarButton = new JButton("Cargar");
+        cargarButton.addActionListener(e -> cargarEntidad());
+        gbc.gridx = 2;
+        formularioPanel.add(cargarButton, gbc);
 
-        guardarButton.addActionListener(e -> {
+        // Campos dinámicos
+        campos = new JTextField[etiquetas.length];
+        for (int i = 0; i < etiquetas.length; i++) {
+            gbc.gridx = 0;
+            gbc.gridy = i + 1;
+            formularioPanel.add(new JLabel(etiquetas[i] + ":"), gbc);
+
+            gbc.gridx = 1;
+            campos[i] = new JTextField(15);
+            formularioPanel.add(campos[i], gbc);
+        }
+
+        JButton actualizarButton = new JButton("Actualizar");
+        actualizarButton.addActionListener(e -> {
             try {
                 guardarEntidad();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error al guardar la entidad.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error al actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
-        cargarButton.addActionListener(e -> cargarEntidad());
-
-        botonPanel.add(cargarButton);
-        botonPanel.add(guardarButton);
-        botonPanel.add(cancelarButton);
+        gbc.gridx = 0;
+        gbc.gridy = etiquetas.length + 1;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        formularioPanel.add(actualizarButton, gbc);
 
         add(formularioPanel, BorderLayout.CENTER);
-        add(botonPanel, BorderLayout.SOUTH);
     }
 
-    // Método para que cada subclase agregue sus propios campos
-    protected abstract void agregarCampos();
-
-    // Método para guardar la entidad
-    protected abstract void guardarEntidad() throws SQLException;
-
-    // Método para cargar la entidad
     protected abstract void cargarEntidad();
+    protected abstract void guardarEntidad() throws Exception;
 }

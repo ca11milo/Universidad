@@ -45,7 +45,7 @@ public class BotonListener implements ActionListener {
             case "Facultad":
                 return null; //new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
             case "Programa":
-                return null; //new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
+                return new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
             case "Inscripción":
                 return null; //new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
             default:

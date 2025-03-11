@@ -9,34 +9,18 @@ import java.sql.SQLException;
 
 public class ActualizarPersona extends VentanaActualizar<Persona> {
     private PersonaController personaController;
-    private JTextField nombreField, apellidoField, emailField;
 
     public ActualizarPersona(PersonaController personaController) {
-        super("Persona");
+        super("Actualizar Persona", new String[]{"Nombre", "Apellidos", "Email"});
         this.personaController = personaController;
     }
 
     @Override
-    protected void agregarCampos() {
-        formularioPanel.add(new JLabel("Nombre:"));
-        nombreField = new JTextField();
-        formularioPanel.add(nombreField);
-
-        formularioPanel.add(new JLabel("Apellidos:"));
-        apellidoField = new JTextField();
-        formularioPanel.add(apellidoField);
-
-        formularioPanel.add(new JLabel("Email:"));
-        emailField = new JTextField();
-        formularioPanel.add(emailField);
-    }
-
-    @Override
     protected void guardarEntidad() throws SQLException {
-        String nombre = nombreField.getText();
-        String apellido = apellidoField.getText();
-        String email = emailField.getText();
-        int id = Integer.parseInt(idField.getText());
+        int id = Integer.parseInt(idField.getText()); // Usar el campo de ID correcto
+        String nombre = campos[0].getText();
+        String apellido = campos[1].getText();
+        String email = campos[2].getText();
 
         personaController.actualizarPersona(new Persona(id, nombre, apellido, email));
         JOptionPane.showMessageDialog(this, "Persona actualizada exitosamente.");
@@ -45,17 +29,17 @@ public class ActualizarPersona extends VentanaActualizar<Persona> {
     @Override
     protected void cargarEntidad() {
         try {
-            int id = Integer.parseInt(idField.getText());
+            int id = Integer.parseInt(idField.getText()); // Usar el campo de ID correcto
             Persona persona = personaController.obtenerPersonaPorId(id);
             if (persona != null) {
-                nombreField.setText(persona.getNombres());
-                apellidoField.setText(persona.getApellidos());
-                emailField.setText(persona.getEmail());
+                campos[0].setText(persona.getNombres());
+                campos[1].setText(persona.getApellidos());
+                campos[2].setText(persona.getEmail());
             } else {
-                JOptionPane.showMessageDialog(this, "Persona no encontrada.");
+                JOptionPane.showMessageDialog(this, "Persona no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.");
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

@@ -1,17 +1,17 @@
 package org.example.view.ventanas;
 
-import org.example.controller.ProfesorController;
-import org.example.view.profesor.*;
+import org.example.controller.ProgramaController;
+import org.example.view.programa.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaProfesor extends VentanaContenido {
-    private ProfesorController profesorController;
+public class VentanaPrograma extends VentanaContenido{
+    private ProgramaController programaController;
 
-    public VentanaProfesor(ProfesorController profesorController, JTabbedPane tabbedPane) {
-        super("Gestión de Profesores", tabbedPane);
-        this.profesorController = profesorController;
+    public VentanaPrograma(ProgramaController programaController, JTabbedPane tabbedPane) {
+        super("Gestión de Programas", tabbedPane);
+        this.programaController = programaController;
 
         JPanel botonesPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         botonesPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
@@ -29,16 +29,16 @@ public class VentanaProfesor extends VentanaContenido {
         JPanel nuevaPestaña;
         switch (accion) {
             case "Crear":
-                nuevaPestaña = new GuardarProfesor(profesorController);
+                nuevaPestaña = new GuardarPrograma(programaController);
                 break;
             case "Leer":
-                nuevaPestaña = new LeerProfesor(profesorController);
+                nuevaPestaña = new LeerPrograma(programaController);
                 break;
             case "Actualizar":
-                nuevaPestaña = new ActualizarProfesor(profesorController);
+                nuevaPestaña = new ActualizarPrograma(programaController);
                 break;
             case "Borrar":
-                nuevaPestaña = new BorrarProfesor(profesorController);
+                nuevaPestaña = new BorrarPrograma(programaController);
                 break;
             default:
                 return;
@@ -49,4 +49,5 @@ public class VentanaProfesor extends VentanaContenido {
         tabbedPane.setTabComponentAt(index, crearTituloConCerrar(accion, nuevaPestaña));
         tabbedPane.setSelectedComponent(nuevaPestaña);
     }
+
 }

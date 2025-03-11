@@ -1,23 +1,24 @@
-package org.example.view.profesor;
+package org.example.view.programa;
 
 import org.example.controller.ProfesorController;
+import org.example.controller.ProgramaController;
 import org.example.view.ventanasCRUD.VentanaBorrar;
 import javax.swing.*;
 import java.sql.SQLException;
 
-public class BorrarProfesor extends VentanaBorrar {
-    private ProfesorController profesorController;
+public class BorrarPrograma extends VentanaBorrar {
+    private ProgramaController programaController;
 
-    public BorrarProfesor(ProfesorController profesorController) {
-        super("Profesor");
-        this.profesorController = profesorController;
+    public BorrarPrograma(ProgramaController profesorController) {
+        super("Programa");
+        this.programaController = programaController;
     }
 
     @Override
     protected void eliminar() throws SQLException {
         try {
             int id = Integer.parseInt(idField.getText());
-            String mensajeEliminada = profesorController.eliminarProfesor(id);
+            String mensajeEliminada = programaController.eliminarPrograma(id);
             System.out.println(mensajeEliminada);
             idField.setText("");
         } catch (NumberFormatException e) {

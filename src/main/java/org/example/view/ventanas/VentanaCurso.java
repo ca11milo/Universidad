@@ -32,7 +32,7 @@ public class VentanaCurso extends VentanaContenido {
                 nuevaPestaña = new GuardarCurso(cursoController);
                 break;
             case "Leer":
-                nuevaPestaña = new TablaCurso(cursoController);
+                nuevaPestaña = new LeerCurso(cursoController);
                 break;
             case "Actualizar":
                 nuevaPestaña = new ActualizarCurso(cursoController);

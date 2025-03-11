@@ -13,7 +13,6 @@ public abstract class VentanaBorrar extends JPanel {
     public VentanaBorrar(String titulo) {
         setLayout(new BorderLayout());
 
-        // Encabezado
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(30, 144, 255));
         JLabel tituloLabel = new JLabel(titulo);
@@ -22,7 +21,6 @@ public abstract class VentanaBorrar extends JPanel {
         headerPanel.add(tituloLabel);
         add(headerPanel, BorderLayout.NORTH);
 
-        // Panel principal
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         mainPanel.setBackground(new Color(245, 245, 220));
@@ -31,7 +29,6 @@ public abstract class VentanaBorrar extends JPanel {
         eliminarLabel.setForeground(Color.BLUE);
         mainPanel.add(eliminarLabel, BorderLayout.NORTH);
 
-        // Centro
         JPanel centerPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         JLabel mensajeLabel = new JLabel("Ingresa el ID del " + titulo.toLowerCase() + " que deseas eliminar", SwingConstants.CENTER);
         mensajeLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -43,7 +40,6 @@ public abstract class VentanaBorrar extends JPanel {
 
         mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-        // Botones
         JPanel buttonPanel = new JPanel();
         eliminarButton = new JButton("Eliminar");
         cancelarButton = new JButton("Cancelar");

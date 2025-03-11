@@ -2,98 +2,46 @@ package org.example.view.profesor;
 
 import org.example.controller.ProfesorController;
 import org.example.model.Profesor;
+import org.example.view.ventanasCRUD.VentanaActualizar;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.SQLException;
 
-public class ActualizarProfesor extends JPanel {
+public class ActualizarProfesor extends VentanaActualizar<Profesor> {
     private ProfesorController profesorController;
-    private JTextField nombreField, apellidoField, emailField, idField, tipoContratoField;
 
     public ActualizarProfesor(ProfesorController profesorController) {
+        super("Actualizar Profesor", new String[]{"Nombre", "Apellidos", "Email", "Tipo de Contrato"});
         this.profesorController = profesorController;
-
-        setLayout(new BorderLayout());
-
-        JLabel tituloLabel = new JLabel("PROFESOR", SwingConstants.CENTER);
-        tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        tituloLabel.setOpaque(true);
-        tituloLabel.setBackground(Color.BLUE);
-        tituloLabel.setForeground(Color.WHITE);
-        add(tituloLabel, BorderLayout.NORTH);
-
-        JPanel formularioPanel = new JPanel(new GridLayout(5, 2, 10, 10));
-        formularioPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
-
-        formularioPanel.add(new JLabel("Nombre:"));
-        nombreField = new JTextField();
-        formularioPanel.add(nombreField);
-
-        formularioPanel.add(new JLabel("Apellidos:"));
-        apellidoField = new JTextField();
-        formularioPanel.add(apellidoField);
-
-        formularioPanel.add(new JLabel("Email:"));
-        emailField = new JTextField();
-        formularioPanel.add(emailField);
-
-        formularioPanel.add(new JLabel("Tipo de Contrato:"));
-        tipoContratoField = new JTextField();
-        formularioPanel.add(tipoContratoField);
-
-        formularioPanel.add(new JLabel("Ingresa el ID del profesor que deseas actualizar"));
-        idField = new JTextField();
-        formularioPanel.add(idField);
-
-        JPanel botonPanel = new JPanel();
-        JButton guardarButton = new JButton("Guardar");
-        JButton cancelarButton = new JButton("Cancelar");
-        JButton cargarButton = new JButton("Cargar");
-
-        guardarButton.addActionListener(e -> {
-            try {
-                actualizarProfesor();
-            } catch (SQLException ex) {
-                System.out.println("Error al actualizar profesor");
-            }
-        });
-
-        cargarButton.addActionListener(e -> cargarProfesor());
-
-        botonPanel.add(cargarButton);
-        botonPanel.add(guardarButton);
-        botonPanel.add(cancelarButton);
-
-        add(formularioPanel, BorderLayout.CENTER);
-        add(botonPanel, BorderLayout.SOUTH);
     }
 
-    private void actualizarProfesor() throws SQLException {
-        String nombre = nombreField.getText();
-        String apellido = apellidoField.getText();
-        String email = emailField.getText();
-        String tipoContrato = tipoContratoField.getText();
+    @Override
+    protected void guardarEntidad() throws SQLException {
         int id = Integer.parseInt(idField.getText());
+        String nombre = campos[0].getText();
+        String apellido = campos[1].getText();
+        String email = campos[2].getText();
+        String tipoContrato = campos[3].getText();
 
         profesorController.actualizarProfesor(new Profesor(id, nombre, apellido, email, tipoContrato));
         JOptionPane.showMessageDialog(this, "Profesor actualizado exitosamente.");
     }
 
-    private void cargarProfesor() {
+    @Override
+    protected void cargarEntidad() {
         try {
-            int id = Integer.parseInt(idField.getText());
+            int id = Integer.parseInt(idField.getText()); // Se usa el campo correcto para el ID
             Profesor profesor = profesorController.obtenerProfesorPorId(id);
             if (profesor != null) {
-                nombreField.setText(profesor.getNombres());
-                apellidoField.setText(profesor.getApellidos());
-                emailField.setText(profesor.getEmail());
-                tipoContratoField.setText(profesor.getTipoContrato());
+                campos[0].setText(profesor.getNombres());
+                campos[1].setText(profesor.getApellidos());
+                campos[2].setText(profesor.getEmail());
+                campos[3].setText(profesor.getTipoContrato());
             } else {
-                JOptionPane.showMessageDialog(this, "Profesor no encontrado.");
+                JOptionPane.showMessageDialog(this, "Profesor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.");
+            JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

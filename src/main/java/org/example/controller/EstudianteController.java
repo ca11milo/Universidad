@@ -37,7 +37,7 @@ public class EstudianteController {
 
     public String actualizarEstudiante(Estudiante estudiante) {
         if(estudianteService.actualizarEstudiante(estudiante)){
-            return ("Estudiante "+estudiante.getID()+" Eliminado");
+            return ("Estudiante "+estudiante.getID()+" Actualizado");
         }else{
             return "No se encontró el curso";
         }

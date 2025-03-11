@@ -17,6 +17,10 @@ public class FacultadDAO {
         this.conexion = conexion;
     }
 
+    public void setPersonaService(PersonaService personaService) {
+        this.personaService = personaService;
+    }
+
     public void guardarFacultad(Facultad facultad) {
         String query = "INSERT INTO FACULTAD (nombre, id_decano) VALUES (?, ?)";
         try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {

@@ -32,7 +32,7 @@ public class VentanaPersona extends VentanaContenido {
                 nuevaPestaña = new GuardarPersona(personaController);
                 break;
             case "Leer":
-                nuevaPestaña = new TablaPersonas(personaController);
+                nuevaPestaña = new LeerPersona(personaController);
                 break;
             case "Actualizar":
                 nuevaPestaña = new ActualizarPersona(personaController);

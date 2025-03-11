@@ -3,88 +3,61 @@ package org.example.view.curso;
 import org.example.controller.CursoController;
 import org.example.model.Curso;
 import org.example.model.Programa;
+import org.example.view.ventanasCRUD.VentanaActualizar;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
-public class ActualizarCurso extends JPanel {
+public class ActualizarCurso extends VentanaActualizar<Curso> {
     private CursoController cursoController;
-    private JTextField idField, nombreField;
-    private JComboBox<Programa> programaComboBox;
     private JCheckBox activoCheckBox;
 
     public ActualizarCurso(CursoController cursoController) {
+        super("Actualizar Curso", new String[]{"Nombre", "ID Programa", "Activo"});
         this.cursoController = cursoController;
 
-        setLayout(new BorderLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-        JLabel tituloLabel = new JLabel("Actualizar Curso", SwingConstants.CENTER);
-        tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        add(tituloLabel, BorderLayout.NORTH);
-
-        JPanel formularioPanel = new JPanel(new GridLayout(4, 2, 10, 10));
-        formularioPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
-
-        formularioPanel.add(new JLabel("ID:"));
-        idField = new JTextField();
-        formularioPanel.add(idField);
-
-        formularioPanel.add(new JLabel("Nombre:"));
-        nombreField = new JTextField();
-        formularioPanel.add(nombreField);
-
-        formularioPanel.add(new JLabel("Programa:"));
-        programaComboBox = new JComboBox<>(); // Se debe llenar con los programas disponibles
-        formularioPanel.add(programaComboBox);
-
-        formularioPanel.add(new JLabel("Activo:"));
+        formularioPanel.remove(campos[2]);
         activoCheckBox = new JCheckBox();
-        formularioPanel.add(activoCheckBox);
+        formularioPanel.add(activoCheckBox, gbc);
 
-        JButton cargarButton = new JButton("Cargar");
-        JButton actualizarButton = new JButton("Actualizar");
-
-        cargarButton.addActionListener(e -> cargarCurso());
-        actualizarButton.addActionListener(e -> {
-            try {
-                actualizarCurso();
-            } catch (SQLException ex) {
-                System.out.println("Error al actualizar curso");
-            }
-        });
-
-        JPanel botonPanel = new JPanel();
-        botonPanel.add(cargarButton);
-        botonPanel.add(actualizarButton);
-
-        add(formularioPanel, BorderLayout.CENTER);
-        add(botonPanel, BorderLayout.SOUTH);
+        formularioPanel.revalidate();
+        formularioPanel.repaint();
     }
 
-    private void cargarCurso() {
+    @Override
+    protected void guardarEntidad() throws Exception {
+        int id = Integer.parseInt(idField.getText());
+        String nombre = campos[0].getText();
+        int idPrograma = Integer.parseInt(campos[1].getText());
+        boolean activo = activoCheckBox.isSelected();
+
+        Programa programa = new Programa(idPrograma);
+        Curso curso = new Curso(id, nombre, programa, activo);
+
+        cursoController.actualizarCurso(curso);
+        JOptionPane.showMessageDialog(this, "Curso actualizado exitosamente.");
+    }
+
+    @Override
+    protected void cargarEntidad() {
         try {
             int id = Integer.parseInt(idField.getText());
             Curso curso = cursoController.obtenerCursoPorId(id);
             if (curso != null) {
-                nombreField.setText(curso.getNombre());
-                programaComboBox.setSelectedItem(curso.getPrograma());
+                campos[0].setText(curso.getNombre());
+                campos[1].setText(String.valueOf(curso.getPrograma().getID()));
                 activoCheckBox.setSelected(curso.isActivo());
             } else {
-                JOptionPane.showMessageDialog(this, "Curso no encontrado.");
+                JOptionPane.showMessageDialog(this, "Curso no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    private void actualizarCurso() throws SQLException {
-        int id = Integer.parseInt(idField.getText());
-        String nombre = nombreField.getText();
-        Programa programa = (Programa) programaComboBox.getSelectedItem();
-        boolean activo = activoCheckBox.isSelected();
-
-        cursoController.actualizarCurso(new Curso(id, nombre, programa, activo));
-        JOptionPane.showMessageDialog(this, "Curso actualizado exitosamente.");
     }
 }

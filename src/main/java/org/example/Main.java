@@ -30,6 +30,8 @@ public class Main {
             ProfesorDAO profesorDAO = new ProfesorDAO(conexion);
             ProgramaDAO programaDAO = new ProgramaDAO(conexion);
 
+            facultadDAO.setPersonaService(new PersonaService(personaDAO));
+
             SwingUtilities.invokeLater(() -> {
                 PersonaService personaService = new PersonaService(personaDAO);
                 ProfesorService profesorService = new ProfesorService(profesorDAO);

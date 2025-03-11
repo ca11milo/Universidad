@@ -4,15 +4,12 @@ import org.example.controller.PersonaController;
 import org.example.model.Persona;
 import org.example.view.ventanasCRUD.VentanaLeer;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.util.List;
 
-public class TablaPersonas extends VentanaLeer<Persona> {
+public class LeerPersona extends VentanaLeer<Persona> {
     private PersonaController personaController;
 
-    public TablaPersonas(PersonaController personaController) {
+    public LeerPersona(PersonaController personaController) {
         super("Personas", new String[]{"ID", "Nombre", "Apellido", "Email"});
         this.personaController = personaController;
         cargarDatos();
