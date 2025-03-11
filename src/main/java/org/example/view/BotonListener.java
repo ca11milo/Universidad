@@ -37,17 +37,17 @@ public class BotonListener implements ActionListener {
             case "Curso":
                 return new VentanaCurso((CursoController) controladores.get("curso"), tabbedPane);
             case "Curso-Profesor":
-                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"), tabbedPane);
+                return null; //new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"), tabbedPane);
             case "Profesor":
                 return new VentanaProfesor((ProfesorController) controladores.get("profesor"), tabbedPane);
             case "Estudiante":
-                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), tabbedPane);
+                return null; //new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), tabbedPane);
             case "Facultad":
-                return new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
+                return null; //new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
             case "Programa":
-                return new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
+                return null; //new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
             case "Inscripción":
-                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
+                return null; //new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
             default:
                 return crearPanelError(nombre);
         }

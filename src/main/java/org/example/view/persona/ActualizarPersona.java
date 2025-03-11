@@ -2,30 +2,22 @@ package org.example.view.persona;
 
 import org.example.controller.PersonaController;
 import org.example.model.Persona;
+import org.example.view.ventanasCRUD.VentanaActualizar;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.SQLException;
 
-public class ActualizarPersona extends JPanel {
+public class ActualizarPersona extends VentanaActualizar<Persona> {
     private PersonaController personaController;
-    private JTextField nombreField, apellidoField, emailField, idField;
+    private JTextField nombreField, apellidoField, emailField;
 
     public ActualizarPersona(PersonaController personaController) {
+        super("Persona");
         this.personaController = personaController;
+    }
 
-        setLayout(new BorderLayout());
-
-        JLabel tituloLabel = new JLabel("PERSONA", SwingConstants.CENTER);
-        tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        tituloLabel.setOpaque(true);
-        tituloLabel.setBackground(Color.BLUE);
-        tituloLabel.setForeground(Color.WHITE);
-        add(tituloLabel, BorderLayout.NORTH);
-
-        JPanel formularioPanel = new JPanel(new GridLayout(4, 2, 10, 10));
-        formularioPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
-
+    @Override
+    protected void agregarCampos() {
         formularioPanel.add(new JLabel("Nombre:"));
         nombreField = new JTextField();
         formularioPanel.add(nombreField);
@@ -37,35 +29,10 @@ public class ActualizarPersona extends JPanel {
         formularioPanel.add(new JLabel("Email:"));
         emailField = new JTextField();
         formularioPanel.add(emailField);
-
-        formularioPanel.add(new JLabel("Ingresa el ID de la persona que deseas actualizar"));
-        idField = new JTextField();
-        formularioPanel.add(idField);
-
-        JPanel botonPanel = new JPanel();
-        JButton guardarButton = new JButton("Guardar");
-        JButton cancelarButton = new JButton("Cancelar");
-        JButton cargarButton = new JButton("Cargar");
-
-        guardarButton.addActionListener(e -> {
-            try {
-                guardarPersona();
-            } catch (SQLException ex) {
-                System.out.println("Error al guardar persona");
-            }
-        });
-
-        cargarButton.addActionListener(e -> cargarPersona());
-
-        botonPanel.add(cargarButton);
-        botonPanel.add(guardarButton);
-        botonPanel.add(cancelarButton);
-
-        add(formularioPanel, BorderLayout.CENTER);
-        add(botonPanel, BorderLayout.SOUTH);
     }
 
-    private void guardarPersona() throws SQLException {
+    @Override
+    protected void guardarEntidad() throws SQLException {
         String nombre = nombreField.getText();
         String apellido = apellidoField.getText();
         String email = emailField.getText();
@@ -75,7 +42,8 @@ public class ActualizarPersona extends JPanel {
         JOptionPane.showMessageDialog(this, "Persona actualizada exitosamente.");
     }
 
-    private void cargarPersona() {
+    @Override
+    protected void cargarEntidad() {
         try {
             int id = Integer.parseInt(idField.getText());
             Persona persona = personaController.obtenerPersonaPorId(id);
