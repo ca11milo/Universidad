@@ -2,6 +2,9 @@ package org.example.dao;
 
 import org.example.model.Persona;
 import java.sql.*;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +24,6 @@ public class PersonaDAO {
             statement.setString(2, persona.getApellidos());
             statement.setString(3, persona.getEmail());
             statement.setString(4, "PERSONA");
-            statement.executeUpdate();
 
             int filasAfectadas = statement.executeUpdate();
             if (filasAfectadas > 0) {

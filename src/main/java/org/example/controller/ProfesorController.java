@@ -26,20 +26,12 @@ public class ProfesorController {
         return profesorService.obtenerListaProfesores();
     }
 
-    public String eliminarProfesor(int id) {
-        if(profesorService.eliminarProfesor(id)){
-            return ("Profesor "+id+" Eliminado");
-        }else{
-            return "No se encontró el Profesor";
-        }
+    public boolean eliminarProfesor(int id) {
+        return profesorService.eliminarProfesor(id);
     }
 
-    public String actualizarProfesor(Profesor profesor) {
-        if(profesorService.actualizarProfesor(profesor)){
-            return ("Profesor "+profesor.getID()+" Eliminado");
-        }else{
-            return "No se encontró el Profesor";
-        }
+    public boolean actualizarProfesor(Profesor profesor) {
+        return profesorService.actualizarProfesor(profesor);
     }
 
 }

@@ -13,7 +13,7 @@ public abstract class VentanaGuardar<T> extends JPanel {
         tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(tituloLabel, BorderLayout.NORTH);
 
-        formularioPanel = new JPanel(new GridBagLayout()); // Usamos GridBagLayout
+        formularioPanel = new JPanel(new GridBagLayout());
         formularioPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;

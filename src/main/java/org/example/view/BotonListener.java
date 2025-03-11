@@ -12,7 +12,7 @@ import java.util.Map;
 public class BotonListener implements ActionListener {
     private String nombre;
     private JTabbedPane tabbedPane;
-    private Map<String, Object> controladores; // Mapa de controladores
+    private Map<String, Object> controladores;
 
     public BotonListener(String nombre, JTabbedPane tabbedPane, Map<String, Object> controladores) {
         this.nombre = nombre;
@@ -37,17 +37,17 @@ public class BotonListener implements ActionListener {
             case "Curso":
                 return new VentanaCurso((CursoController) controladores.get("curso"), tabbedPane);
             case "Curso-Profesor":
-                return null; //new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"), tabbedPane);
+                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"), tabbedPane);
             case "Profesor":
                 return new VentanaProfesor((ProfesorController) controladores.get("profesor"), tabbedPane);
             case "Estudiante":
-                return null; //new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), tabbedPane);
+                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), tabbedPane);
             case "Facultad":
-                return null; //new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
+                return new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
             case "Programa":
                 return new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
             case "Inscripción":
-                return null; //new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
+                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
             default:
                 return crearPanelError(nombre);
         }

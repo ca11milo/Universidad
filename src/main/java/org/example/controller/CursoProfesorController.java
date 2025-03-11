@@ -26,19 +26,12 @@ public class CursoProfesorController {
         return cursoProfesorService.obtenerListaCursosProfesor();
     }
 
-    public String eliminarCursoProfesor(int id) {
-        if(cursoProfesorService.eliminarCursoProfesor(id)){
-            return ("Curso-Profesor "+id+" Eliminado");
-        }else{
-            return "No se encontró el curso-profesor";
-        }
+    public boolean eliminarCursoProfesor(int id) {
+        return cursoProfesorService.eliminarCursoProfesor(id);
+
     }
 
-    public String actualizarCursoProfesor(CursoProfesor cursoProfesor) {
-        if(cursoProfesorService.actualizarCursoProfesor(cursoProfesor)){
-            return ("Curso Profesor: "+cursoProfesor.getId()+" Eliminado");
-        }else{
-            return "No se encontró el curso-profesor";
-        }
+    public boolean actualizarCursoProfesor(CursoProfesor cursoProfesor) {
+        return cursoProfesorService.actualizarCursoProfesor(cursoProfesor);
     }
 }

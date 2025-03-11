@@ -25,19 +25,12 @@ public class FacultadController {
         return facultadService.obtenerListaFacultades();
     }
 
-    public String eliminarFacultad(int id) {
-        if(facultadService.eliminarFacultad(id)){
-            return ("Facultad "+id+" Eliminada");
-        }else{
-            return "No se encontró facultad";
-        }
+    public boolean eliminarFacultad(int id) {
+        return facultadService.eliminarFacultad(id);
+
     }
 
-    public String actualizarFacultad(Facultad facultad) {
-        if(facultadService.actualizarFacultad(facultad)){
-            return ("Facultad "+facultad.getID()+" Eliminada");
-        }else{
-            return "No se encontró la facultad";
-        }
+    public boolean actualizarFacultad(Facultad facultad) {
+        return facultadService.actualizarFacultad(facultad);
     }
 }

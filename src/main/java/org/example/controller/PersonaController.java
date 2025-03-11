@@ -1,6 +1,5 @@
 package org.example.controller;
 
-import org.example.model.Curso;
 import org.example.model.Persona;
 import org.example.service.PersonaService;
 
@@ -27,20 +26,12 @@ public class PersonaController {
         return personaService.obtenerListaPersonas();
     }
 
-    public String eliminarPersona(int id) {
-        if(personaService.eliminarPersona(id)){
-            return ("Persona "+id+" eliminada");
-        }else{
-            return "No se encontró la Persona";
-        }
+    public boolean eliminarPersona(int id) {
+        return personaService.eliminarPersona(id);
     }
 
-    public String actualizarPersona(Persona persona) {
-        if(personaService.actualizarPersona(persona)){
-            return ("Persona "+persona.getID()+" eliminada");
-        }else{
-            return "No se encontró la Persona";
-        }
+    public boolean actualizarPersona(Persona persona) {
+        return personaService.actualizarPersona(persona);
     }
 
 }

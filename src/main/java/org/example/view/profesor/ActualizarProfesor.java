@@ -30,7 +30,7 @@ public class ActualizarProfesor extends VentanaActualizar<Profesor> {
     @Override
     protected void cargarEntidad() {
         try {
-            int id = Integer.parseInt(idField.getText()); // Se usa el campo correcto para el ID
+            int id = Integer.parseInt(idField.getText());
             Profesor profesor = profesorController.obtenerProfesorPorId(id);
             if (profesor != null) {
                 campos[0].setText(profesor.getNombres());

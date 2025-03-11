@@ -1,15 +1,18 @@
-/*package org.example.view.ventanas;
+package org.example.view.ventanas;
 
 import org.example.controller.InscripcionController;
-import org.example.view.persona.*;
+import org.example.view.inscripcion.ActualizarInscripcion;
+import org.example.view.inscripcion.BorrarInscripcion;
+import org.example.view.inscripcion.GuardarInscripcion;
+import org.example.view.inscripcion.LeerInscripcion;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class VentanaInscripcion extends VentanaContenido{
-    private InscipcionController inscripcionController;
+    private InscripcionController inscripcionController;
 
-    public VentanaInscipcion(InscipcionController inscripcionController, JTabbedPane tabbedPane) {
+    public VentanaInscripcion(InscripcionController inscripcionController, JTabbedPane tabbedPane) {
         super("Gestión de Inscipciones", tabbedPane);
         this.inscripcionController = inscripcionController;
 
@@ -49,4 +52,4 @@ public class VentanaInscripcion extends VentanaContenido{
         tabbedPane.setTabComponentAt(index, crearTituloConCerrar(accion, nuevaPestaña));
         tabbedPane.setSelectedComponent(nuevaPestaña);
     }
-}*/
+}

@@ -1,6 +1,5 @@
 package org.example.view.programa;
 
-import org.example.controller.ProfesorController;
 import org.example.controller.ProgramaController;
 import org.example.model.Programa;
 import org.example.view.ventanasCRUD.VentanaLeer;

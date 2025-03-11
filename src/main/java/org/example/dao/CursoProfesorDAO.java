@@ -38,13 +38,13 @@ public class CursoProfesorDAO {
     }
 
     public Optional<CursoProfesor> obtenerCursoProfesorPorId(int id) {
-        String query = "SELECT * FROM CURSO_PROFESOR WHERE id = ?";
+        String query = "SELECT * FROM CURSO_PROFESOR WHERE id_curso_profesor = ?";
         try (PreparedStatement statement = conexion.prepareStatement(query)) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return Optional.of(new CursoProfesor(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("id_curso_profesor"),
                         new Profesor(resultSet.getInt("id_profesor")),
                         resultSet.getInt("anio"),
                         resultSet.getInt("semestre"),
@@ -65,6 +65,7 @@ public class CursoProfesorDAO {
 
             while (resultSet.next()) {
                 listaCursoProfesor.add(new CursoProfesor(
+                        resultSet.getInt("id_curso_profesor"),
                         new Profesor(resultSet.getInt("id_curso")),
                         resultSet.getInt("semestre"),
                         resultSet.getInt("anio"),

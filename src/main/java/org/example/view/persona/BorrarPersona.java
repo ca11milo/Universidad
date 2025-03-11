@@ -4,7 +4,6 @@ import org.example.controller.PersonaController;
 import org.example.view.ventanasCRUD.VentanaBorrar;
 
 import javax.swing.*;
-import java.awt.*;
 import java.sql.SQLException;
 
 public class BorrarPersona extends VentanaBorrar {
@@ -17,13 +16,23 @@ public class BorrarPersona extends VentanaBorrar {
 
     @Override
     protected void eliminar() throws SQLException {
-        try {
-            int id = Integer.parseInt(idField.getText());
-            String mensajeEliminada = personaController.eliminarPersona(id);
-            System.out.println(mensajeEliminada);
-            idField.setText("");
-        } catch (NumberFormatException e) {
+        String idTexto = idField.getText().trim();
+        if (idTexto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idTexto);
+            boolean eliminado = personaController.eliminarPersona(id);
+            if (eliminado) {
+                JOptionPane.showMessageDialog(this, "Persona eliminada exitosamente.");
+                idField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró la persona con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

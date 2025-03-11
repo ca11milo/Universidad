@@ -24,7 +24,6 @@ public class ProfesorDAO {
             statement.setString(3, profesor.getEmail());
             statement.setString(4, "PROFESOR");
             statement.setString(5, profesor.getTipoContrato());
-            statement.executeUpdate();
 
             int filasAfectadas = statement.executeUpdate();
             if (filasAfectadas > 0) {

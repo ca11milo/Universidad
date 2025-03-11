@@ -1,4 +1,4 @@
-/*package org.example.view.ventanas;
+package org.example.view.ventanas;
 
 import org.example.controller.EstudianteController;
 import org.example.view.estudiante.*;
@@ -49,4 +49,4 @@ public class VentanaEstudiante extends VentanaContenido{
         tabbedPane.setTabComponentAt(index, crearTituloConCerrar(accion, nuevaPestaña));
         tabbedPane.setSelectedComponent(nuevaPestaña);
     }
-}*/
+}

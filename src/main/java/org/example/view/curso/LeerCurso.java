@@ -10,7 +10,7 @@ public class LeerCurso extends VentanaLeer<Curso> {
     private CursoController cursoController;
 
     public LeerCurso(CursoController cursoController) {
-        super("Curso", new String[]{"ID", "Nombre", "ID Programa", "Activo"});
+        super("Curso", new String[]{"ID", "Nombre", "Programa", "Activo"});
         this.cursoController = cursoController;
         cargarDatos();
     }

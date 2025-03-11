@@ -1,4 +1,4 @@
-/*package org.example.view.ventanas;
+package org.example.view.ventanas;
 
 import org.example.controller.CursoProfesorController;
 import org.example.view.cursoProfesor.*;
@@ -8,7 +8,7 @@ import java.awt.*;
 
 
 public class VentanaCursoProfesor extends VentanaContenido{
-    private CursoProfesorController cursoProfesorCotroller;
+    private CursoProfesorController cursoProfesorController;
 
     public VentanaCursoProfesor(CursoProfesorController cursoProfesorController, JTabbedPane tabbedPane) {
         super("Gestión de Personas", tabbedPane);
@@ -53,4 +53,3 @@ public class VentanaCursoProfesor extends VentanaContenido{
 
 
 }
-*/

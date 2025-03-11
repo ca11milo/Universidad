@@ -16,13 +16,23 @@ public class BorrarCurso extends VentanaBorrar {
 
     @Override
     protected void eliminar() throws SQLException {
-        try {
-            int id = Integer.parseInt(idField.getText());
-            String mensajeEliminada = cursoController.eliminarCurso(id);
-            System.out.println(mensajeEliminada);
-            idField.setText("");
-        } catch (NumberFormatException e) {
+        String idTexto = idField.getText().trim();
+        if (idTexto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, ingresa un ID válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(idTexto);
+            boolean eliminado = cursoController.eliminarCurso(id);
+            if (eliminado) {
+                JOptionPane.showMessageDialog(this, "Curso eliminada exitosamente.");
+                idField.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el curso con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

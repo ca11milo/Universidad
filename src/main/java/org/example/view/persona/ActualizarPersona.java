@@ -17,7 +17,7 @@ public class ActualizarPersona extends VentanaActualizar<Persona> {
 
     @Override
     protected void guardarEntidad() throws SQLException {
-        int id = Integer.parseInt(idField.getText()); // Usar el campo de ID correcto
+        int id = Integer.parseInt(idField.getText());
         String nombre = campos[0].getText();
         String apellido = campos[1].getText();
         String email = campos[2].getText();
@@ -29,7 +29,7 @@ public class ActualizarPersona extends VentanaActualizar<Persona> {
     @Override
     protected void cargarEntidad() {
         try {
-            int id = Integer.parseInt(idField.getText()); // Usar el campo de ID correcto
+            int id = Integer.parseInt(idField.getText());
             Persona persona = personaController.obtenerPersonaPorId(id);
             if (persona != null) {
                 campos[0].setText(persona.getNombres());

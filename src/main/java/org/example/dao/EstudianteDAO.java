@@ -19,7 +19,6 @@ public class EstudianteDAO {
 
     public void guardarEstudiante(Estudiante estudiante) {
 
-
         String query = "INSERT INTO PERSONA (nombre, apellidos, email, tipo, codigo, id_programa, activo, promedio) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, estudiante.getNombres());
@@ -30,7 +29,6 @@ public class EstudianteDAO {
             statement.setInt(6, estudiante.getPrograma().getID());
             statement.setBoolean(7, estudiante.getActivo());
             statement.setDouble(8, estudiante.getPromedio());
-            statement.executeUpdate();
 
             int filasAfectadas = statement.executeUpdate();
             if (filasAfectadas > 0) {
@@ -128,10 +126,10 @@ public class EstudianteDAO {
     }
 
     public void guardarEstudianteBinario(Estudiante estudiante){
-        List<Estudiante> estudiantes = cargarEstudiantes(); // Cargar estudiantes previos
-        estudiantes.add(estudiante); // Agregar el nuevo estudiante
+        List<Estudiante> estudiantes = cargarEstudiantes();
+        estudiantes.add(estudiante);
 
-        // Guardar la lista actualizada
+
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(estudiantes);
         } catch (IOException e) {
@@ -143,7 +141,7 @@ public class EstudianteDAO {
     public List<Estudiante> cargarEstudiantes() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
-            return new ArrayList<>(); // Si no hay archivo, devolver lista vacía
+            return new ArrayList<>();
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {

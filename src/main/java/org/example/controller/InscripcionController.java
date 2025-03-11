@@ -26,19 +26,11 @@ public class InscripcionController {
         return inscripcionService.obtenerListaInscripciones();
     }
 
-    public String eliminarInscripcion(int id) {
-        if(inscripcionService.eliminarInscripcion(id)){
-            return ("Inscripcion "+id+" Eliminada");
-        }else{
-            return "No se encontró la Inscripcion";
-        }
+    public boolean eliminarInscripcion(int id) {
+        return inscripcionService.eliminarInscripcion(id);
     }
 
-    public String actualizarInscripcion(Inscripcion inscripcion) {
-        if(inscripcionService.actualizarInscripcion(inscripcion)){
-            return ("Inscripcion " + inscripcion.getId()+" Eliminada");
-        }else{
-            return "No se encontró la Inscripcion";
-        }
+    public boolean actualizarInscripcion(Inscripcion inscripcion) {
+        return inscripcionService.actualizarInscripcion(inscripcion);
     }
 }

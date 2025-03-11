@@ -38,7 +38,7 @@ public class Main {
                 FacultadService facultadService = new FacultadService(facultadDAO, personaService);
                 ProgramaService programaService = new ProgramaService(programaDAO, facultadService);
                 CursoService cursoService = new CursoService(cursoDAO, programaService);
-                CursoProfesorService cursoProfesorService = new CursoProfesorService(cursoProfesorDAO);
+                CursoProfesorService cursoProfesorService = new CursoProfesorService(cursoProfesorDAO, profesorService, cursoService);
                 EstudianteService estudianteService = new EstudianteService(estudianteDAO, programaService);
                 InscripcionService inscripcionService = new InscripcionService(inscripcionDAO, cursoService, estudianteService);
 

@@ -24,6 +24,14 @@ public class CursoProfesorService {
         this.cursoService = cursoService;
     }
 
+    public void setCursoService(CursoService cursoService) {
+        this.cursoService = cursoService;
+    }
+
+    public void setProfesorService(ProfesorService profesorService) {
+        this.profesorService = profesorService;
+    }
+
     public void guardarCursoProfesor(CursoProfesor cursoProfesor) {
         cursoProfesorDAO.guardarCursoProfesor(cursoProfesor);
     }

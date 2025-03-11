@@ -1,7 +1,6 @@
-/*package org.example.view.ventanas;
+package org.example.view.ventanas;
 
 import org.example.controller.FacultadController;
-import org.example.controller.PersonaController;
 import org.example.view.facultad.*;
 
 import javax.swing.*;
@@ -52,4 +51,3 @@ public class VentanaFacultad  extends  VentanaContenido{
     }
 
 }
-*/

@@ -25,19 +25,11 @@ public class ProgramaController {
         return programaService.obtenerListaProgramas();
     }
 
-    public String eliminarPrograma(int id) {
-        if(programaService.eliminarPrograma(id)){
-            return ("Programa "+id+" Eliminado");
-        }else{
-            return "No se encontró el Programa";
-        }
+    public boolean eliminarPrograma(int id) {
+        return programaService.eliminarPrograma(id);
     }
 
-    public String actualizarPrograma(Programa programa) {
-        if(programaService.actualizarPrograma(programa)){
-            return ("Programa "+programa.getID()+" Eliminado");
-        }else{
-            return "No se encontró el Programa";
-        }
+    public boolean actualizarPrograma(Programa programa) {
+        return programaService.actualizarPrograma(programa);
     }
 }

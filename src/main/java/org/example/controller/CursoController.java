@@ -24,19 +24,12 @@ public class CursoController {
         return cursoService.obtenerListaCursos();
     }
 
-    public String eliminarCurso(int id) {
-        if(cursoService.eliminarCurso(id)){
-            return ("Curso "+id+" Eliminado");
-        }else{
-            return "No se encontró el curso";
-        }
+    public boolean eliminarCurso(int id) {
+        return cursoService.eliminarCurso(id);
+
     }
 
-    public String actualizarCurso(Curso curso) {
-        if(cursoService.actualizarCurso(curso)){
-            return ("Curso "+curso.getID()+" Eliminado");
-        }else{
-            return "No se encontró el curso";
-        }
+    public boolean actualizarCurso(Curso curso) {
+        return cursoService.actualizarCurso(curso);
     }
 }
