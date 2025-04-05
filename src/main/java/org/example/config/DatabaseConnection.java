@@ -1,37 +1,34 @@
 package org.example.config;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatabaseConnection {
+
     private static final String URL = "jdbc:h2:./BDuniversidad";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    private static DatabaseConnection instance;
+    private Connection connection;
+
+    private DatabaseConnection() throws SQLException {
+        try {
+            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (SQLException e) {
+            throw new SQLException("Error al conectar a la base de datos", e);
+        }
     }
 
-    public static void CrearTablas() throws SQLException {
-        try (Connection conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = conexion.createStatement();
-             BufferedReader br = new BufferedReader(new FileReader("src/main/resources/script.sql"))) {
-
-            StringBuilder sql = new StringBuilder();
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                sql.append(linea).append("\n");
-            }
-
-            statement.execute(sql.toString());
-            System.out.println("Tablas creadas exitosamente.");
-
-        } catch (Exception e) {
-            System.err.println("Error al crear las tablas: " + e.getMessage());
+    public static DatabaseConnection getInstance() throws SQLException {
+        if (instance == null || instance.getConnection().isClosed()) {
+            instance = new DatabaseConnection();
         }
+        return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }

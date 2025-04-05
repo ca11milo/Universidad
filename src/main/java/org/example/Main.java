@@ -19,7 +19,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         try {
-            Connection conexion = DatabaseConnection.getConnection();
+            Connection conexion = DatabaseConnection.getInstance().getConnection();
 
             CursoDAO cursoDAO = new CursoDAO(conexion);
             CursoProfesorDAO cursoProfesorDAO = new CursoProfesorDAO(conexion);
