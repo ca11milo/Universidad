@@ -26,8 +26,8 @@ public class GuardarCursoProfesor extends VentanaGuardar<CursoProfesor> {
     protected void guardarEntidad() throws Exception {
         try {
             String profesorTexto = campos[0].getText().trim();
-            String semestreTexto = campos[1].getText().trim();
-            String añoTexto = campos[2].getText().trim();
+            String añoTexto = campos[1].getText().trim();
+            String semestreTexto = campos[2].getText().trim();
             String cursoTexto = campos[3].getText().trim();
 
             if (profesorTexto.isEmpty() || semestreTexto.isEmpty() || añoTexto.isEmpty() || cursoTexto.isEmpty()) {
@@ -40,7 +40,7 @@ public class GuardarCursoProfesor extends VentanaGuardar<CursoProfesor> {
             int año = Integer.parseInt(añoTexto);
             int idCurso = Integer.parseInt(cursoTexto);
 
-            if (semestre < 1 || semestre > 2) {
+            if (semestre != 1 && semestre != 2) {
                 JOptionPane.showMessageDialog(this, "El semestre debe ser 1 o 2.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return;
             }
@@ -62,7 +62,7 @@ public class GuardarCursoProfesor extends VentanaGuardar<CursoProfesor> {
                 return;
             }
 
-            CursoProfesor cursoProfesor = new CursoProfesor(0, profesor, año, semestre, curso);
+            CursoProfesor cursoProfesor = new CursoProfesor(0, profesor, semestre, año, curso);
             cursoProfesorController.guardarCursoProfesor(cursoProfesor);
 
             JOptionPane.showMessageDialog(this, "Inscripción guardada exitosamente.");

@@ -28,10 +28,10 @@ public class BorrarFacultad extends VentanaBorrar {
             boolean eliminado = facultadController.eliminarFacultad(id);
             if (eliminado) {
                 JOptionPane.showMessageDialog(this, "Facultad eliminada exitosamente.");
-                idField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró la facultad con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar la facultad. Es posible que esté relacionado con otros datos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            idField.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }

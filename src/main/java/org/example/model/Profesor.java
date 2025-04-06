@@ -20,7 +20,7 @@ public class Profesor extends Persona{
     }
 
     public Profesor(int ID, String nombres, String apellidos, String email, String tipoContrato) {
-        super(ID, nombres, email, apellidos);
+        super(ID, nombres, apellidos, email);
         this.tipoContrato = tipoContrato;
     }
 

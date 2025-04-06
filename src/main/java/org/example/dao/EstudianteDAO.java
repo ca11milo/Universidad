@@ -120,10 +120,15 @@ public class EstudianteDAO {
             int filasAfectadas = statement.executeUpdate();
             return filasAfectadas > 0;
         } catch (SQLException e) {
-            System.err.println("Error al eliminar estudiante: " + e.getMessage());
+            if (e.getSQLState().equals("23000")) {
+                System.err.println("No se puede eliminar el estudiante: está relacionado con otros registros.");
+            } else {
+                System.err.println("Error al eliminar estudiante: " + e.getMessage());
+            }
             return false;
         }
     }
+
 
     public void guardarEstudianteBinario(Estudiante estudiante){
         List<Estudiante> estudiantes = cargarEstudiantes();

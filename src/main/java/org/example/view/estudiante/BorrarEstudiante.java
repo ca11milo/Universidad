@@ -28,10 +28,10 @@ public class BorrarEstudiante extends VentanaBorrar {
             boolean eliminado = estudianteController.eliminarEstudiante(id);
             if (eliminado) {
                 JOptionPane.showMessageDialog(this, "Estudiante eliminada exitosamente.");
-                idField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró el estudiante con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el estudiante. Es posible que esté relacionado con otros datos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            idField.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }

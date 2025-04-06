@@ -49,7 +49,6 @@ public abstract class VentanaBorrar extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     eliminar();
-                    JOptionPane.showMessageDialog(VentanaBorrar.this, titulo + " eliminado exitosamente.");
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(VentanaBorrar.this, "Error al eliminar " + titulo.toLowerCase() + ".", "Error", JOptionPane.ERROR_MESSAGE);
                 }

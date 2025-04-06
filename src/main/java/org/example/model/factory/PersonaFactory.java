@@ -18,8 +18,8 @@ public class PersonaFactory {
     }
 
     public static Profesor crearProfesor(
-            int id, String nombre, String apellidos, String email, String telefono
+            int id, String nombre, String apellidos, String email, String tipoContrato
     ) {
-        return new Profesor(id, nombre, apellidos, email, telefono);
+        return new Profesor(id, nombre, apellidos, email, tipoContrato);
     }
 }

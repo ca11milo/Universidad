@@ -23,7 +23,7 @@ public class LeerInscripcion extends VentanaLeer<Inscripcion> {
 
         @Override
         protected Object[] mapearFila(Inscripcion inscripcion) {
-            return new Object[]{inscripcion.getId(), inscripcion.getCurso(), inscripcion.getAño(), inscripcion.getSemestre(), inscripcion.getEstudiante()};
+            return new Object[]{inscripcion.getId(), inscripcion.getCurso().getNombre(), inscripcion.getAño(), inscripcion.getSemestre(), inscripcion.getEstudiante().getNombreCompleto()};
         }
     }
 

@@ -35,7 +35,12 @@ public class ProgramaService {
     }
 
     public List<Programa> obtenerListaProgramas() {
-        return programaDAO.obtenerListaProgramas();
+        List<Programa> listaPrograma = programaDAO.obtenerListaProgramas();
+        for(Programa programa : listaPrograma) {
+            Facultad facultad = facultadService.obtenerFacultadPorId(programa.getFacultad().getID());
+            programa.setFacultad(facultad);
+        }
+        return listaPrograma;
     }
 
     public boolean eliminarPrograma(int id) {

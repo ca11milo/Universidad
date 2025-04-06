@@ -4,6 +4,8 @@ import org.example.dao.InscripcionDAO;
 import org.example.model.Curso;
 import org.example.model.Estudiante;
 import org.example.model.Inscripcion;
+import org.example.model.Programa;
+
 import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +41,14 @@ public class InscripcionService {
     }
 
     public List<Inscripcion> obtenerListaInscripciones() {
-        return inscripcionDAO.obtenerListaInscripciones();
+        List<Inscripcion> listaInscripcion = inscripcionDAO.obtenerListaInscripciones();
+        for(Inscripcion inscripcion : listaInscripcion) {
+            Estudiante estudiante = estudianteService.obtenerEstudiantePorId(inscripcion.getEstudiante().getID());
+            Curso curso = cursoService.obtenerCursoPorId(inscripcion.getCurso().getID());
+            inscripcion.setEstudiante(estudiante);
+            inscripcion.setCurso(curso);
+        }
+        return listaInscripcion;
     }
 
     public boolean eliminarInscripcion(int id) {

@@ -26,11 +26,11 @@ public class BorrarCurso extends VentanaBorrar {
             int id = Integer.parseInt(idTexto);
             boolean eliminado = cursoController.eliminarCurso(id);
             if (eliminado) {
-                JOptionPane.showMessageDialog(this, "Curso eliminada exitosamente.");
-                idField.setText("");
+                JOptionPane.showMessageDialog(this, "Curso eliminado exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró el curso con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el curso. Es posible que esté relacionado con otros datos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            idField.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }

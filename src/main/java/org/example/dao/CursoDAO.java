@@ -98,8 +98,12 @@ public class CursoDAO {
             int filasAfectadas = statement.executeUpdate();
             return filasAfectadas > 0;
         } catch (SQLException e) {
-            System.err.println("Error al eliminar curso: " + e.getMessage());
-            return false; 
+            if (e.getSQLState().equals("23000")) {
+                System.err.println("No se puede eliminar el curso: está relacionado con otros registros.");
+            } else {
+                System.err.println("Error al eliminar curso: " + e.getMessage());
+            }
+            return false;
         }
     }
 

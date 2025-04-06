@@ -44,8 +44,8 @@ public class ActualizarCursoProfesor extends VentanaActualizar<CursoProfesor> {
         try {
             int id = Integer.parseInt(idField.getText().trim());
             String profesorTexto = campos[0].getText().trim();
-            String semestreTexto = campos[1].getText().trim();
-            String anioTexto = campos[2].getText().trim();
+            String anioTexto = campos[1].getText().trim();
+            String semestreTexto = campos[2].getText().trim();
             String cursoTexto = campos[3].getText().trim();
 
             if (profesorTexto.isEmpty() || semestreTexto.isEmpty() || anioTexto.isEmpty() || cursoTexto.isEmpty()) {

@@ -22,7 +22,7 @@ public class LeerFacultad extends VentanaLeer<Facultad> {
 
     @Override
     protected Object[] mapearFila(Facultad facultad) {
-        return new Object[]{facultad.getID(), facultad.getNombre(), facultad.getDecano()};
+        return new Object[]{facultad.getID(), facultad.getNombre(), facultad.getDecano().getNombreCompleto()};
     }
 }
 

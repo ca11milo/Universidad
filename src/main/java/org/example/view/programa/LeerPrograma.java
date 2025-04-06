@@ -10,7 +10,7 @@ public class LeerPrograma extends VentanaLeer<Programa> {
     private ProgramaController programaController;
 
     public LeerPrograma(ProgramaController programaController) {
-        super("Programas", new String[]{"ID", "Nombre", "Duración", "Registro", "Id Facultad"});
+        super("Programas", new String[]{"ID", "Nombre", "Duración", "Registro", "Facultad"});
         this.programaController = programaController;
         cargarDatos();
     }
@@ -22,6 +22,6 @@ public class LeerPrograma extends VentanaLeer<Programa> {
 
     @Override
     protected Object[] mapearFila(Programa programa) {
-        return new Object[]{programa.getID(), programa.getNombre(), programa.getDuracion(), programa.getRegistro(), programa.getFacultad().getID()};
+        return new Object[]{programa.getID(), programa.getNombre(), programa.getDuracion(), programa.getRegistro(), programa.getFacultad().getNombre()};
     }
 }

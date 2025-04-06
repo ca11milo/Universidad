@@ -34,7 +34,13 @@ public class CursoService {
     }
 
     public List<Curso> obtenerListaCursos() {
-        return cursoDAO.obtenerListaCursos();
+
+        List<Curso> listaCursos = cursoDAO.obtenerListaCursos();
+        for(Curso curso : listaCursos) {
+            Programa programa = programaService.obtenerProgramaPorId(curso.getPrograma().getID());
+            curso.setPrograma(programa);
+        }
+        return listaCursos;
     }
 
     public boolean eliminarCurso(int id) {

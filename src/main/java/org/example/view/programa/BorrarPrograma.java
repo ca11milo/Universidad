@@ -26,10 +26,10 @@ public class BorrarPrograma extends VentanaBorrar {
             boolean eliminado = programaController.eliminarPrograma(id);
             if (eliminado) {
                 JOptionPane.showMessageDialog(this, "Programa eliminado exitosamente.");
-                idField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró el programa con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el Programa. Es posible que esté relacionado con otros datos.\"", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            idField.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }

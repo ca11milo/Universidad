@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.dao.EstudianteDAO;
+import org.example.model.Curso;
 import org.example.model.Estudiante;
 import org.example.model.Programa;
 
@@ -10,7 +11,6 @@ import java.util.Optional;
 public class EstudianteService {
     private final EstudianteDAO estudianteDAO;
     private final ProgramaService programaService;
-    private List<Estudiante> estudiantes;
 
     public EstudianteService(EstudianteDAO estudianteDAO, ProgramaService programaService) {
         this.estudianteDAO = estudianteDAO;
@@ -35,7 +35,13 @@ public class EstudianteService {
     }
 
     public List<Estudiante> obtenerListaEstudiantes() {
-        return estudianteDAO.obtenerListaEstudiantes();
+
+        List<Estudiante> listaEstudiante = estudianteDAO.obtenerListaEstudiantes();
+        for(Estudiante estudiante : listaEstudiante) {
+            Programa programa = programaService.obtenerProgramaPorId(estudiante.getPrograma().getID());
+            estudiante.setPrograma(programa);
+        }
+        return listaEstudiante;
     }
 
     public boolean eliminarEstudiante(int id) {

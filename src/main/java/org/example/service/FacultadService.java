@@ -1,8 +1,10 @@
 package org.example.service;
 
 import org.example.dao.FacultadDAO;
+import org.example.model.Curso;
 import org.example.model.Facultad;
 import org.example.model.Persona;
+import org.example.model.Programa;
 
 import java.sql.Connection;
 import java.util.List;
@@ -35,7 +37,13 @@ public class FacultadService {
         }
     }
     public List<Facultad> obtenerListaFacultades() {
-        return facultadDAO.obtenerListaFacultades();
+
+        List<Facultad> listaFacultad = facultadDAO.obtenerListaFacultades();
+        for(Facultad facultad : listaFacultad) {
+            Persona decano = personaService.obtenerPersonaPorId(facultad.getDecano().getID());
+            facultad.setDecano(decano);
+        }
+        return listaFacultad;
     }
 
     public boolean eliminarFacultad(int id) {

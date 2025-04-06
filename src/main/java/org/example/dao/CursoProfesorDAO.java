@@ -57,7 +57,7 @@ public class CursoProfesorDAO {
         return Optional.empty();
     }
 
-    public List<CursoProfesor> obtenerCursosProfesoresPorId() {
+    public List<CursoProfesor> obtenerListaCursosProfesor() {
         List<CursoProfesor> listaCursoProfesor = new ArrayList<>();
         String query = "SELECT * FROM CURSO_PROFESOR";
         try (Statement statement = conexion.createStatement();
@@ -102,7 +102,11 @@ public class CursoProfesorDAO {
             int filasAfectadas = statement.executeUpdate();
             return filasAfectadas > 0;
         } catch (SQLException e) {
-            System.err.println("Error al eliminar curso_profesor: " + e.getMessage());
+            if (e.getSQLState().equals("23000")) {
+                System.err.println("No se puede eliminar el CursoProfesor: está relacionado con otros registros.");
+            } else {
+                System.err.println("Error al eliminar CursoProfesor: " + e.getMessage());
+            }
             return false;
         }
     }

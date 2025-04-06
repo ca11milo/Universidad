@@ -4,6 +4,7 @@ import org.example.dao.CursoProfesorDAO;
 import org.example.model.Curso;
 import org.example.model.CursoProfesor;
 import org.example.model.Profesor;
+import org.example.model.Programa;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +53,15 @@ public class CursoProfesorService {
     }
 
     public List<CursoProfesor> obtenerListaCursosProfesor() {
-        return cursoProfesorDAO.obtenerCursosProfesoresPorId();
+
+        List<CursoProfesor> listaCursosProfesor = cursoProfesorDAO.obtenerListaCursosProfesor();
+        for(CursoProfesor cursoProfesor : listaCursosProfesor) {
+            Profesor profesor = profesorService.obtenerProfesorPorId(cursoProfesor.getProfesor().getID());
+            Curso curso = cursoService.obtenerCursoPorId(cursoProfesor.getCurso().getID());
+            cursoProfesor.setProfesor(profesor);
+            cursoProfesor.setCurso(curso);
+        }
+        return listaCursosProfesor;
     }
 
     public boolean eliminarCursoProfesor(int id) {

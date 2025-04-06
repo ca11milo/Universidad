@@ -69,6 +69,10 @@ public class Persona implements Serializable{
         this.email = email;
     }
 
+    public String getNombreCompleto(){
+        return nombres + " " + apellidos;
+    }
+
     @Override
     public String toString() {
         return "ID=" + ID +

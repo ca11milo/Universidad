@@ -28,10 +28,10 @@ public class BorrarCursoProfesor extends VentanaBorrar {
             boolean eliminado = cursoProfesorController.eliminarCursoProfesor(id);
             if (eliminado) {
                 JOptionPane.showMessageDialog(this, "Curso Profesor eliminada exitosamente.");
-                idField.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontró el Curso Profesor con el ID especificado.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo eliminar el CursoProfesor. Es posible que esté relacionado con otros datos.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            idField.setText("");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
         }

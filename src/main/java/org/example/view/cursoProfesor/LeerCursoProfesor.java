@@ -10,7 +10,7 @@ public class LeerCursoProfesor extends VentanaLeer<CursoProfesor> {
     private CursoProfesorController cursoProfesorController;
 
     public LeerCursoProfesor(CursoProfesorController cursoProfesorController) {
-        super("Inscripción", new String[]{"ID", "Curso", "Año", "Semestre", "Estudiante"});
+        super("Curso-Profesor", new String[]{"ID", "Curso", "Año", "Semestre", "Profesor"});
         this.cursoProfesorController = cursoProfesorController;
         cargarDatos();
     }
@@ -23,6 +23,6 @@ public class LeerCursoProfesor extends VentanaLeer<CursoProfesor> {
 
     @Override
     protected Object[] mapearFila(CursoProfesor cursoProfesor) {
-        return new Object[]{cursoProfesor.getId(), cursoProfesor.getProfesor(), cursoProfesor.getAño(), cursoProfesor.getSemestre(), cursoProfesor.getCurso()};
+        return new Object[]{cursoProfesor.getId(), cursoProfesor.getCurso().getNombre(), cursoProfesor.getAño(), cursoProfesor.getSemestre(), cursoProfesor.getProfesor().getNombreCompleto()};
     }
 }

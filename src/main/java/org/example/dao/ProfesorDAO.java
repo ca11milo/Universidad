@@ -105,7 +105,11 @@ public class ProfesorDAO {
             int filasAfectadas = statement.executeUpdate();
             return filasAfectadas > 0;
         } catch (SQLException e) {
-            System.err.println("Error al eliminar profesor: " + e.getMessage());
+            if (e.getSQLState().equals("23000")) {
+                System.err.println("No se puede eliminar el profesor: está relacionado con otros registros.");
+            } else {
+                System.err.println("Error al eliminar profesor: " + e.getMessage());
+            }
             return false;
         }
     }

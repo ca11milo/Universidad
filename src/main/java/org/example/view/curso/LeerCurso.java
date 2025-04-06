@@ -22,7 +22,7 @@ public class LeerCurso extends VentanaLeer<Curso> {
 
     @Override
     protected Object[] mapearFila(Curso curso) {
-        return new Object[]{curso.getID(), curso.getNombre(), curso.getPrograma(), curso.isActivo()};
+        return new Object[]{curso.getID(), curso.getNombre(), curso.getPrograma().getNombre(), curso.isActivo()};
     }
 }
 
