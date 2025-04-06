@@ -14,7 +14,7 @@ public class GuardarFacultad extends VentanaGuardar<Facultad> {
 
 
     public GuardarFacultad(FacultadController facultadController, PersonaController personaController) {
-        super("Guardar Facultad", new String[]{"Nombre", "ID Decano"});
+        super("Guardar Facultad", new String[]{ "Nombre", "ID Decano"});
         this.facultadController = facultadController;
         this.personaController = personaController;
     }
@@ -22,20 +22,18 @@ public class GuardarFacultad extends VentanaGuardar<Facultad> {
     @Override
     protected void guardarEntidad() throws Exception {
         try {
-            String idText = campos[0].getText();
-            String nombre = campos[1].getText();
-            String idDecanoText = campos[2].getText();
+            String nombre = campos[0].getText();
+            String idDecanoText = campos[1].getText();
 
-            if (idText.isBlank() || nombre.isBlank() || idDecanoText.isBlank()) {
+            if (nombre.isBlank() || idDecanoText.isBlank()) {
                 JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            int id = Integer.parseInt(idText);
             int idDecano = Integer.parseInt(idDecanoText);
 
-            if (id <= 0 || idDecano <= 0) {
-                JOptionPane.showMessageDialog(this, "El ID y el ID del decano deben ser números positivos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            if (idDecano <= 0) {
+                JOptionPane.showMessageDialog(this, "El ID del decano debe ser un números positivo.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
@@ -45,7 +43,7 @@ public class GuardarFacultad extends VentanaGuardar<Facultad> {
                 return;
             }
 
-            Facultad facultad = new Facultad(id, nombre, decano);
+            Facultad facultad = new Facultad(nombre, decano);
             facultadController.guardarFacultad(facultad);
 
             JOptionPane.showMessageDialog(this, "Facultad guardada exitosamente.");
