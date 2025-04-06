@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Estudiante extends Persona implements Serializable {
     private static final long serialVersionUID = 1L;
-    private double codigo;
+    private Double codigo;
     private Programa programa;
     private Boolean activo;
     private double promedio;
 
     public Estudiante(){
         super();
-        codigo = 0;
+        codigo = 0.0;
         programa = null;
         activo = false;
         promedio = 0;
@@ -19,7 +19,7 @@ public class Estudiante extends Persona implements Serializable {
 
     public Estudiante(int id){
         super(id);
-        codigo = 0;
+        codigo = 0.0;
         programa = null;
         activo = false;
         promedio = 0;
@@ -40,11 +40,11 @@ public class Estudiante extends Persona implements Serializable {
         this.activo = activo;
     }
 
-    public double getCodigo() {
+    public Double getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(double codigo) {
+    public void setCodigo(Double codigo) {
         this.codigo = codigo;
     }
 

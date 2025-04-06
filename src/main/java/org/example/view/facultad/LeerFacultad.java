@@ -10,7 +10,7 @@ public class LeerFacultad extends VentanaLeer<Facultad> {
     private FacultadController facultadController;
 
     public LeerFacultad(FacultadController facultadController) {
-        super("Curso", new String[]{"ID", "Nombre", "Decano"});
+        super("Facultad", new String[]{"ID", "Nombre", "Decano"});
         this.facultadController= facultadController;
         cargarDatos();
     }

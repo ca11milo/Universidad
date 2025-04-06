@@ -22,6 +22,6 @@ public class LeerEstudiante extends VentanaLeer<Estudiante> {
 
     @Override
     protected Object[] mapearFila(Estudiante estudiante) {
-        return new Object[]{estudiante.getID(), estudiante.getNombres(), estudiante.getApellidos(), estudiante.getEmail(), estudiante.getCodigo(), estudiante.getPrograma().getNombre(), estudiante.getActivo(), estudiante.getPromedio()};
+        return new Object[]{estudiante.getID(), estudiante.getNombres(), estudiante.getApellidos(), estudiante.getEmail(), estudiante.getCodigo().intValue(), estudiante.getPrograma().getNombre(), estudiante.getActivo(), estudiante.getPromedio()};
     }
 }

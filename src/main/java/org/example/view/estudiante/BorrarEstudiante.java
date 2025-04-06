@@ -11,7 +11,7 @@ public class BorrarEstudiante extends VentanaBorrar {
     private EstudianteController estudianteController;
 
     public BorrarEstudiante(EstudianteController estudianteController) {
-        super("Curso");
+        super("Estudiante");
         this.estudianteController = estudianteController;
     }
 
