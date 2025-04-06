@@ -56,4 +56,8 @@ public abstract class VentanaGuardar<T> extends JPanel {
         }
 
     }
+
+    public JPanel getFormularioPanel() {
+        return formularioPanel;
+    }
 }

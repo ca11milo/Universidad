@@ -1,46 +1,69 @@
 package org.example.view;
 
+import org.example.view.factory.VentanaFactory;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.Map;
 
 public class VentanaPrincipal extends JFrame {
-    private JTabbedPane tabbedPane;
+    private Map<String, Object> controladores;
 
-    public VentanaPrincipal() {
+    public VentanaPrincipal(Map<String, Object> controladores) {
+        this.controladores = controladores;
+
         setTitle("Universidad - Gestión de Elementos");
-        setSize(600, 400);
+        setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        tabbedPane = new JTabbedPane();
-        JPanel inicioPanel = crearPanelInicio();
-        tabbedPane.addTab("Inicio", inicioPanel);
+        JMenuBar menuBar = new JMenuBar();
 
-        add(tabbedPane);
-    }
+        String[] entidades = {
+                "Persona", "Estudiante", "Profesor", "Facultad",
+                "Programa", "Curso", "Inscripción", "Curso-Profesor"
+        };
 
-    private JPanel crearPanelInicio() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
+        for (String entidad : entidades) {
+            JMenu menuEntidad = new JMenu(entidad);
 
-        JLabel titulo = new JLabel("UNIVERSIDAD", SwingConstants.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, 20));
-        panel.add(titulo, BorderLayout.NORTH);
+            menuEntidad.add(crearItemMenu("Crear", entidad));
+            menuEntidad.add(crearItemMenu("Actualizar", entidad));
+            menuEntidad.add(crearItemMenu("Listar", entidad));
+            menuEntidad.add(crearItemMenu("Eliminar", entidad));
 
-        JPanel botonesPanel = new JPanel(new GridLayout(3, 3, 10, 10));
-        String[] nombresBotones = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Inscripción", "Curso-Profesor"};
-
-        for (String nombre : nombresBotones) {
-            JButton boton = new JButton(nombre);
-            boton.addActionListener(new BotonListener(nombre, tabbedPane, null));
-            botonesPanel.add(boton);
+            menuBar.add(menuEntidad);
         }
 
-        panel.add(botonesPanel, BorderLayout.CENTER);
-        return panel;
+        setJMenuBar(menuBar);
+
+        JLabel bienvenida = new JLabel("Bienvenido al Sistema de Gestión de Universidad", SwingConstants.CENTER);
+        bienvenida.setFont(new Font("Arial", Font.BOLD, 18));
+        add(bienvenida, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new VentanaPrincipal().setVisible(true));
+    private JMenuItem crearItemMenu(String accion, String entidad) {
+        JMenuItem item = new JMenuItem(accion);
+        item.addActionListener((ActionEvent e) -> {
+            abrirVentanaCrud(accion, entidad);
+        });
+        return item;
+    }
+
+    private void abrirVentanaCrud(String accion, String entidad) {
+        JFrame ventanaCrud = new JFrame(accion + " " + entidad);
+        ventanaCrud.setSize(600, 500);
+        ventanaCrud.setLocationRelativeTo(this);
+        ventanaCrud.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JPanel formulario = VentanaFactory.crearFormulario(accion, entidad, controladores);
+        if (formulario != null) {
+            ventanaCrud.add(formulario);
+            ventanaCrud.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Formulario no disponible para " + accion + " " + entidad,
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

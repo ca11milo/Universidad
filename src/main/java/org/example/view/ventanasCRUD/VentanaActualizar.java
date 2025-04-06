@@ -21,7 +21,6 @@ public abstract class VentanaActualizar<T> extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        // Campo de ID
         gbc.gridx = 0;
         gbc.gridy = 0;
         formularioPanel.add(new JLabel("ID:"), gbc);
@@ -74,5 +73,9 @@ public abstract class VentanaActualizar<T> extends JPanel {
             campo.setText("");
         }
 
+    }
+
+    public JPanel getFormularioPanel() {
+        return formularioPanel;
     }
 }

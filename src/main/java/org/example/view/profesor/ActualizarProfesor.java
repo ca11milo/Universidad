@@ -6,14 +6,60 @@ import org.example.model.factory.PersonaFactory;
 import org.example.view.ventanasCRUD.VentanaActualizar;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.SQLException;
 
 public class ActualizarProfesor extends VentanaActualizar<Profesor> {
     private ProfesorController profesorController;
+    private JComboBox<String> comboTipoContrato;
 
     public ActualizarProfesor(ProfesorController profesorController) {
-        super("Actualizar Profesor", new String[]{"Nombre", "Apellidos", "Email", "Tipo de Contrato"});
+
+        super("Actualizar Profesor", new String[]{"Nombre", "Apellidos", "Email"});
         this.profesorController = profesorController;
+
+        JPanel panel = formularioPanel;
+
+        comboTipoContrato = new JComboBox<>(new String[]{
+                "Planta", "Ocasional", "Catedratico",
+        });
+
+        Component botonActualizar = null;
+        int posicionBoton = campos.length + 1;
+
+        for (Component comp : panel.getComponents()) {
+            GridBagConstraints gbc = ((GridBagLayout)panel.getLayout()).getConstraints(comp);
+            if (gbc.gridy == posicionBoton) {
+                botonActualizar = comp;
+                panel.remove(comp);
+                break;
+            }
+        }
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        gbc.gridx = 0;
+        gbc.gridy = campos.length + 1; // Después del último campo
+        panel.add(new JLabel("Tipo de Contrato:"), gbc);
+
+        gbc.gridx = 1;
+        panel.add(comboTipoContrato, gbc);
+
+        if (botonActualizar != null) {
+            gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5, 5, 5, 5);
+            gbc.gridx = 0;
+            gbc.gridy = campos.length + 2;
+            gbc.gridwidth = 2;
+            gbc.anchor = GridBagConstraints.CENTER;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            panel.add(botonActualizar, gbc);
+        }
+
+        panel.revalidate();
+        panel.repaint();
     }
 
     @Override
@@ -31,9 +77,9 @@ public class ActualizarProfesor extends VentanaActualizar<Profesor> {
         String nombre = campos[0].getText();
         String apellido = campos[1].getText();
         String email = campos[2].getText();
-        String tipoContrato = campos[3].getText();
+        String tipoContrato = (String) comboTipoContrato.getSelectedItem();
 
-        if (nombre.isBlank() || apellido.isBlank() || email.isBlank() || tipoContrato.isBlank()) {
+        if (nombre.isBlank() || apellido.isBlank() || email.isBlank() || tipoContrato == null || tipoContrato.isBlank()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -41,8 +87,8 @@ public class ActualizarProfesor extends VentanaActualizar<Profesor> {
         Profesor profesor = PersonaFactory.crearProfesor(id, nombre, apellido, email, tipoContrato);
         profesorController.actualizarProfesor(profesor);
         JOptionPane.showMessageDialog(this, "Profesor actualizado exitosamente.");
+        limpiarCampos();
     }
-
 
     @Override
     protected void cargarEntidad() {
@@ -60,7 +106,8 @@ public class ActualizarProfesor extends VentanaActualizar<Profesor> {
                 campos[0].setText(profesor.getNombres());
                 campos[1].setText(profesor.getApellidos());
                 campos[2].setText(profesor.getEmail());
-                campos[3].setText(profesor.getTipoContrato());
+
+                comboTipoContrato.setSelectedItem(profesor.getTipoContrato()); // Setear valor en combo
             } else {
                 JOptionPane.showMessageDialog(this, "Profesor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             }

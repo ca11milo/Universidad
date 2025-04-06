@@ -3,17 +3,14 @@ package org.example;
 import org.example.controller.*;
 import org.example.dao.*;
 import org.example.config.DatabaseConnection;
-import org.example.model.*;
 import org.example.service.*;
-import org.example.view.*;
+import org.example.view.factory.VentanaFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -66,23 +63,42 @@ public class Main {
                 ventanaPrincipal.setSize(800, 600);
                 ventanaPrincipal.setLocationRelativeTo(null);
 
-                JTabbedPane tabbedPane = new JTabbedPane();
+                JMenuBar menuBar = new JMenuBar();
+                String[] entidades = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Curso-Profesor", "Inscripción"};
 
-                JPanel panelBotones = new JPanel(new GridLayout(2, 4, 10, 10));
-                panelBotones.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+                for (String entidad : entidades) {
+                    JMenu menuEntidad = new JMenu(entidad);
 
-                String[] nombres = {"Persona", "Profesor", "Facultad", "Curso", "Curso-Profesor", "Inscripción", "Estudiante", "Programa"};
+                    String[] acciones = {"Crear", "Actualizar", "Listar", "Eliminar"};
+                    for (String accion : acciones) {
+                        JMenuItem item = new JMenuItem(accion);
+                        item.addActionListener(e -> {
+                            JPanel panel = VentanaFactory.crearFormulario(accion, entidad, controladores);
+                            if (panel != null) {
+                                JFrame ventanaCrud = new JFrame(accion + " " + entidad);
+                                ventanaCrud.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                ventanaCrud.setSize(500, 400);
+                                ventanaCrud.setLocationRelativeTo(ventanaPrincipal);
+                                ventanaCrud.add(panel);
+                                ventanaCrud.setVisible(true);
+                            } else {
+                                JOptionPane.showMessageDialog(ventanaPrincipal, "Formulario no disponible para esta acción.");
+                            }
+                        });
+                        menuEntidad.add(item);
+                    }
 
-                for (String nombre : nombres) {
-                    JButton boton = new JButton("Abrir " + nombre);
-                    boton.addActionListener(new BotonListener(nombre, tabbedPane, controladores));
-                    panelBotones.add(boton);
+                    menuBar.add(menuEntidad);
                 }
 
-                ventanaPrincipal.add(panelBotones, BorderLayout.NORTH);
-                ventanaPrincipal.add(tabbedPane, BorderLayout.CENTER);
+                ventanaPrincipal.setJMenuBar(menuBar);
+
+                JLabel bienvenida = new JLabel("Bienvenido al Sistema de Gestión de la Universidad", SwingConstants.CENTER);
+                bienvenida.setFont(new Font("Arial", Font.BOLD, 18));
+                ventanaPrincipal.add(bienvenida, BorderLayout.CENTER);
 
                 ventanaPrincipal.setVisible(true);
+
             });
 
         } catch (SQLException exception) {
