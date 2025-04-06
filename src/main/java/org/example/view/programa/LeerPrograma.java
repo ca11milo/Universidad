@@ -22,6 +22,6 @@ public class LeerPrograma extends VentanaLeer<Programa> {
 
     @Override
     protected Object[] mapearFila(Programa programa) {
-        return new Object[]{programa.getID(), programa.getNombre(), programa.getDuracion(), programa.getRegistro(), programa.getFacultad().getNombre()};
+        return new Object[]{programa.getID(), programa.getNombre(), programa.getDuracion().intValue(), programa.getRegistro(), programa.getFacultad().getNombre()};
     }
 }

@@ -7,14 +7,14 @@ public class Programa implements Serializable {
     private static final long serialVersionUID = 1L;
     private int ID;
     private String nombre;
-    private double duracion;
+    private Double duracion;
     private Date registro;
     private Facultad facultad;
 
     public Programa(){
         ID = 0;
         nombre = "";
-        duracion = 0;
+        duracion = 0.0;
         registro = null;
         facultad = null;
     }
@@ -22,7 +22,7 @@ public class Programa implements Serializable {
     public Programa(int ID){
         this.ID = ID;
         nombre = "";
-        duracion = 0;
+        duracion = 0.0;
         registro = null;
         facultad = null;
     }
@@ -67,11 +67,11 @@ public class Programa implements Serializable {
         this.registro = registro;
     }
 
-    public double getDuracion() {
+    public Double getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(double duracion) {
+    public void setDuracion(Double duracion) {
         this.duracion = duracion;
     }
 

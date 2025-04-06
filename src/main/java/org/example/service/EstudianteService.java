@@ -34,6 +34,19 @@ public class EstudianteService {
         }
     }
 
+    public Estudiante obtenerEstudiantePorCodigo(Double codigo) {
+        Optional<Estudiante> optionalEstudiante = estudianteDAO.obtenerEstudiantePorCodigo(codigo);
+        if (optionalEstudiante.isPresent()) {
+            Estudiante estudiante = optionalEstudiante.get();
+            Programa programa = programaService.obtenerProgramaPorId(estudiante.getPrograma().getID());
+            estudiante.setPrograma(programa);
+            return estudiante;
+        }else{
+            System.out.println("Estudiante de codigo "+ codigo +" no encontrado");
+            return null;
+        }
+    }
+
     public List<Estudiante> obtenerListaEstudiantes() {
 
         List<Estudiante> listaEstudiante = estudianteDAO.obtenerListaEstudiantes();

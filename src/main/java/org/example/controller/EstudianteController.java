@@ -22,6 +22,10 @@ public class EstudianteController {
         return estudianteService.obtenerEstudiantePorId(id);
     }
 
+    public Estudiante obtenerEstudiantePorCodigo(Double codigo) {
+        return estudianteService.obtenerEstudiantePorCodigo(codigo);
+    }
+
     public List<Estudiante> obtenerListaEstudiantes() {
         return estudianteService.obtenerListaEstudiantes();
     }

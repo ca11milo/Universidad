@@ -55,10 +55,15 @@ public class GuardarEstudiante extends VentanaGuardar<Estudiante> {
                 return;
             }
 
-            double codigo = Double.parseDouble(codigoTexto);
+            Double codigo = Double.parseDouble(codigoTexto);
             int idPrograma = Integer.parseInt(idProgramaTexto);
             double promedio = Double.parseDouble(promedioTexto);
 
+
+            if (estudianteController.obtenerEstudiantePorCodigo(codigo) != null) {
+                JOptionPane.showMessageDialog(this, "El Codigo ingresado ya pertenece a un estudiante. Ingrese otro", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
             Programa programa = programaController.obtenerProgramaPorId(idPrograma);
             if (programa == null) {

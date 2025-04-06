@@ -86,6 +86,11 @@ public class ActualizarEstudiante extends VentanaActualizar<Estudiante> {
             int idPrograma = Integer.parseInt(idProgramaTexto);
             double promedio = Double.parseDouble(promedioTexto);
 
+            if (estudianteController.obtenerEstudiantePorCodigo(codigo) != null) {
+                JOptionPane.showMessageDialog(this, "El Codigo ingresado ya pertenece a un estudiante. Ingrese otro", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             Programa programa = programaController.obtenerProgramaPorId(idPrograma);
             if (programa == null) {
                 JOptionPane.showMessageDialog(this, "El ID del programa no corresponde a ningún programa existente.", "Advertencia", JOptionPane.WARNING_MESSAGE);

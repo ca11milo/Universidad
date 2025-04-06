@@ -33,6 +33,9 @@ public class VentanaPrincipal extends JFrame {
             menuEntidad.add(crearItemMenu("Listar", entidad));
             menuEntidad.add(crearItemMenu("Eliminar", entidad));
 
+            if (entidad.equals("Estudiante")) {
+                menuEntidad.add(crearItemMenu("Detalle", entidad));
+            }
             menuBar.add(menuEntidad);
         }
 
@@ -53,7 +56,13 @@ public class VentanaPrincipal extends JFrame {
 
     private void abrirVentanaCrud(String accion, String entidad) {
         JFrame ventanaCrud = new JFrame(accion + " " + entidad);
-        ventanaCrud.setSize(600, 500);
+
+        if (accion.equals("Detalle")) {
+            ventanaCrud.setSize(800, 600);
+        } else {
+            ventanaCrud.setSize(600, 500);
+        }
+
         ventanaCrud.setLocationRelativeTo(this);
         ventanaCrud.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

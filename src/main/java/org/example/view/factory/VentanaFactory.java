@@ -36,12 +36,13 @@ public class VentanaFactory {
                 }
                 break;
 
-            case "Estudiante":
-          switch (accion) {
+                case "Estudiante":
+              switch (accion) {
                     case "Crear": return new GuardarEstudiante(estudianteController, programaController);
                     case "Actualizar": return new ActualizarEstudiante(estudianteController, programaController);
                     case "Listar": return new LeerEstudiante(estudianteController);
                     case "Eliminar": return new BorrarEstudiante(estudianteController);
+                    case "Detalle": return new DetalleEstudiante(estudianteController);
                 }
                 break;
 

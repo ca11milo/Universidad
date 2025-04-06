@@ -69,6 +69,32 @@ public class EstudianteDAO {
         return Optional.empty();
     }
 
+    public Optional<Estudiante> obtenerEstudiantePorCodigo(Double codigo) {
+        String query = "SELECT * FROM PERSONA WHERE codigo = ? AND tipo = 'ESTUDIANTE'";
+
+        try (PreparedStatement statement = conexion.prepareStatement(query)) {
+            statement.setDouble(1, codigo);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return Optional.of(new Estudiante(
+                        resultSet.getInt("id_persona"),
+                        resultSet.getString("nombre"),
+                        resultSet.getString("apellidos"),
+                        resultSet.getString("email"),
+                        resultSet.getDouble("codigo"),
+                        new Programa(resultSet.getInt("id_programa")),
+                        resultSet.getBoolean("activo"),
+                        resultSet.getDouble("promedio")
+                ));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al buscar estudiante: " + e.getMessage());
+        }
+        return Optional.empty();
+    }
+
+
     public List<Estudiante> obtenerListaEstudiantes(){
         List<Estudiante> estudiantes = new ArrayList<>();
         String query = "SELECT * FROM PERSONA WHERE tipo = 'ESTUDIANTE'";

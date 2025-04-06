@@ -4,6 +4,7 @@ import org.example.controller.*;
 import org.example.dao.*;
 import org.example.config.DatabaseConnection;
 import org.example.service.*;
+import org.example.view.VentanaPrincipal;
 import org.example.view.factory.VentanaFactory;
 
 import javax.swing.*;
@@ -58,40 +59,10 @@ public class Main {
                 controladores.put("estudiante", estudianteController);
                 controladores.put("programa", programaController);
 
-                JFrame ventanaPrincipal = new JFrame("Sistema de Gestión");
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(controladores);
                 ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 ventanaPrincipal.setSize(800, 600);
                 ventanaPrincipal.setLocationRelativeTo(null);
-
-                JMenuBar menuBar = new JMenuBar();
-                String[] entidades = {"Persona", "Estudiante", "Profesor", "Facultad", "Programa", "Curso", "Curso-Profesor", "Inscripción"};
-
-                for (String entidad : entidades) {
-                    JMenu menuEntidad = new JMenu(entidad);
-
-                    String[] acciones = {"Crear", "Actualizar", "Listar", "Eliminar"};
-                    for (String accion : acciones) {
-                        JMenuItem item = new JMenuItem(accion);
-                        item.addActionListener(e -> {
-                            JPanel panel = VentanaFactory.crearFormulario(accion, entidad, controladores);
-                            if (panel != null) {
-                                JFrame ventanaCrud = new JFrame(accion + " " + entidad);
-                                ventanaCrud.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                                ventanaCrud.setSize(500, 400);
-                                ventanaCrud.setLocationRelativeTo(ventanaPrincipal);
-                                ventanaCrud.add(panel);
-                                ventanaCrud.setVisible(true);
-                            } else {
-                                JOptionPane.showMessageDialog(ventanaPrincipal, "Formulario no disponible para esta acción.");
-                            }
-                        });
-                        menuEntidad.add(item);
-                    }
-
-                    menuBar.add(menuEntidad);
-                }
-
-                ventanaPrincipal.setJMenuBar(menuBar);
 
                 JLabel bienvenida = new JLabel("Bienvenido al Sistema de Gestión de la Universidad", SwingConstants.CENTER);
                 bienvenida.setFont(new Font("Arial", Font.BOLD, 18));
