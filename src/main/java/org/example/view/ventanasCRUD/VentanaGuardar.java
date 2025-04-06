@@ -49,4 +49,11 @@ public abstract class VentanaGuardar<T> extends JPanel {
     }
 
     protected abstract void guardarEntidad() throws Exception;
+    protected void limpiarCampos() {
+
+        for (JTextField campo : campos) {
+            campo.setText("");
+        }
+
+    }
 }

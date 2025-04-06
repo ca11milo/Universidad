@@ -1,8 +1,10 @@
 package org.example.view.estudiante;
 
 import org.example.controller.EstudianteController;
+import org.example.controller.ProgramaController;
 import org.example.model.Estudiante;
 import org.example.model.Programa;
+import org.example.model.factory.PersonaFactory;
 import org.example.view.ventanasCRUD.VentanaGuardar;
 
 import javax.swing.*;
@@ -10,11 +12,13 @@ import java.awt.*;
 
 public class GuardarEstudiante extends VentanaGuardar<Estudiante> {
     private EstudianteController estudianteController;
+    private ProgramaController programaController;
     private JCheckBox activoCheckBox;
 
-    public GuardarEstudiante(EstudianteController estudianteController) {
+    public GuardarEstudiante(EstudianteController estudianteController, ProgramaController programaController) {
         super("Registrar Estudiante", new String[]{"Nombre", "Apellido", "Email", "Codigo", "ID Programa", "Activo", "Promedio"});
         this.estudianteController = estudianteController;
+        this.programaController = programaController;
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -35,19 +39,46 @@ public class GuardarEstudiante extends VentanaGuardar<Estudiante> {
     }
 
     @Override
-    protected void guardarEntidad() throws Exception {
-        String nombre = campos[0].getText();
-        String apellido = campos[1].getText();
-        String email = campos[2].getText();
-        double codigo = Double.parseDouble(campos[3].getText());
-        int idPrograma = Integer.parseInt(campos[4].getText());
-        boolean activo = activoCheckBox.isSelected();
-        Double promedio = Double.parseDouble(campos[6].getText());
+    protected void guardarEntidad() {
+        try {
+            String nombre = campos[0].getText().trim();
+            String apellido = campos[1].getText().trim();
+            String email = campos[2].getText().trim();
+            String codigoTexto = campos[3].getText().trim();
+            String idProgramaTexto = campos[4].getText().trim();
+            String promedioTexto = campos[6].getText().trim();
+            boolean activo = activoCheckBox.isSelected();
 
-        Programa programa = new Programa(idPrograma);
-        Estudiante estudiante = new Estudiante(nombre, apellido, email, codigo, programa, activo, promedio);
+            if (nombre.isBlank() || apellido.isBlank() || email.isBlank() ||
+                    codigoTexto.isBlank() || idProgramaTexto.isBlank() || promedioTexto.isBlank()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        estudianteController.guardarEstudiante(estudiante);
-        JOptionPane.showMessageDialog(this, "Estudiante guardado exitosamente.");
+            double codigo = Double.parseDouble(codigoTexto);
+            int idPrograma = Integer.parseInt(idProgramaTexto);
+            double promedio = Double.parseDouble(promedioTexto);
+
+
+            Programa programa = programaController.obtenerProgramaPorId(idPrograma);
+            if (programa == null) {
+                JOptionPane.showMessageDialog(this, "El ID del programa no corresponde a ningún programa existente.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Estudiante estudiante = PersonaFactory.crearEstudiante(0, nombre, apellido, email, codigo, programa, activo, promedio);
+            estudianteController.guardarEstudiante(estudiante);
+            JOptionPane.showMessageDialog(this, "Estudiante guardado exitosamente.");
+            limpiarCampos();
+            activoCheckBox.setSelected(false);
+
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código, ID del programa y promedio deben ser valores numéricos válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el estudiante: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
+
 }

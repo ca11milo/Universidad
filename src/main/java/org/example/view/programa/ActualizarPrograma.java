@@ -1,5 +1,6 @@
 package org.example.view.programa;
 
+import org.example.controller.FacultadController;
 import org.example.controller.ProgramaController;
 import org.example.model.Facultad;
 import org.example.model.Programa;
@@ -7,16 +8,19 @@ import org.example.view.ventanasCRUD.VentanaActualizar;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ActualizarPrograma extends VentanaActualizar<Programa> {
     private ProgramaController programaController;
     private JFormattedTextField fechaRegistroField;
+    private FacultadController facultadController;
 
-    public ActualizarPrograma(ProgramaController programaController) {
+    public ActualizarPrograma(ProgramaController programaController, FacultadController facultadController) {
         super("Actualizar Programa", new String[]{"Nombre", "Duración", "Fecha Registro", "ID Facultad"});
         this.programaController = programaController;
+        this.facultadController = facultadController;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         fechaRegistroField = new JFormattedTextField(dateFormat);
@@ -59,20 +63,40 @@ public class ActualizarPrograma extends VentanaActualizar<Programa> {
     @Override
     protected void guardarEntidad() throws Exception {
         try {
-            int id = Integer.parseInt(idField.getText());
-            String nombre = campos[0].getText();
-            double duracion = Double.parseDouble(campos[1].getText());
-            Date registro = new SimpleDateFormat("yyyy-MM-dd").parse(fechaRegistroField.getText());
-            int idFacultad = Integer.parseInt(campos[3].getText());
+            int id = Integer.parseInt(idField.getText().trim());
+            String nombre = campos[0].getText().trim();
+            String duracionTexto = campos[1].getText().trim();
+            String fechaTexto = fechaRegistroField.getText().trim();
+            String idFacultadTexto = campos[3].getText().trim();
 
-            Programa programa = new Programa(id, nombre, registro, duracion, new Facultad(idFacultad));
+            if (nombre.isEmpty() || duracionTexto.isEmpty() || fechaTexto.isEmpty() || idFacultadTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            double duracion = Double.parseDouble(duracionTexto);
+            Date registro = new SimpleDateFormat("yyyy-MM-dd").parse(fechaTexto);
+            int idFacultad = Integer.parseInt(idFacultadTexto);
+
+            Facultad facultad = facultadController.obtenerFacultadPorId(idFacultad);
+            if (facultad == null) {
+                JOptionPane.showMessageDialog(this, "No existe una facultad con el ID proporcionado.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            Programa programa = new Programa(id, nombre, registro, duracion, facultad);
             programaController.actualizarPrograma(programa);
 
             JOptionPane.showMessageDialog(this, "Programa actualizado exitosamente.");
+            limpiarCampos();
+
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error en los datos ingresados.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error en los datos numéricos ingresados.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "El formato de fecha debe ser yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar el programa.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al actualizar el programa: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 }

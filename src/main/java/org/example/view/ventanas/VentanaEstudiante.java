@@ -1,6 +1,7 @@
 package org.example.view.ventanas;
 
 import org.example.controller.EstudianteController;
+import org.example.controller.ProgramaController;
 import org.example.view.estudiante.*;
 
 import javax.swing.*;
@@ -8,10 +9,12 @@ import java.awt.*;
 
 public class VentanaEstudiante extends VentanaContenido{
     private EstudianteController estudianteController;
+    private ProgramaController programaController;
 
-    public VentanaEstudiante(EstudianteController estudianteController, JTabbedPane tabbedPane) {
+    public VentanaEstudiante(EstudianteController estudianteController, ProgramaController programaController, JTabbedPane tabbedPane) {
         super("Gestión de Estudiantes", tabbedPane);
         this.estudianteController = estudianteController;
+        this.programaController = programaController;
 
         JPanel botonesPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         botonesPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
@@ -29,13 +32,13 @@ public class VentanaEstudiante extends VentanaContenido{
         JPanel nuevaPestaña;
         switch (accion) {
             case "Crear":
-                nuevaPestaña = new GuardarEstudiante(estudianteController);
+                nuevaPestaña = new GuardarEstudiante(estudianteController, programaController);
                 break;
             case "Leer":
                 nuevaPestaña = new LeerEstudiante(estudianteController);
                 break;
             case "Actualizar":
-                nuevaPestaña = new ActualizarEstudiante(estudianteController);
+                nuevaPestaña = new ActualizarEstudiante(estudianteController, programaController);
                 break;
             case "Borrar":
                 nuevaPestaña = new BorrarEstudiante(estudianteController);

@@ -35,19 +35,19 @@ public class BotonListener implements ActionListener {
             case "Persona":
                 return new VentanaPersona((PersonaController) controladores.get("persona"), tabbedPane);
             case "Curso":
-                return new VentanaCurso((CursoController) controladores.get("curso"), tabbedPane);
+                return new VentanaCurso((CursoController) controladores.get("curso"), (ProgramaController)controladores.get("programa") ,tabbedPane);
             case "Curso-Profesor":
-                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"), tabbedPane);
+                return new VentanaCursoProfesor((CursoProfesorController) controladores.get("cursoProfesor"),  (ProfesorController) controladores.get("profesor"), (CursoController) controladores.get("curso"), tabbedPane);
             case "Profesor":
                 return new VentanaProfesor((ProfesorController) controladores.get("profesor"), tabbedPane);
             case "Estudiante":
-                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), tabbedPane);
+                return new VentanaEstudiante((EstudianteController) controladores.get("estudiante"), (ProgramaController) controladores.get("programa"),tabbedPane);
             case "Facultad":
-                return new VentanaFacultad((FacultadController) controladores.get("facultad"), tabbedPane);
+                return new VentanaFacultad((FacultadController) controladores.get("facultad"), (PersonaController) controladores.get("persona"),tabbedPane);
             case "Programa":
-                return new VentanaPrograma((ProgramaController) controladores.get("programa"), tabbedPane);
+                return new VentanaPrograma((ProgramaController) controladores.get("programa"),(FacultadController) controladores.get("facultad"),tabbedPane);
             case "Inscripción":
-                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"), tabbedPane);
+                return new VentanaInscripcion((InscripcionController) controladores.get("inscripcion"),(EstudianteController) controladores.get("estudiante"),tabbedPane);
             default:
                 return crearPanelError(nombre);
         }

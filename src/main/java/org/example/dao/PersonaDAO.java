@@ -1,6 +1,8 @@
 package org.example.dao;
 
 import org.example.model.Persona;
+import org.example.model.factory.PersonaFactory;
+
 import java.sql.*;
 
 
@@ -44,7 +46,7 @@ public class PersonaDAO {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(new Persona(
+                return Optional.of( PersonaFactory.crearPersona(
                         resultSet.getInt("id_persona"),
                         resultSet.getString("nombre"),
                         resultSet.getString("apellidos"),
@@ -65,7 +67,7 @@ public class PersonaDAO {
              ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
-                personas.add(new Persona(
+                personas.add( PersonaFactory.crearPersona(
                         resultSet.getInt("id_persona"),
                         resultSet.getString("nombre"),
                         resultSet.getString("apellidos"),

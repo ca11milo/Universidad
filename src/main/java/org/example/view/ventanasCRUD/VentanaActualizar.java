@@ -67,4 +67,12 @@ public abstract class VentanaActualizar<T> extends JPanel {
 
     protected abstract void cargarEntidad();
     protected abstract void guardarEntidad() throws Exception;
+    protected void limpiarCampos() {
+        idField.setText("");
+
+        for (JTextField campo : campos) {
+            campo.setText("");
+        }
+
+    }
 }

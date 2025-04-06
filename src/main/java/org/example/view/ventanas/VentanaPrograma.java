@@ -1,5 +1,6 @@
 package org.example.view.ventanas;
 
+import org.example.controller.FacultadController;
 import org.example.controller.ProgramaController;
 import org.example.view.programa.*;
 
@@ -8,10 +9,12 @@ import java.awt.*;
 
 public class VentanaPrograma extends VentanaContenido{
     private ProgramaController programaController;
+    private FacultadController facultadController;
 
-    public VentanaPrograma(ProgramaController programaController, JTabbedPane tabbedPane) {
+    public VentanaPrograma(ProgramaController programaController, FacultadController facultadController, JTabbedPane tabbedPane) {
         super("Gestión de Programas", tabbedPane);
         this.programaController = programaController;
+        this.facultadController = facultadController;
 
         JPanel botonesPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         botonesPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
@@ -29,13 +32,13 @@ public class VentanaPrograma extends VentanaContenido{
         JPanel nuevaPestaña;
         switch (accion) {
             case "Crear":
-                nuevaPestaña = new GuardarPrograma(programaController);
+                nuevaPestaña = new GuardarPrograma(programaController, facultadController);
                 break;
             case "Leer":
                 nuevaPestaña = new LeerPrograma(programaController);
                 break;
             case "Actualizar":
-                nuevaPestaña = new ActualizarPrograma(programaController);
+                nuevaPestaña = new ActualizarPrograma(programaController, facultadController);
                 break;
             case "Borrar":
                 nuevaPestaña = new BorrarPrograma(programaController);

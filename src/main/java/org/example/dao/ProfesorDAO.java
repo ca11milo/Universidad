@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.model.Estudiante;
 import org.example.model.Profesor;
 import org.example.model.Programa;
+import org.example.model.factory.PersonaFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class ProfesorDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                return Optional.of(new Profesor(
+                return Optional.of(PersonaFactory.crearProfesor(
                         resultSet.getInt("id_persona"),
                         resultSet.getString("nombre"),
                         resultSet.getString("apellidos"),
@@ -66,7 +67,7 @@ public class ProfesorDAO {
              ResultSet resultSet = statement.executeQuery(sql)) {
 
             while (resultSet.next()) {
-                profesores.add(new Profesor(
+                profesores.add(PersonaFactory.crearProfesor(
                         resultSet.getInt("id_persona"),
                         resultSet.getString("nombre"),
                         resultSet.getString("apellidos"),

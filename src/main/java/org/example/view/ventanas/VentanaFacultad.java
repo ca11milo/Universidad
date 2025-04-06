@@ -1,6 +1,7 @@
 package org.example.view.ventanas;
 
 import org.example.controller.FacultadController;
+import org.example.controller.PersonaController;
 import org.example.view.facultad.*;
 
 import javax.swing.*;
@@ -8,10 +9,12 @@ import java.awt.*;
 
 public class VentanaFacultad  extends  VentanaContenido{
     private FacultadController facultadController;
+    private PersonaController personaController;
 
-    public VentanaFacultad(FacultadController facultadController, JTabbedPane tabbedPane) {
+    public VentanaFacultad(FacultadController facultadController, PersonaController personaController, JTabbedPane tabbedPane) {
         super("Gestión de Facultades", tabbedPane);
         this.facultadController = facultadController;
+        this.personaController = personaController;
 
         JPanel botonesPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         botonesPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
@@ -29,13 +32,13 @@ public class VentanaFacultad  extends  VentanaContenido{
         JPanel nuevaPestaña;
         switch (accion) {
             case "Crear":
-                nuevaPestaña = new GuardarFacultad(facultadController);
+                nuevaPestaña = new GuardarFacultad(facultadController, personaController);
                 break;
             case "Leer":
                 nuevaPestaña = new LeerFacultad(facultadController);
                 break;
             case "Actualizar":
-                nuevaPestaña = new ActualizarFacultad(facultadController);
+                nuevaPestaña = new ActualizarFacultad(facultadController, personaController);
                 break;
             case "Borrar":
                 nuevaPestaña = new BorrarFacultad(facultadController);
