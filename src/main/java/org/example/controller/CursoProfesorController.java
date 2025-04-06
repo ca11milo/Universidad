@@ -32,14 +32,16 @@ public class CursoProfesorController implements Observable {
     }
 
     public boolean eliminarCursoProfesor(int id) {
+        boolean eliminado = cursoProfesorService.eliminarCursoProfesor(id);
         notificarObservadores();
-        return cursoProfesorService.eliminarCursoProfesor(id);
+        return eliminado;
 
     }
 
     public boolean actualizarCursoProfesor(CursoProfesor cursoProfesor) {
+        boolean actualizado = cursoProfesorService.actualizarCursoProfesor(cursoProfesor);
         notificarObservadores();
-        return cursoProfesorService.actualizarCursoProfesor(cursoProfesor);
+        return actualizado;
     }
 
     @Override

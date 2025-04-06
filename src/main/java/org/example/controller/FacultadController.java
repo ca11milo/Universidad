@@ -30,14 +30,16 @@ public class FacultadController implements Observable {
     }
 
     public boolean eliminarFacultad(int id) {
+        boolean eliminado = facultadService.eliminarFacultad(id);
         notificarObservadores();
-        return facultadService.eliminarFacultad(id);
+        return eliminado;
 
     }
 
     public boolean actualizarFacultad(Facultad facultad) {
+        boolean actualizado = facultadService.actualizarFacultad(facultad);
         notificarObservadores();
-        return facultadService.actualizarFacultad(facultad);
+        return actualizado;
     }
 
     @Override

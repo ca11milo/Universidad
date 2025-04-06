@@ -30,13 +30,15 @@ public class PersonaController implements Observable {
     }
 
     public boolean eliminarPersona(int id) {
+        boolean eliminado = personaService.eliminarPersona(id);
         notificarObservadores();
-        return personaService.eliminarPersona(id);
+        return eliminado;
     }
 
     public boolean actualizarPersona(Persona persona) {
+        boolean actualizado = personaService.actualizarPersona(persona);
         notificarObservadores();
-        return personaService.actualizarPersona(persona);
+        return actualizado;
     }
 
     @Override

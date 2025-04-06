@@ -36,13 +36,16 @@ public class EstudianteController implements Observable {
     }
 
     public boolean eliminarEstudiante(int id) {
+        boolean eliminado = estudianteService.eliminarEstudiante(id);
         notificarObservadores();
-        return estudianteService.eliminarEstudiante(id);
+        return eliminado;
     }
 
     public boolean actualizarEstudiante(Estudiante estudiante) {
+
+        boolean actualizado = estudianteService.actualizarEstudiante(estudiante);
         notificarObservadores();
-        return estudianteService.actualizarEstudiante(estudiante);
+        return actualizado;
     }
 
     @Override

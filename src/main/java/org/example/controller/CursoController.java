@@ -31,14 +31,15 @@ public class CursoController implements Observable {
     }
 
     public boolean eliminarCurso(int id) {
+        boolean eliminado = cursoService.eliminarCurso(id);
         notificarObservadores();
-        return cursoService.eliminarCurso(id);
-
+        return eliminado;
     }
 
     public boolean actualizarCurso(Curso curso) {
+        boolean actualizado = cursoService.actualizarCurso(curso);
         notificarObservadores();
-        return cursoService.actualizarCurso(curso);
+        return actualizado;
     }
 
     @Override

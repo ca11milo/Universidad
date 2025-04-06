@@ -30,13 +30,15 @@ public class ProgramaController implements Observable {
     }
 
     public boolean eliminarPrograma(int id) {
+        boolean eliminado = programaService.eliminarPrograma(id);
         notificarObservadores();
-        return programaService.eliminarPrograma(id);
+        return eliminado;
     }
 
     public boolean actualizarPrograma(Programa programa) {
+        boolean actualizado = programaService.actualizarPrograma(programa);
         notificarObservadores();
-        return programaService.actualizarPrograma(programa);
+        return actualizado;
     }
 
     @Override

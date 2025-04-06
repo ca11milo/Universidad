@@ -32,13 +32,15 @@ public class InscripcionController implements Observable {
     }
 
     public boolean eliminarInscripcion(int id) {
+        boolean eliminado = inscripcionService.eliminarInscripcion(id);
         notificarObservadores();
-        return inscripcionService.eliminarInscripcion(id);
+        return eliminado;
     }
 
     public boolean actualizarInscripcion(Inscripcion inscripcion) {
+        boolean actualizado = inscripcionService.actualizarInscripcion(inscripcion);
         notificarObservadores();
-        return inscripcionService.actualizarInscripcion(inscripcion);
+        return actualizado;
     }
 
     @Override

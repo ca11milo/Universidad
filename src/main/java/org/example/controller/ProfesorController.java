@@ -31,13 +31,15 @@ public class ProfesorController implements Observable {
     }
 
     public boolean eliminarProfesor(int id) {
+        boolean eliminado = profesorService.eliminarProfesor(id);
         notificarObservadores();
-        return profesorService.eliminarProfesor(id);
+        return eliminado;
     }
 
     public boolean actualizarProfesor(Profesor profesor) {
+        boolean actualizado = profesorService.actualizarProfesor(profesor);
         notificarObservadores();
-        return profesorService.actualizarProfesor(profesor);
+        return actualizado;
     }
 
     @Override
