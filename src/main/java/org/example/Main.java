@@ -5,7 +5,6 @@ import org.example.dao.*;
 import org.example.config.DatabaseConnection;
 import org.example.service.*;
 import org.example.view.VentanaPrincipal;
-import org.example.view.factory.VentanaFactory;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,21 +1,24 @@
 package org.example.controller;
 
 import org.example.model.Persona;
+import org.example.patterns.observer.*;
 import org.example.service.PersonaService;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class PersonaController {
+public class PersonaController implements Observable {
     private PersonaService personaService;
+    private List<Observer> observadores = new ArrayList<>();
 
     public PersonaController(PersonaService personaService) {
         this.personaService = personaService;
     }
 
-    public void guardarPersona(Persona persona) throws SQLException {
+    public void guardarPersona(Persona persona){
         personaService.guardarPersona(persona);
         System.out.println("Persona creada con éxito.");
+        notificarObservadores();
     }
 
     public Persona obtenerPersonaPorId(int id) {
@@ -27,11 +30,29 @@ public class PersonaController {
     }
 
     public boolean eliminarPersona(int id) {
+        notificarObservadores();
         return personaService.eliminarPersona(id);
     }
 
     public boolean actualizarPersona(Persona persona) {
+        notificarObservadores();
         return personaService.actualizarPersona(persona);
     }
 
+    @Override
+    public void agregarObservador(Observer o) {
+        observadores.add(o);
+    }
+
+    @Override
+    public void eliminarObservador(Observer o) {
+        observadores.remove(o);
+    }
+
+    @Override
+    public void notificarObservadores() {
+        for (Observer o : observadores) {
+            o.actualizar();
+        }
+    }
 }

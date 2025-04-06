@@ -1,13 +1,16 @@
 package org.example.controller;
 
-import org.example.model.Curso;
 import org.example.model.Profesor;
+import org.example.patterns.observer.Observable;
+import org.example.patterns.observer.Observer;
 import org.example.service.ProfesorService;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProfesorController {
+public class ProfesorController implements Observable {
     private final ProfesorService profesorService;
+    List<Observer> observadores = new ArrayList<>();
 
     public ProfesorController(ProfesorService profesorService) {
         this.profesorService = profesorService;
@@ -16,6 +19,7 @@ public class ProfesorController {
     public void guardarProfesor(Profesor profesor){
         profesorService.guardarProfesor(profesor);
         System.out.println("Profesor creado con éxito.");
+        notificarObservadores();
     }
 
     public Profesor obtenerProfesorPorId(int id){
@@ -27,11 +31,29 @@ public class ProfesorController {
     }
 
     public boolean eliminarProfesor(int id) {
+        notificarObservadores();
         return profesorService.eliminarProfesor(id);
     }
 
     public boolean actualizarProfesor(Profesor profesor) {
+        notificarObservadores();
         return profesorService.actualizarProfesor(profesor);
     }
 
+    @Override
+    public void agregarObservador(Observer o) {
+        observadores.add(o);
+    }
+
+    @Override
+    public void eliminarObservador(Observer o) {
+        observadores.remove(o);
+    }
+
+    @Override
+    public void notificarObservadores() {
+        for (Observer o : observadores) {
+            o.actualizar();
+        }
+    }
 }
