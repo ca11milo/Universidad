@@ -16,7 +16,7 @@ public class ActualizarInscripcion extends VentanaActualizar<Inscripcion> {
     private JComboBox<Integer> comboSemestre;
 
     public ActualizarInscripcion(InscripcionController inscripcionController, EstudianteController estudianteController) {
-        super("Actualizar Inscripción", new String[]{"ID Curso", "Año", "ID Estudiante"});
+        super("Actualizar Inscripción", new String[]{"ID Curso", "ID Estudiante", "Año"});
         this.inscripcionController = inscripcionController;
         this.estudianteController = estudianteController;
 
@@ -70,8 +70,8 @@ public class ActualizarInscripcion extends VentanaActualizar<Inscripcion> {
             Inscripcion inscripcion = inscripcionController.obtenerInscripcionPorId(id);
             if (inscripcion != null) {
                 campos[0].setText(String.valueOf(inscripcion.getCurso().getID()));
-                campos[1].setText(String.valueOf(inscripcion.getAño()));
-                campos[2].setText(String.valueOf(inscripcion.getEstudiante().getID()));
+                campos[1].setText(String.valueOf(inscripcion.getEstudiante().getID()));
+                campos[2].setText(String.valueOf(inscripcion.getAño()));
                 comboSemestre.setSelectedItem(inscripcion.getSemestre());
             } else {
                 JOptionPane.showMessageDialog(this, "Inscripción no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -86,8 +86,8 @@ public class ActualizarInscripcion extends VentanaActualizar<Inscripcion> {
         try {
             int id = Integer.parseInt(idField.getText().trim());
             int idCurso = Integer.parseInt(campos[0].getText().trim());
-            int anio = Integer.parseInt(campos[1].getText().trim());
-            int idEstudiante = Integer.parseInt(campos[2].getText().trim());
+            int idEstudiante = Integer.parseInt(campos[1].getText().trim());
+            int anio = Integer.parseInt(campos[2].getText().trim());
             int semestre = (Integer) comboSemestre.getSelectedItem();
 
             if (anio < 1974 || anio > 2100) {

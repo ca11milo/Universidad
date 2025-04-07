@@ -42,7 +42,7 @@ public class VentanaFactory {
                     case "Actualizar": return new ActualizarEstudiante(estudianteController, programaController);
                     case "Listar": return new LeerEstudiante(estudianteController);
                     case "Eliminar": return new BorrarEstudiante(estudianteController);
-                    case "Detalle": return new DetalleEstudiante(estudianteController);
+                    case "Detalle": return new DetalleEstudiante(estudianteController, inscripcionController, cursoController, profesorController);
                 }
                 break;
 

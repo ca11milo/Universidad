@@ -16,7 +16,7 @@ public class GuardarInscripcion extends VentanaGuardar<Inscripcion> {
     private JComboBox<Integer> comboSemestre;
 
     public GuardarInscripcion(InscripcionController inscripcionController, EstudianteController estudianteController) {
-        super("Registrar Inscripción", new String[]{"ID Curso", "Año", "ID Estudiante"});
+        super("Registrar Inscripción", new String[]{"ID Curso", "ID Estudiante", "Año"});
         this.inscripcionController = inscripcionController;
         this.estudianteController = estudianteController;
 
@@ -56,8 +56,8 @@ public class GuardarInscripcion extends VentanaGuardar<Inscripcion> {
     protected void guardarEntidad() {
         try {
             String idCursoTexto = campos[0].getText().trim();
-            String anioTexto = campos[1].getText().trim();
-            String idEstudianteTexto = campos[2].getText().trim();
+            String idEstudianteTexto = campos[1].getText().trim();
+            String anioTexto = campos[2].getText().trim();
 
             if (idCursoTexto.isEmpty() || anioTexto.isEmpty() || idEstudianteTexto.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
